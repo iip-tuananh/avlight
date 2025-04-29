@@ -1,9 +1,9 @@
 @extends('layouts.main.master')
 @section('title')
-Dự án tiêu biểu
+Dự án của chúng tôi
 @endsection
 @section('description')
-Dự án tiêu biểu
+Dự án của chúng tôi
 @endsection
 @section('image')
 {{url(''.$setting->logo)}}
@@ -13,90 +13,78 @@ Dự án tiêu biểu
 @section('css')
 @endsection
 @section('content')
-<div class="content-block  stick-to-footer">
-    <div class="container-bg with-bgcolor" data-style="background-color: #F4F4F4">
-       <div class="container-bg-overlay">
-          <div class="container">
-             <div class="row">
-                <div class="col-md-12">
-                   <div class="page-item-title">
-                      <h1>Dự án tiêu biểu</h1>
-                   </div>
-                </div>
-             </div>
-          </div>
+<main class="main">
+
+   <!-- breadcrumb -->
+   <div class="site-breadcrumb" style="background: url({{url('frontend/img/breadcrumb.jpg')}})">
+       <div class="container">
+           <ul class="breadcrumb-menu">
+               <li><a href="{{route('home')}}">Trang chủ</a></li>
+               <li class="active">Dự án  </li>
+           </ul>
        </div>
-       <div class="breadcrumbs-container-wrapper">
-          <div class="container">
-             <div class="row">
-                <div class="col-md-12">
-                   <div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
-                      <!-- Breadcrumb NavXT 6.2.1 -->
-                      <span property="itemListElement" typeof="ListItem">
-                         <a property="item" typeof="WebPage" title="Go to TheBuilt." href="{{route('home')}}" class="home"><span property="name">Trang chủ</span></a>
-                         <meta property="position" content="1">
-                      </span>
-                      &gt; 
-                      <span property="itemListElement" typeof="ListItem">
-                         <span property="name">Dự án tiêu biểu</span>
-                         <meta property="position" content="2">
-                      </span>
-                   </div>
-                </div>
-             </div>
+   </div>
+   <div class="blog-area py-80">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 mx-auto">
+                  <div class="site-heading text-center wow fadeInDown" data-wow-delay=".25s">
+                      <span class="site-title-tagline"><i class="fas fa-truck-container"></i> Our Project</span>
+                      <h2 class="site-title">Dự án <span>của chúng tôi</span></h2>
+                      <div class="heading-divider"></div>
+                  </div>
+              </div>
           </div>
-       </div>
-    </div>
-    <div class="page-container container">
-       <div class="row">
-          <div class="col-md-12 entry-content">
-             <article>
-                <div class="vc_row wpb_row vc_row-fluid">
-                  @foreach ($duan as $item)
-                               @php
-                                   $img = json_decode($item->images);
-                               @endphp
-                      <div class="wpb_column vc_column_container vc_col-sm-4">
-                        <div class="vc_column-inner">
-                           <div class="wpb_wrapper">
-                              <style scoped='scoped'>.mgt-promo-block-47315338164.mgt-promo-block.darken .mgt-promo-block-content {background-color: rgba(10,10,10,0.3)!important;}.mgt-promo-block-47315338164.mgt-promo-block.animated:hover .mgt-promo-block-content {background-color: rgba(0,0,0,0.5)!important;}</style>
-                              <div class="mgt-promo-block animated white-text cover-image text-size-normal darken mgt-promo-block-47315338164 wpb_content_element wpb_animate_when_almost_visible wpb_appear" data-style="background-image: url({{$img[0]}});background-repeat: no-repeat;width: 100%; height: 220px;">
-                                 <div class="mgt-promo-block-content va-bottom">
-                                    <div class="mgt-promo-block-content-inside vc_custom_1464356916127">
-                                       <i class="fa fa-2 fa-building">
-                                          <!-- Icon -->
-                                       </i>
-                                       <h3>{{$item->name}}</h3>
-                                       <div class="mgt-button-wrapper mgt-button-wrapper-align-left mgt-button-wrapper-display-newline mgt-button-top-margin-disable">
-                                          <a class="btn hvr-icon-wobble-horizontal mgt-button mgt-style-textwhite mgt-size-normal mgt-align-left mgt-display-newline mgt-text-size-small mgt-button-icon-position-right mgt-text-transform-uppercase " href="{{route('duanTieuBieuDetail',['slug'=>$item->slug])}}">Chi tiết<i class="fa fa-arrow-right"></i>
-                                          </a></div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="wpb_text_column wpb_content_element  wpb_animate_when_almost_visible wpb_left-to-right left-to-right vc_custom_1459415178192" >
-                                 <div class="wpb_wrapper line_3">
-                                    {!!languageName($item->description)!!}
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+      
+          @if (count($duan) > 0)
+
+             
+          <div class="row g-4">
+            @foreach ($duan as $item)
+            @php
+                
+                $img = json_decode($item->images);
+               
+            @endphp
+              <div class="col-md-6 col-lg-4">
+                  <div class="blog-item wow fadeInUp" data-wow-delay=".25s">
+                     <div class="blog-item-img">
+                        <a href="{{ route('duanTieuBieuDetail', $item->slug) }}">
+                           <img src="{{ isset($img[0]) ? $img[0] : url('frontend/img/default.jpg') }}" alt="Thumb" class="img-pro">
+                        </a>
                      </div>
-                  @endforeach
-                </div>
-                <div class="vc_row wpb_row vc_row-fluid">
-                   <div class="wpb_column vc_column_container vc_col-sm-12">
-                      <div class="vc_column-inner">
-                         <div class="wpb_wrapper">
-                            <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_grey" ><span class="vc_sep_holder vc_sep_holder_l"><span  class="vc_sep_line"></span></span><span class="vc_sep_holder vc_sep_holder_r"><span  class="vc_sep_line"></span></span></div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-                {{$duan->links()}}
-             </article>
+                     <div class="blog-item-info">
+                        <div class="blog-item-meta">
+                           <ul>
+                              <li><a href="{{ route('duanTieuBieuDetail', $item->slug) }}"><i class="far fa-calendar"></i> {{date_format($item->created_at,'d/m/Y')}}</a></li>
+                           </ul>
+                        </div>
+                        <h4 class="blog-title">
+                           <a href="{{ route('duanTieuBieuDetail', $item->slug) }}">{{ $item->name }}</a>
+                        </h4>
+                        <p class="line_2">
+                           <div class="line-camp-2">
+
+                              {!!languageName($item->description)!!}
+                           </div>
+                        </p>
+                        <a class="theme-btn" href="{{ route('duanTieuBieuDetail', $item->slug) }}">Chi Tiết<i
+                           class="fas fa-arrow-right"></i></a>
+                     </div>
+                  </div>
+              </div>
+              @endforeach
           </div>
-       </div>
-    </div>
- </div>
+          <!-- pagination -->
+          <div class="pagination-area">
+              {{$duan->links()}}
+          </div>
+          @else 
+          <h3>Nội dung đang cập nhật...</h3>
+          @endif
+          <!-- pagination end -->
+      </div>
+  </div>
+</main>
 
 @endsection

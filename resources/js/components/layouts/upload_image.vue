@@ -15,7 +15,7 @@
            :style="[{height: height}, {maxHeight: height}, {lineHeight: height}]"></i>
     </el-upload>
 </template>
- 
+
 <script>
     import config from '../../../config';
     import imageCompression from 'browser-image-compression';
@@ -37,7 +37,8 @@
                 type: Number,
                 default: 1000
             },
-            title:""
+            title:"",
+            oldImage: "",
         },
         data() {
             return {
@@ -85,12 +86,11 @@
             },
             request(req) {
                 const options = {
-                    maxSizeMB: 3,
+maxSizeMB: 3,
                     maxWidthOrHeight: 10000,
                     useWebWorker: false,
                     maxIteration: 10
-                }
-                console.log(this.title);
+                };
                 imageCompression(req.file, options)
                     .then(res => {
                         this.loading = true;
@@ -116,6 +116,7 @@
                         formData = new FormData();
                         formData.append('img', res, req.file.name);
                         formData.append("title_post", this.getslugname(this.title));
+                        formData.append('oldImages[]', this.oldImage);
                         xhr.send(formData);
                     })
             }

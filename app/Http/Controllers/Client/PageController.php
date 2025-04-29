@@ -102,30 +102,43 @@ class PageController extends Controller
     		'data'=> $data
     	],200);
     }
+
     public function search(Request $request)
     {
         $keyword = $request->keyword;
+    
+        // Kiểm tra nếu từ khóa rỗng
+        if (empty($keyword)) {
+            return redirect()->back()->with('error', 'Vui lòng nhập từ khóa tìm kiếm.');
+        }
+    
         $code = Session::get('locale');
         $arr = [];
         $arrb = [];
         $arrOpt = [];
-        //search option
-        $productOpt =  Product::with('cate')
-        ->where('status',1)
-        ->get()
-        ->toArray();
-        foreach($productOpt as $key => $item){
+    
+        // Search option
+        $productOpt = Product::with('cate')
+            ->where('status', 1)
+            ->get()
+            ->toArray();
+    
+        foreach ($productOpt as $key => $item) {
             $fielName = json_decode($item['name']);
-            foreach($fielName as $i){
-                if(strpos(strtolower(stripVN($i->content)), strtolower(stripVN($keyword))) !== false && $i->lang_code == $code){
-                    array_push($arr,$productOpt[$key]);
+            foreach ($fielName as $i) {
+                if (strpos(strtolower(stripVN($i->content)), strtolower(stripVN($keyword))) !== false && $i->lang_code == $code) {
+                    array_push($arr, $productOpt[$key]);
                 }
             }
         }
+    
         $data['keyword'] = $request->keyword;
         $data['countproduct'] = count($arr);
         $data['resultPro'] = $arr;
-        return view('search_result',$data);
+        // $data['phantrang'] = collect($arr)->paginate(9);
+        
+    
+        return view('search_result', $data);
     }
     public function postcontact(Request $request){
         $data = new MessContact();
@@ -165,10 +178,18 @@ class PageController extends Controller
         return view('album',$data);
     }
     public function duanTieuBieuDetail($slug)
-    {
-        $data['detail'] = Project::where('slug',$slug)->first();
-        return view('detailProject',$data);
-    }
+{
+    // Lấy thông tin chi tiết dự án
+    $data['detail'] = Project::where('slug', $slug)->first();
+
+    // Lấy danh sách dự án liên quan, ngoại trừ dự án chi tiết
+    $data['prolq'] = Project::where('id', '!=', $data['detail']->id)
+                            ->where('status', 1) // Điều kiện khác nếu cần
+                            ->limit(5) // Giới hạn số lượng dự án liên quan
+                            ->get();
+
+    return view('detailProject', $data);
+}
     public function fag()
     {
         return view('faq');

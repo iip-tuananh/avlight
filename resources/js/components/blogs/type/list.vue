@@ -83,6 +83,8 @@ export default {
       this.loadings(true);
       this.listTypelog({ keyword: this.keyword })
       .then(response => {
+        this.listTypelog({ keyword: this.keyword })
+
           this.loadings(false);
           this.list = response.data;
         });

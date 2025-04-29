@@ -30,10 +30,12 @@
                     <vs-td >
                       <router-link :to="{name:'editBlog',params:{id:tr.id}}">
                         <vs-button
+                          v-if="tr"
                           vs-type="gradient"
-                          size="lagre"
+                          size="large"
                           color="success"
                           icon="edit"
+                          :key="'edit-' + tr.id"
                         ></vs-button>
                       </router-link>
                       <vs-button vs-type="gradient" size="lagre" color="red" icon="delete_forever" @click="confirmDestroy(tr.id)"></vs-button>

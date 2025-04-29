@@ -120,7 +120,7 @@ export default {
       this.errors = [];
       if(this.objData.name == '') this.errors.push('Tên không được để trống');
       if(this.objData.content[0].content == '') this.errors.push('Nội dung không được để trống');
-     if(this.objData.images.length < 4) this.errors.push('Chọn tối thiểu 3 ảnh');
+     if(this.objData.images.length == 0) this.errors.push('Vui lòng chọn ảnh');
       if (this.errors.length > 0) {
         this.errors.forEach((value, key) => {
           this.$error(value)

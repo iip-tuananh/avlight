@@ -53,16 +53,16 @@ class AppServiceProvider extends ServiceProvider
             $setting = Setting::first();
             $lang = Language::get();
             $pageContent = PageContent::where(['language'=>$language_current,'status'=> 1])->get();
-            // $categoryhome = Category::with([
-            //     'typeCate' => function ($query) {
-            //         $query->with(['typetwo'])->where('status',1)->orderBy('id','DESC')->select('cate_id','id', 'name','avatar','slug','cate_slug'); 
-            //     }
-            // ])->where('status',1)->orderBy('id','DESC')->get(['id','name','imagehome','avatar','slug','content'])->map(function ($query) {
-            //     $query->setRelation('product', $query->product->take(6));
-            //     return $query;
-            // });
+            $categoryhome = Category::with([
+                'typeCate' => function ($query) {
+                    $query->with(['typetwo'])->where('status',1)->orderBy('id','DESC')->select('cate_id','id', 'name','avatar','slug','cate_slug'); 
+                }
+            ])->where('status',1)->orderBy('id','DESC')->get(['id','name','imagehome','avatar','slug','content'])->map(function ($query) {
+                $query->setRelation('product', $query->product->take(6));
+                return $query;
+            });
             $banner = Banner::where(['status'=>1])->get(['id','image','link','title','description','subimg1','subimg2','subimg3','sublink1','sublink2','sublink3']);
-            // $cartcontent = session()->get('cart', []);
+            $cartcontent = session()->get('cart', []);
             // $viewold = session()->get('viewoldpro', []);
             // $compare = session()->get('compareProduct', []);
             $blogCate = BlogCategory::with([
@@ -80,8 +80,8 @@ class AppServiceProvider extends ServiceProvider
                 'lang' => $lang,
                 'banner'=>$banner,
                 'profile' =>$profile,
-                // 'categoryhome'=> $categoryhome,
-                // 'cartcontent'=>$cartcontent,
+                'categoryhome'=> $categoryhome,
+                'cartcontent'=>$cartcontent,
                 // 'viewold'=>$viewold,
                 // 'compare'=>$compare,
                 'blogCate'=>$blogCate,

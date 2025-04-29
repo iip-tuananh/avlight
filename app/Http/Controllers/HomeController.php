@@ -19,13 +19,20 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $data['hotnews'] = Blog::where([
-            ['status','=',1]
-        ])->orderBy('id','DESC')->limit(6)->get(['id','title','slug','created_at','image','description']);
+        $data['hotnews'] = Blog::where(['category'=>'tin-tuc'])->get();
+        $data['sanphamnoibat'] = Product::where(['status' => 1])
+        ->with(['cate', 'typecate']) // Eager load các mối quan hệ
+        ->orderBy('id', 'desc')
+        ->take(15) 
+        ->get();
+        
         $data['bannerads'] = BannerAds::where(['status'=>1])->get();
         $data['gioithieu'] = PageContent::where(['slug'=>'gioi-thieu','language'=>'vi'])->first(['id','title','content','image']);
         $data['partner'] = Partner::where(['status'=>1])->get();
         $data['logokhachhang'] = AlbumAffter::where(['status'=>1])->get();
+        $data['giaiphap'] = Blog::where(['category'=>'giai-phap'])->get();
+        // dd($data['sanphamnoibat']);
+        $data['project'] = Project::where(['status'=>1])->get();
         $data['reviewcus'] = ReviewCus::where(['status'=>1])->get();
         $data['founder'] = Founder::where(['status'=>1])->get();
         return view('home',$data);

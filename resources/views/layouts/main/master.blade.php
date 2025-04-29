@@ -57,11 +57,41 @@
       <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/nice-select.min.css">
       <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/style.css"> 
       <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/callbutton.css">
+      <link rel="stylesheet" href="{{asset('frontend/css/tuan.css')}}">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
       <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery-3.7.1.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+      <link rel="stylesheet" href="{{ asset('frontend/css/toastr.scss.css') }}">
       @yield('css')
    </head>
    <body>
+   
+
+    <a href="{{route('listCart')}}" id="giohang" >
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="soluong count_item_pr">0</span>
+    </a>
+     <!-- filepath: c:\laragon\www\avlight\resources\views\product\detail.blade.php -->
+<!-- filepath: c:\laragon\www\avlight\resources\views\layouts\main\master.blade.php -->
+
+
+@if (session('success'))
+<div class="overlay" id="overlay"></div>
+<div class="alert alert-success custom-alert" id="success-alert">
+    {{ session('success') }}
+    <button type="button" class="close-alert" onclick="closeAlert('success-alert', 'overlay')">&times;</button>
+</div>
+@endif
+
+@if (session('error'))
+<div class="overlay" id="overlay"></div>
+<div class="alert alert-danger custom-alert" id="error-alert">
+    {{ session('error') }}
+    <button type="button" class="close-alert" onclick="closeAlert('error-alert', 'overlay')">&times;</button>
+</div>
+@endif
       @include('layouts.header.index')
       
       @yield('content')
@@ -132,6 +162,128 @@
       <script src="{{ env('AWS_R2_URL') }}/frontend/js/main.js"></script>
       <script src="{{ env('AWS_R2_URL') }}/frontend/js/callbutton.js"></script>
       <script src="{{ env('AWS_R2_URL') }}/frontend/js/notify.min.js"></script>
+      <script src="{{asset('frontend/js/addcart.js')}}"></script>
+      <script src="{{asset('frontend/js/toast.js')}}"></script>
       @yield('js')
+      <script>
+         $('.product-tuan-slider').owlCarousel({
+           loop: false,
+           margin: 30,
+           nav: true,
+           dots: true,
+           autoplay: true,
+           navText: [
+               "<i class='far fa-arrow-left'></i>",
+               "<i class='far fa-arrow-right'></i>"
+           ],
+           rows: 2,
+           responsive: {
+               0: {
+                   items: 1
+               },
+               600: {
+                   items: 3
+               },
+               1000: {
+                   items: 4
+               }
+           }
+       });
+        </script>
+          <script>
+            $('.product-detail-slider').owlCarousel({
+              loop: false,
+              margin: 30,
+              nav: true,
+              dots: true,
+              autoplay: true,
+              navText: [
+                  "<i class='far fa-arrow-left'></i>",
+                  "<i class='far fa-arrow-right'></i>"
+              ],
+              rows: 2,
+              responsive: {
+                  0: {
+                      items: 1
+                  },
+                  600: {
+                      items: 3
+                  },
+                  1000: {
+                      items: 4
+                  }
+              }
+          });
+           </script>
+           <script>
+              document.addEventListener('DOMContentLoaded', function() {
+            // Lấy tất cả các nút "Thêm vào giỏ"
+            const addToCartButtons = document.querySelectorAll('.themgio');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); // Ngăn chặn hành động mặc định
+
+                    // Lấy ID sản phẩm từ thuộc tính data-id
+                    const productId = this.getAttribute('data-id');
+
+                    // Tạo dữ liệu gửi đi
+                    const formData = new FormData();
+                    formData.append('_token', '{{ csrf_token() }}'); // CSRF token
+                    formData.append('product_id', productId);
+                    formData.append('quantity', 1); // Số lượng mặc định là 1
+
+                    // Gửi request AJAX
+                    fetch('{{ route('add.to.cart') }}', {
+                            method: 'POST',
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                const cartCountElements = document.querySelectorAll(
+                                    '.count_item_pr');
+                                if (cartCountElements.length > 0) {
+                                    cartCountElements.forEach(element => {
+                                        element.textContent = data
+                                        .cartCount; // Cập nhật số lượng từ server
+                                    });
+                                }
+                            } else {
+                                toastr.error('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Lỗi:', error);
+                            alert('Không thể thêm sản phẩm vào giỏ hàng.');
+                        });
+                });
+            });
+        });
+           </script>
+       <script>
+        function closeAlert(alertId, overlayId) {
+            const alertElement = document.getElementById(alertId);
+            const overlayElement = document.getElementById(overlayId);
+            if (alertElement) {
+                alertElement.style.display = 'none';
+            }
+            if (overlayElement) {
+                overlayElement.style.display = 'none';
+            }
+        }
+    
+        // Hiển thị overlay khi thông báo xuất hiện
+        document.addEventListener('DOMContentLoaded', function () {
+            const overlay = document.getElementById('overlay');
+            const successAlert = document.getElementById('success-alert');
+            const errorAlert = document.getElementById('error-alert');
+    
+            if (successAlert || errorAlert) {
+                overlay.style.display = 'block';
+            }
+        });
+    </script>
    </body>
 </html>

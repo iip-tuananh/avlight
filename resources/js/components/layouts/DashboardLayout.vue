@@ -115,6 +115,46 @@ export default {
 						},
 					],
 				},
+				// dự án 
+				{
+					icon: 'mdi mdi-shopping-music menu-icon',
+					name: 'Quản lý dự án',
+					route_name: '',
+					sub: [
+						{
+							name: 'Danh sách',
+							path: '/project',
+						},
+						// {
+						// 	name: 'Danh mục con',
+						// 	path: '/product/type',
+						// },
+						// {
+						// 	name: 'Danh mục cha',
+						// 	path: '/project/category',
+						// },
+					],
+				},
+				// {
+				// 	icon: 'mdi mdi-shopping-music menu-icon',
+				// 	name: 'Quản lý giải pháp',
+				// 	route_name: '',
+				// 	sub: [
+				// 		{
+				// 			name: 'Danh sách',
+				// 			path: '/solution',
+				// 		},
+				// 		// {
+				// 		// 	name: 'Danh mục con',
+				// 		// 	path: '/product/type',
+				// 		// },
+				// 		// {
+				// 		// 	name: 'Danh mục cha',
+				// 		// 	path: '/project/category',
+				// 		// },
+				// 	],
+				// },
+				// ================
 				{
 					icon: 'mdi mdi-newspaper menu-icon',
 					name: 'Trang nội dung',

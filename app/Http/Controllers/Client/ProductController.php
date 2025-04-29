@@ -155,8 +155,9 @@ class ProductController extends Controller
             'cate' => function ($query) {
                 $query->where('status',1)->limit(5)->select('id','name','avatar','slug'); 
             },
-        ])->where('slug',$id)->first(['id','name','images','type_cate','category','sku','discount','price','content','size','description','slug','preserve','created_at']);
-        $data['productlq'] = Product::where('category',$data['product']->category)->get(['id','name','images','discount','price','slug','cate_slug','type_slug','description']);
+        ])->where('id',$id)->first(['id','name','images','type_cate','category','sku','discount','price','content','size','description','slug','preserve','created_at']);
+        $data['productlq'] = Product::where('category',$data['product']->category)->take(10)->get();
+        // dd($data['product']);
         return view('product.detail',$data);
     }
     public function compare(Request $request)
