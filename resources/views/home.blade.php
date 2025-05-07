@@ -356,7 +356,7 @@
                     <div class="col-lg-4">
                         <div class="site-heading wow fadeInDown" data-wow-delay=".25s">
                             <span class="site-title-tagline"><i class="fas fa-truck-container"></i> Testimonials</span>
-                            <h2 class="site-title text-white">Khách hàng nói gì về <span>{{ $setting->webname }}</span>
+                            <h2 class="site-title text-white">Khách hàng nói gì về <span>{{ $setting->company }}</span>
                             </h2>
                             <p class="text-white">
                                 Luôn đặt khách hàng làm trọng tâm, hiểu rõ nhu cầu của họ và cung cấp các dịch vụ vượt xa
@@ -405,55 +405,57 @@
             </div>
         </div>
         <!-- blog-area -->
-        <div class="blog-area pb-80 pt-80">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="site-heading text-center wow fadeInDown" data-wow-delay=".25s">
-                            <span class="site-title-tagline"><i class="fas fa-truck-container"></i> Our Blog</span>
-                            <h2 class="site-title">Tin tức hoạt động</h2>
-                            <div class="heading-divider"></div>
+        @if ($hotnews->count() > 0)
+            <div class="blog-area pb-80 pt-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                            <div class="site-heading text-center wow fadeInDown" data-wow-delay=".25s">
+                                <span class="site-title-tagline"><i class="fas fa-truck-container"></i> Our Blog</span>
+                                <h2 class="site-title">Tin tức hoạt động</h2>
+                                <div class="heading-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="service-slider owl-carousel">
+                            @foreach ($hotnews as $item)
+                                <div class="blog-item wow fadeInUp" data-wow-delay=".25s">
+                                    <div class="blog-item-img">
+                                        <a href="{{ route('detailBlog', ['slug' => $item->slug]) }}">
+                                            <img class="lazy"
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                                                data-src="{{ $item->image }}" alt="Thumb">
+                                        </a>
+                                        <div class="blog-date">
+                                            <strong>{{ date_format($item->created_at, 'd') }}</strong>
+                                            <span>{{ date_format($item->created_at, 'M') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="blog-item-info">
+                                        <div class="blog-item-meta">
+                                            <ul>
+                                                <li><a href="{{ route('detailBlog', ['slug' => $item->slug]) }}"><i
+                                                            class="far fa-user-circle"></i> By Admin</a></li>
+                                            </ul>
+                                        </div>
+                                        <h4 class="blog-title">
+                                            <a
+                                                href="{{ route('detailBlog', ['slug' => $item->slug]) }}">{{ languageName($item->title) }}</a>
+                                        </h4>
+                                        <p class="line_2">
+                                            {{ languageName($item->description) }}
+                                        </p>
+                                        <a class="theme-btn" href="{{ route('detailBlog', ['slug' => $item->slug]) }}">Đọc
+                                            tiếp<i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="service-slider owl-carousel">
-                        @foreach ($hotnews as $item)
-                            <div class="blog-item wow fadeInUp" data-wow-delay=".25s">
-                                <div class="blog-item-img">
-                                    <a href="{{ route('detailBlog', ['slug' => $item->slug]) }}">
-                                        <img class="lazy"
-                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                                            data-src="{{ $item->image }}" alt="Thumb">
-                                    </a>
-                                    <div class="blog-date">
-                                        <strong>{{ date_format($item->created_at, 'd') }}</strong>
-                                        <span>{{ date_format($item->created_at, 'M') }}</span>
-                                    </div>
-                                </div>
-                                <div class="blog-item-info">
-                                    <div class="blog-item-meta">
-                                        <ul>
-                                            <li><a href="{{ route('detailBlog', ['slug' => $item->slug]) }}"><i
-                                                        class="far fa-user-circle"></i> By Admin</a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="blog-title">
-                                        <a
-                                            href="{{ route('detailBlog', ['slug' => $item->slug]) }}">{{ languageName($item->title) }}</a>
-                                    </h4>
-                                    <p class="line_2">
-                                        {{ languageName($item->description) }}
-                                    </p>
-                                    <a class="theme-btn" href="{{ route('detailBlog', ['slug' => $item->slug]) }}">Đọc
-                                        tiếp<i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
             </div>
-        </div>
+        @endif
         <!-- blog-area end -->
         <!-- partner area -->
         <div class="partner-area bg pt-60 pb-60">
