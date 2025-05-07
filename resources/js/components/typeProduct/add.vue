@@ -111,7 +111,7 @@ export default {
 			if (this.objData.cate_id == '') this.errors.push('Danh mục cha không được để trống');
 			if (this.errors.length > 0) {
 				this.errors.forEach((value, key) => {
-					this.$error(value);
+					this.$notify.error(value);
 				});
 				return;
 			} else {
@@ -120,12 +120,12 @@ export default {
 					.then(response => {
 						this.loadings(false);
 						this.$router.push({ name: 'list_type_cate' });
-						this.$success('Thêm loại sản phẩm thành công');
+						this.$notify.success('Thêm loại sản phẩm thành công');
 						this.$router.push({ name: 'list_type_cate' });
 					})
 					.catch(error => {
 						this.loadings(false);
-						this.$error('Thêm loại sản phẩm thất bại');
+						this.$notify.error('Thêm loại sản phẩm thất bại');
 					});
 			}
 		},

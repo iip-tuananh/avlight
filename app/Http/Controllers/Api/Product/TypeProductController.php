@@ -20,15 +20,15 @@ class TypeProductController extends Controller
     public function list(Request $request)
     {
         $keyword = $request->keyword;
-        if($keyword == ""){
-            $data = TypeProduct::leftJoin('product_category', function($join){
-                $join->on('product_category.id','=','product_type.cate_id');
-            })
-            ->select('product_type.*','product_category.name as cate')->
-            orderBy('id','DESC')->get();
-        }else{
-            $data = TypeProduct::where('name', 'LIKE', '%'.$keyword.'%')->orderBy('id','DESC')->get()->toArray();
+        $data = TypeProduct::leftJoin('product_category', function($join){
+            $join->on('product_category.id','=','product_type.cate_id');
+        })
+        ->select('product_type.id','product_type.name', 'product_type.status', 'product_type.cate_id', 'product_category.name as cate')
+        ->orderBy('id','DESC');
+        if(!empty($keyword)){
+            $data = $data->where('name', 'LIKE', '%'.$keyword.'%');
         }
+        $data = $data->get();
         return response()->json([
             'data' => $data,
             'message' => 'success'

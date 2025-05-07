@@ -302,7 +302,7 @@ export default {
         this.errors.push("Chọn danh mục sản phẩm");
       if (this.errors.length > 0) {
         this.errors.forEach((value, key) => {
-          this.$error(value);
+          this.$notify.error(value);
         });
         return;
       } else {
@@ -311,11 +311,11 @@ export default {
           .then((response) => {
             this.loadings(false);
             this.$router.push({ name: "listBlogs" });
-            this.$success("Thêm tin tức thành công");
+            this.$notify.success("Thêm tin tức thành công");
           })
           .catch((error) => {
             this.loadings(false);
-            this.$error("Thêm tin tức thất bại");
+            this.$notify.error("Thêm tin tức thất bại");
           });
       }
     },

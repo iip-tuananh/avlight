@@ -1,147 +1,163 @@
 @extends('layouts.main.master')
 @section('title')
-{{($detail_service->name)}}
+    {{ $detail_service->name }}
 @endsection
 @section('description')
-{{($detail_service->description)}}
+    {{ languageName($detail_service->description) }}
 @endsection
 @section('image')
-{{url(''.$detail_service->image)}}
+    {{ url('' . $detail_service->image) }}
 @endsection
 @section('css')
+    <style>
+        .service-sidebar {
+            position: sticky;
+            top: 80px;
+        }
+    </style>
 @endsection
 @section('js')
 @endsection
 @section('content')
-<section id="ft-breadcrumb" class="ft-breadcrumb-section position-relative" data-background="{{url('frontend/img/bread-bg.jpg')}}" style="background-image: url(&quot;{{url('frontend/img/bread-bg.jpg')}}&quot;);">
-   <span class="background_overlay"></span>
-   <span class="design-shape position-absolute"><img src="{{url('frontend/img/tmd-sh.png')}}" alt=""></span>
-   <div class="container">
-      <div class="ft-breadcrumb-content headline text-center position-relative">
-         <h1>{{($detail_service->name)}}</h1>
-         <div class="ft-breadcrumb-list ul-li">
-            <ul>
-               <li><a href="{{route('home')}}">Home</a></li>
-               <li>Dịch Vụ</li>
-               <li>{{($detail_service->name)}}</li>
-            </ul>
-         </div>
-      </div>
-   </div>
-</section>
-<section id="ft-service-details" class="ft-service-details-section page-padding">
-   <div class="container">
-      <div class="ft-service-details-content">
-         <div class="row">
-            
-            <div class="col-lg-8">
-               <div class="ft-service-details-content-wrapper headline pera-content">
-                  <div class="ft-service-details-text-wrapper">
-                     <h3>Thông Tin Chi Tiết: </h3>
-                     {!!languageName($detail_service->content)!!}
-                  </div>
-               </div>
+    <main class="main">
+
+        <!-- breadcrumb -->
+        <div class="site-breadcrumb" style="background: url({{ url('frontend/img/breadcrumb.jpg') }})">
+            <div class="container">
+                <h2 class="breadcrumb-title">{{ $detail_service->name }}</h2>
+                <ul class="breadcrumb-menu">
+                    <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="active">{{ $detail_service->name }}</li>
+                </ul>
             </div>
-            <div class="col-lg-4">
-               <div class="ft-service-sidebar">
-                  <div class="ft-service-sidebar-widget headline ul-li-block">
-                     <div class="service-category-widget">
-                        <h3 class="widget-title">Tất Cả Dịch Vụ</h3>
-                        <ul>
-                           @foreach ($servicehome as $item)
-                           <li><a href="{{route('serviceDetail',['slug'=>$item->slug])}}">{{$item->name}}</a></li>
-                           @endforeach
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="ft-service-sidebar-widget headline ul-li-block">
-                     <div class="service-form-widget">
-                        <h3 class="widget-title text-uppercase">ĐĂNG KÝ TƯ VẤN</h3>
-                        <p>Hỗ Trợ 24/7</p>
-                        <form id="baogiadervice">
-                           <input type="text" name="name" placeholder="Họ Tên">
-                           <input hidden type="text" name="service" value="{{($detail_service->name)}}">
-                           <input type="text" name="phone" placeholder="Số Điện Thoại">
-                           <input type="text" name="tenhang" placeholder="Tên Hàng">
-                           <input type="text" name="khoiluong" placeholder="Khối Lượng">
-                           <input type="text" name="diemboc" placeholder="Điểm bốc">
-                           <input type="text" name="diemtra" placeholder="Điểm trả">
-                           <input type="text" name="ngaycanchuyen" placeholder="Ngày cần chuyển">
-                           <input type="text" name="cuocdexuat" placeholder="Cước đề xuất">
-                           <button type="submit"><i class="fa fa-spinner fa-spin spin-icon" aria-hidden="true"></i> Nhận Báo Giá</button>
-                        </form>
-                        <script>
-                           $('#baogiadervice').validate({
-                                       rules: {
-                                          "name": {
-                                             required: true,
-                                          },
-                                          "phone": {
-                                             required: true,
-                                             minlength: 8
-                                          },
-                                          "tenhang": {
-                                             required: true,
-                                          },
-                                          "khoiluong": {
-                                             required: true,
-                                          },
-                                          "diemboc": {
-                                             required: true,
-                                          },
-                                          "diemtra": {
-                                             required: true,
-                                          },
-                                          "ngaycanchuyen": {
-                                             required: true,
-                                          }
-                                       },
-                                       messages: {
-                                          "name": {
-                                             required: "Tên bạn là gì?",
-                                          },
-                                          "phone": {
-                                             required: "Nhập sdt liên hệ",
-                                          },
-                                          "tenhang": {
-                                             required: "Hàng bạn muốn vận chuyển là gì?",
-                                          },
-                                          "khoiluong": {
-                                             required: "Khối lượng hàng khoảng bao nhiêu?",
-                                          },
-                                          "diemboc": {
-                                             required: "Điểm bốc hàng của bạn là gì?",
-                                          },
-                                          "diemtra": {
-                                             required: "Điểm trả hàng của bạn là gì?",
-                                          },
-                                          "ngaycanchuyen": {
-                                             required: "Ngày bạn cần chuyển hàng?",
-                                          }
-                                       },
-                                    submitHandler: function(form) {
-                                       $(".spin-icon").css("display", "block");
-                                       $.ajax({
-                                        url: "https://script.google.com/macros/s/AKfycbxOY64wKFA2hVQa5gnXd9ZvXYigvKkpGdl9Plh3eZSAo0grZjiEZqm6PelpkMU5lKt3/exec",
-                                        type: "post",
-                                        data: $("#baogiadervice").serializeArray(),
-                                        success: function () {
-                                           $(".spin-icon").css("display", "none");
-                                          jQuery.notify("Thành công! Chúng tôi sẽ sớm liên hệ", "success");
-                                        },
-                                        error: function () {
-                                          jQuery.notify("Gửi thông tin thất bại", "error");
-                                        }
-                                     });
-                                    }
-                                    });
-                        </script>
-                     </div>
-                  </div>
-               </div>
+        </div>
+        <!-- breadcrumb end -->
+
+
+        <!-- service single -->
+        <div class="service-single py-120">
+            <div class="container">
+                <div class="service-single-wrap">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8">
+                            <div class="service-details">
+                                <div class="content">
+                                    <h1 class="mb-20 title-content">{{ $detail_service->name }}</h1>
+                                    {!! languageName($detail_service->content) !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4">
+                            <div class="service-sidebar">
+                                <div class="widget">
+                                    <h4 class="title">Dịch vụ khác</h4>
+                                    <div class="category">
+                                        @foreach ($servicehome as $item)
+                                            <a href="{{ route('serviceCateList', ['slug' => $item->slug]) }}"><i
+                                                    class="far fa-angle-double-right"></i>{{ $item->name }}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="widget">
+                                    <h4 class="title">Yêu cầu tư vấn</h4>
+                                    <form id="commentform">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-icon">
+                                                        <i class="far fa-user-tie"></i>
+                                                        <input type="text" class="form-control" name="name"
+                                                            placeholder="Họ Tên">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-icon">
+                                                        <i class="far fa-phone"></i>
+                                                        <input type="text" class="form-control" name="phone"
+                                                            placeholder="Số điện thoại">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-icon">
+                                                        <i class="far fa-envelope"></i>
+                                                        <input type="email" class="form-control" name="email"
+                                                            placeholder="Email">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-icon">
+                                                        <i class="far fa-truck"></i>
+                                                        <select class="select" name="service">
+                                                            <option value="">Dịch vụ tư vấn</option>
+                                                            @foreach ($servicehome as $item)
+                                                                <option value="{{ $item->name }}">{{ $item->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <button type="submit" class="theme-btn"><span
+                                                        class="loader ml-15 spin-icon"></span> Gửi yêu cầu</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <script>
+                                        $('#commentform').validate({
+                                            rules: {
+                                                "name": {
+                                                    required: true,
+                                                },
+                                                "phone": {
+                                                    required: true,
+                                                    minlength: 10,
+                                                    digits: true,
+                                                }
+                                            },
+                                            messages: {
+                                                "name": {
+                                                    required: "Tên bạn là gì?",
+                                                },
+                                                "phone": {
+                                                    required: "Nhập sdt liên hệ",
+                                                    digits: "Nhập đúng định dạng số điện thoại",
+                                                    minlength: "Nhập tối thiểu 10 số"
+                                                }
+                                            },
+                                            submitHandler: function(form) {
+                                                $(".spin-icon").css("display", "block");
+                                                $.ajax({
+                                                    url: "https://script.google.com/macros/s/AKfycbyzVnC9pnnBRgBxGkLCpFVIT4bf73Gp__7kNONNhXGFOJidpO0MlkhmZPtTLcPpd8OJMA/exec",
+                                                    type: "post",
+                                                    data: $("#commentform").serializeArray(),
+                                                    success: function() {
+                                                        $(".spin-icon").css("display", "none");
+                                                        jQuery.notify("Thành công! Chúng tôi sẽ sớm liên hệ", "success");
+                                                    },
+                                                    error: function() {
+                                                        jQuery.notify("Gửi thông tin thất bại", "error");
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-</section>
+        </div>
+        <!-- service single end -->
+
+    </main>
 @endsection

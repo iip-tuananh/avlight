@@ -45,7 +45,7 @@ class BlogTypeCate extends Model
                 $query->category_slug = $request->category_slug;
                 $query->save();
             }
-            
+
         }else{
                 $query = new BlogTypeCate();
                 $query->name = json_encode($request->name);

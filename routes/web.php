@@ -38,10 +38,10 @@ Route::group(['namespace'=>'Client','middleware' => ['checkLanguage']], function
     Route::get('trang-noi-dung/{slug}.html','PageContentController@detail')->name('pagecontent');
     Route::get('dich-vu/{slug}.html','PageController@serviceCateList')->name('serviceCateList');
     // Route::get('dich-vu.html','PageController@serviceList')->name('serviceList');
-    // Route::get('dich-vu/{slug}.html','PageController@serviceDetail')->name('serviceDetail');
+    Route::get('chi-tiet-dich-vu/{slug}.html','PageController@serviceDetail')->name('serviceDetail');
     Route::get('gioi-thieu.html','PageController@aboutUs')->name('aboutUs');
     Route::get('cong-nghe.html','PageController@technology')->name('technology');
-    Route::get('lien-he.html','PageController@contact')->name('lienHe');
+    Route::get('lien-he.html','PageController@contact')->name('contactUs');
     Route::post('lien-he','PageController@postcontact')->name('postcontact');
     Route::get('du-an-tieu-bieu.html','PageController@duanTieuBieu')->name('duanTieuBieu');
     Route::get('du-an-tieu-bieu/{slug}.html','PageController@duanTieuBieuDetail')->name('duanTieuBieuDetail');

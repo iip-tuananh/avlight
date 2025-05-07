@@ -27,7 +27,7 @@
                     />
                   </div>
                 </div>
-              </div> 
+              </div>
               <div class="form-group">
                 <label>Nội dung</label>
                 <TinyMce
@@ -38,7 +38,7 @@
                     <div class="form-group" v-for="item,index in lang" :key="index">
                         <label v-if="index != 0">{{item.name}}</label>
                         <TinyMce v-if="index != 0" v-model="objData.content[index].content" />
-                        
+
                     </div>
                 </div>
               </div>
@@ -102,7 +102,7 @@
               </div>
               <div class="form-group">
                 <label>Danh mục</label>
-                
+
                 <vs-select class="selectExample" v-model="objData.category" placeholder="Danh mục" @change="findCategoryType()">
                   <vs-select-item
                     value="0"
@@ -271,7 +271,7 @@ export default {
       if(value == "title"){
         this.showLang.title = !this.showLang.title
       }
-      
+
     },
     showSettingLangExist(value,name = "content"){
       if(value == "content"){
@@ -308,7 +308,7 @@ export default {
               }
           });
       }
-      
+
     },
     saveProducts() {
       this.errors = [];
@@ -317,25 +317,25 @@ export default {
       if(this.objData.description[0].content == '') this.errors.push('Mô tả không được để trống');
       if(this.objData.images.length == 0) this.errors.push('Vui lòng chọn ảnh');
       if(this.objData.category == 0) this.errors.push('Chọn danh mục sản phẩm');
-      if(this.objData.service_id == null) this.errors.push('Chọn danh mục dịch vụ');
+    //   if(this.objData.service_id == null) this.errors.push('Chọn danh mục dịch vụ');
       if (this.errors.length > 0) {
         this.errors.forEach((value, key) => {
-          this.$error(value)
+          this.$notify.error(value)
         })
         return;
       }else {
         this.loadings(true);
-        
+
         this.saveProduct(this.objData)
           .then(response => {
             this.loadings(false);
             this.$router.push({name:'listProduct'});
-            this.$success('Sửa sản phẩm thành công');
+            this.$notify.success('Sửa sản phẩm thành công');
             // this.$route.push({name:'listProduct'});
           })
           .catch(error => {
             this.loadings(false);
-            this.$error('Sửa sản phẩm thất bại');
+            this.$notify.error('Sửa sản phẩm thất bại');
           });
       }
     },
@@ -377,7 +377,7 @@ export default {
       this.findTypeCate(this.objData.category).then(response => {
           this.type_cate = response.data;
         });
-        
+
     },
     remoteAr(index,key) {
       if(key == 'size'){
@@ -386,7 +386,7 @@ export default {
       if(key == 'preserve'){
         this.objData.preserve.splice(index, 1);
       }
-        
+
     },
     addInput(key) {
         var oj = {};
@@ -399,7 +399,7 @@ export default {
           oj.detail = "";
           this.objData.preserve.push(oj);
         }
-        
+
     },
     findCategoryTypeTwo() {
       this.findTypeCateTwo(this.objData.type_cate).then((response) => {

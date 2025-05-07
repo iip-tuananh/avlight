@@ -24,7 +24,7 @@ use App\models\Project;
 class PageController extends Controller
 {
     public function orderNow()
-    { 
+    {
         return view('orderNow');
     }
     public function baogia()
@@ -33,7 +33,7 @@ class PageController extends Controller
     }
     public function menu()
     {
-        
+
         $data['allproduct'] = Product::where([
             ['status', '=', 1]
         ])->limit(9)->orderBy('id','DESC')->get(['id','name','discount','price','images','slug']);
@@ -106,23 +106,23 @@ class PageController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->keyword;
-    
+
         // Kiểm tra nếu từ khóa rỗng
         if (empty($keyword)) {
             return redirect()->back()->with('error', 'Vui lòng nhập từ khóa tìm kiếm.');
         }
-    
+
         $code = Session::get('locale');
         $arr = [];
         $arrb = [];
         $arrOpt = [];
-    
+
         // Search option
         $productOpt = Product::with('cate')
             ->where('status', 1)
             ->get()
             ->toArray();
-    
+
         foreach ($productOpt as $key => $item) {
             $fielName = json_decode($item['name']);
             foreach ($fielName as $i) {
@@ -131,13 +131,13 @@ class PageController extends Controller
                 }
             }
         }
-    
+
         $data['keyword'] = $request->keyword;
         $data['countproduct'] = count($arr);
         $data['resultPro'] = $arr;
         // $data['phantrang'] = collect($arr)->paginate(9);
-        
-    
+
+
         return view('search_result', $data);
     }
     public function postcontact(Request $request){
@@ -152,23 +152,24 @@ class PageController extends Controller
         }else{
             return back()->with('error', 'Gửi tin thất bại');
         }
-        
+
     }
     public function serviceCateList($slug)
     {
-        $data['detail_service'] = Services::where(['slug'=>$slug])->first();
+        $data['listService'] = Services::where(['cate_slug'=>$slug])->orderBy('id','DESC')->paginate(15);
+        $data['cate'] = ServiceCate::where(['slug'=>$slug])->first();
         return view('servicelist',$data);
     }
     public function serviceDetail($slug)
     {
         $data['detail_service'] = Services::where(['slug'=>$slug])->first();
-        
+
         return view('servicedetail',$data);
     }
     public function serviceList()
     {
         $data['list'] = Services::where('status',1)->paginate(9);
-        
+
         return view('servicelist',$data);
     }
     public function duanTieuBieu()

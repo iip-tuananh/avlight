@@ -20,7 +20,7 @@ class AllController extends Controller
 
     public function uploadImage(Request $request)
     {
-        if($imgAvatar = $request->file('img')){
+        if ($imgAvatar = $request->file('img')) {
             // $nameAvatar = $imgAvatar->getClientOriginalName();
             // $fintimg = strpos($nameAvatar, '.jpg');
             // if($fintimg == true){
@@ -32,15 +32,19 @@ class AllController extends Controller
             if ($request->oldImages) {
                 foreach ($request->oldImages as $key => $image) {
                     // Kiểm tra xem có phải đường dẫn Cloudflare Image hay không
-                    if (filter_var($image, FILTER_VALIDATE_URL) &&
-                        preg_match('/^https:\/\/imagedelivery\.net\/[A-Za-z0-9_-]+\/[A-Za-z0-9-]+\/(public|private)$/', $image)) {
+                    if (
+                        filter_var($image, FILTER_VALIDATE_URL) &&
+                        preg_match('/^https:\/\/imagedelivery\.net\/[A-Za-z0-9_-]+\/[A-Za-z0-9-]+\/(public|private)$/', $image)
+                    ) {
                         $this->cloudflareService->deleteImage($image);
                     } else {
                         $url = $image;
-                        $path = parse_url($url, PHP_URL_PATH);
-                        $path = public_path($path);
-                        if (file_exists($path)) {
-                            unlink($path);
+                        if (isset($url)) {
+                            $path = parse_url($url, PHP_URL_PATH);
+                            $path = public_path($path);
+                            if (file_exists($path)) {
+                                unlink($path);
+                            }
                         }
                     }
                 }
@@ -49,11 +53,11 @@ class AllController extends Controller
             return response()->json([
                 'messenge' => 'success',
                 'path' => $response['result']['variants'][0],
-            ],200);
-        }else{
+            ], 200);
+        } else {
             return response()->json([
                 'data' => 'fail'
-            ],500);
+            ], 500);
         }
     }
 
@@ -62,31 +66,35 @@ class AllController extends Controller
         if ($request->image) {
             $image = $request->image;
             // Kiểm tra xem có phải đường dẫn Cloudflare Image hay không
-            if (filter_var($image, FILTER_VALIDATE_URL) &&
-                preg_match('/^https:\/\/imagedelivery\.net\/[A-Za-z0-9_-]+\/[A-Za-z0-9-]+\/(public|private)$/', $image)) {
+            if (
+                filter_var($image, FILTER_VALIDATE_URL) &&
+                preg_match('/^https:\/\/imagedelivery\.net\/[A-Za-z0-9_-]+\/[A-Za-z0-9-]+\/(public|private)$/', $image)
+            ) {
                 $this->cloudflareService->deleteImage($image);
             } else {
                 $url = $image;
-                $path = parse_url($url, PHP_URL_PATH);
-                $path = public_path($path);
-                if (file_exists($path)) {
-                    unlink($path);
+                if (isset($url)) {
+                    $path = parse_url($url, PHP_URL_PATH);
+                    $path = public_path($path);
+                    if (file_exists($path)) {
+                        unlink($path);
+                    }
                 }
             }
             return response()->json([
                 'messenge' => 'success',
-            ],200);
+            ], 200);
         } else {
             return response()->json([
-'data' => 'fail'
-            ],500);
+                'data' => 'fail'
+            ], 500);
         }
     }
     public function uploadImageMulti(Request $request)
     {
         $uploadId = [];
-        if($files = $request->file('file')){
-            foreach($request->file('file') as $key => $file){
+        if ($files = $request->file('file')) {
+            foreach ($request->file('file') as $key => $file) {
                 // $name = rand().$file->getClientOriginalName();
                 // $fielname = $file->move('uploads/imagesMuli/', $name);
                 // $uploadId[] = url('/').'/uploads/images/'.$name;
@@ -97,7 +105,7 @@ class AllController extends Controller
         return response()->json([
             'messenge' => 'success',
             'path' => $uploadId
-        ],200);
+        ], 200);
     }
     public function fileStore(Request $request)
     {
@@ -110,15 +118,15 @@ class AllController extends Controller
         return response()->json([
             'messenge' => 'success',
             'path' => $insert
-        ],200);
+        ], 200);
     }
     public function listMesscontact(Request $request)
     {
         $keyword = $request->keyword;
-        if($keyword == ""){
-            $data = MessContact::orderBy('id','DESC')->get();
-        }else{
-            $data = MessContact::where('title', 'LIKE', '%'.$keyword.'%')->orderBy('id','DESC')->get()->toArray();
+        if ($keyword == "") {
+            $data = MessContact::orderBy('id', 'DESC')->get();
+        } else {
+            $data = MessContact::where('title', 'LIKE', '%' . $keyword . '%')->orderBy('id', 'DESC')->get()->toArray();
         }
         return response()->json([
             'data' => $data,

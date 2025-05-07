@@ -86,7 +86,7 @@
             },
             request(req) {
                 const options = {
-maxSizeMB: 3,
+                    maxSizeMB: 3,
                     maxWidthOrHeight: 10000,
                     useWebWorker: false,
                     maxIteration: 10

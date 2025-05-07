@@ -71,7 +71,7 @@
          <div class="row">
             <div class="col-md-12 align-self-center">
                <p class="copyright-text">
-                  &copy; Copyright <span id="date"></span> <a href="#"> TNH Logistics </a> All Rights Reserved.
+                  &copy; Copyright <span id="date"></span> <a href="#"> AVLight Solutions </a> All Rights Reserved.
                </p>
             </div>
          </div>

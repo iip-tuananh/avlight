@@ -294,7 +294,7 @@ export default {
 			if (this.objData.category == 0) this.errors.push('Chọn danh mục sản phẩm');
 			if (this.errors.length > 0) {
 				this.errors.forEach((value, key) => {
-					this.$error(value);
+					this.$notify.error(value);
 				});
 				return;
 			} else {
@@ -304,11 +304,12 @@ export default {
 					.then(response => {
 						this.loadings(false);
 						this.$router.push({ name: 'listProduct' });
-						this.$success('Thêm sản phẩm thành công');
+						this.$notify.success('Thêm sản phẩm thành công');
 						this.$route.push({ name: 'listProduct' });
 					})
 					.catch(error => {
 						this.loadings(false);
+						this.$notify.error('Thêm sản phẩm thất bại');
 						// this.$vs.notify({
 						//   title: "Thất bại",
 						//   text: "Thất bại",

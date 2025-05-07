@@ -21,37 +21,63 @@ class ProductScraperController extends Controller
         ]);
 
         $client = new Client($httpClient);
-        $domain = 'https://amthanhbosch.vn';
+        $domain = 'https://toavietnam.net';
 
         // $page = 1;
         // do {
             // B1: Truy cập trang danh mục
-            $crawler = $client->request('GET', $domain . '/phu-kien-loa-bosch');
+            $crawler = $client->request('GET', $domain . '/category-3-min0-max0-attr0-5-goods_id-ASC-thiet-bi-dau-vao.html');
             // dd($crawler->html());
 
             // B2: Lấy tất cả link chi tiết sản phẩm
-            $crawler->filter('.pgrid_td')->each(function ($node) use ($client, $domain) {
-                $relativeUrl = $node->filter('.pgrid_pimg a')->attr('href');
+            $crawler->filter('.grid .goodsbox')->each(function ($node) use ($client, $domain) {
+                $relativeUrl = $node->filter('.goodsboxtop .imgbox a')->attr('href');
                 $productUrl = str_starts_with($relativeUrl, 'http') ? $relativeUrl : $domain . '/' . $relativeUrl;
+                $images = [];
 
-                $description = $node->filter('.pgrid_td_sub1 .text-left')->html();
+                $name = $node->filter('.goodsboxtop .goods_title')->text();
+
+                $price = $node->filter('.goodsboxtop .f1')->text();
+                $price = str_replace(' VNĐ', '', $price);
+                $price = str_replace(',', '', $price);
+                $price = (int) $price;
+
+                $src = $node->filter('.goodsboxtop .imgbox img')->count() ? $node->filter('.goodsboxtop .imgbox img')->attr('src') : '';
+                if (!empty($src)) {
+                    $src = str_starts_with($src, 'http') ? $src : $domain . '/' . $src;
+                    $image = $this->downloadImage($src);
+                    $images[] = $image['path'];
+                }
+
+                // $description = '';
                 // B3: Truy cập trang chi tiết sản phẩm
                 $productCrawler = $client->request('GET', $productUrl);
                 // dd($productCrawler->html());
 
                 // B4: Lấy thông tin sản phẩm
                 // dd($productCrawler->document);
-                $name = $productCrawler->filter('head title')->count() ? $productCrawler->filter('head title')->text() : '';
+                // $name = $productCrawler->filter('head title')->count() ? $productCrawler->filter('head title')->text() : '';
                 // $price = $productCrawler->filter('span.price')->text();
-                // $description = $productCrawler->filter('div.bref')->count() ? $productCrawler->filter('div.bref')->html() : '';
-                $content = $productCrawler->filter('.container-fluid .row .col-md-9')->count() ? $productCrawler->filter('.container-fluid .row .col-md-9')->html() : '';
-                // dd($name, $content, $description);
-                $images = [];
-                $productCrawler->filter('.col-sm-5 img.img-rounded')->each(function ($node) use (&$images, $domain) {
-                    $src = str_starts_with($node->attr('src'), 'http') ? $node->attr('src') : $domain . '/' . $node->attr('src');
-                    $image = $this->downloadImage($src);
-                    $images[] = $image['path'];
-                });
+                $description = $productCrawler->filter('meta[name="description"]')->count() ? $productCrawler->filter('meta[name="description"]')->attr('content') : '';
+                $content = '';
+
+                // $src = $productCrawler->filter('.product-images #gallery_02 img')->count() ? $productCrawler->filter('.product-images #gallery_02 img')->attr('src') : '';
+                // if (!empty($src)) {
+                    // $src = str_starts_with($src, 'http') ? $src : $domain . '/' . $src;
+                    // $image = $this->downloadImage($src);
+                    // $images[] = $image['path'];
+                // }
+
+                // dd($name, $content, $description, $src, $price);
+                // $productCrawler->filter('.col-sm-5 img.img-rounded')->each(function ($node) use (&$images, $domain) {
+                //     $src = str_starts_with($node->attr('src'), 'http') ? $node->attr('src') : $domain . '/' . $node->attr('src');
+                //     $image = $this->downloadImage($src);
+                //     $images[] = $image['path'];
+                // });
+                // $price = $productCrawler->filter('.product-page-price .amount')->text();
+                // $price = str_replace('₫', '', $price);
+                // $price = str_replace(',', '', $price);
+                // $price = (int) $price;
                 $name = [
                     [
                         'lang_code' => 'vi',
@@ -71,13 +97,12 @@ class ProductScraperController extends Controller
                     ],
                 ];
 
-                // dd($name, $description, $content, $images);
                 // B5: Lưu DB
                 Product::updateOrCreate(
                     ['name' => json_encode($name)],
                     [
                         'slug' => to_slug($name[0]['content']),
-                        'price' => 0,
+                        'price' => $price,
                         'images' => json_encode($images),
                         'description' => json_encode($description),
                         'content' => json_encode($content),
@@ -85,8 +110,8 @@ class ProductScraperController extends Controller
                         'discountStatus' => 1,
 
                         // Lưu ý cần thay đổi category và type_cate
-                        'category' => 2,
-                        'type_cate' => 12,
+                        'category' => 1,
+                        'type_cate' => 7,
 
                         'url_origin' => $productUrl,
                     ]
@@ -94,8 +119,8 @@ class ProductScraperController extends Controller
             });
 
             // $nextPageExists = $crawler->filter('.pagination .next')->count(); // tuỳ trang
-            // $page++;
-        // } while ($page <= 5);
+        //     $page++;
+        // } while ($page <= 3);
 
         return response()->json(['message' => 'Scraped all products with Goutte successfully']);
     }

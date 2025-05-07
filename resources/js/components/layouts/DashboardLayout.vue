@@ -94,6 +94,10 @@ export default {
 							name: 'Danh sách',
 							path: '/service',
 						},
+                        {
+                            name: 'Danh mục dịch vụ',
+                            path: '/service/category',
+                        }
 					],
 				},
 				{
@@ -115,7 +119,7 @@ export default {
 						},
 					],
 				},
-				// dự án 
+				// dự án
 				{
 					icon: 'mdi mdi-shopping-music menu-icon',
 					name: 'Quản lý dự án',

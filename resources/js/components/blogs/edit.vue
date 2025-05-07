@@ -68,7 +68,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <div class="col-md-4 grid-margin stretch-card">
           <div class="card">
@@ -95,7 +95,7 @@
                     :key="'f'+index"
                   />
                 </vs-select>
-                
+
               </div>
               <div class="form-group">
                 <label>Loại danh mục</label>
@@ -137,7 +137,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
       <div class="row fixxed">
         <div class="col-12">
@@ -215,7 +215,7 @@ export default {
       if(this.objData.category == '') this.errors.push('Chọn danh mục sản phẩm');
       if (this.errors.length > 0) {
         this.errors.forEach((value, key) => {
-          this.$error(value)
+          this.$notify.error(value)
         })
         return;
       }else{
@@ -223,10 +223,10 @@ export default {
         this.addBlog(this.objData).then(response => {
           this.loadings(false);
           this.$router.push({name:'listBlogs'});
-          this.$success('Thêm tin tức thành công');
+          this.$notify.success('Thêm tin tức thành công');
         }).catch(error => {
           this.loadings(false);
-          this.$error('Thêm tin tức thất bại');
+          this.$notify.error('Thêm tin tức thất bại');
         })
       }
     },
@@ -264,7 +264,7 @@ export default {
               }
           });
       }
-      
+
     },
     listCategory() {
       this.loadings(true);

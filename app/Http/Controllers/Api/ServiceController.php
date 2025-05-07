@@ -30,9 +30,9 @@ class ServiceController extends Controller
     {
     	$keyword = $request->keyword;
         if($keyword == ""){
-            $data = Services::orderBy('id','DESC')->get(['id','name','created_at','image']);
+            $data = Services::with('cate')->orderBy('id','DESC')->get(['id','name','created_at','image','cate_id','cate_slug']);
         }else{
-            $data = Services::where('title', 'LIKE', '%'.$keyword.'%')->orderBy('id','DESC')->get()->toArray();
+            $data = Services::with('cate')->where('name', 'LIKE', '%'.$keyword.'%')->orderBy('id','DESC')->get()->toArray();
         }
         return response()->json([
             'data' => $data,

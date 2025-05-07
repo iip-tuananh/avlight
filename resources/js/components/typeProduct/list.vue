@@ -15,7 +15,7 @@
 							v-model="keyword"
 							@keyup="searchCategory()"
 						/>
-						<vs-table :data="list">
+						<vs-table stripe :data="list" max-items="10" pagination>
 							<template slot="thead">
 								<vs-th>ID</vs-th>
 								<vs-th>Tên</vs-th>
@@ -62,15 +62,15 @@
 				</div>
 			</div>
 		</div>
-		<vs-popup style="width: 100%" title="Thêm mới thương hiệu" :active.sync="popupActivo">
+		<!-- <vs-popup style="width: 100%" title="Thêm mới thương hiệu" :active.sync="popupActivo">
 			<ModalAdd @closePopup="closePop($event)" />
-		</vs-popup>
+		</vs-popup> -->
 	</div>
 </template>
 
 
 <script>
-import ModalAdd from '../../components/layouts/modal/typeCate/add';
+// import ModalAdd from '../../components/layouts/modal/typeCate/add';
 
 import { mapActions } from 'vuex';
 export default {
@@ -82,7 +82,7 @@ export default {
 		id_item: '',
 	}),
 	components: {
-		ModalAdd,
+		// ModalAdd,
 	},
 	computed: {},
 	methods: {

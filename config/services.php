@@ -38,6 +38,9 @@ return [
         'client_id' => '1032454740898097',
         'client_secret' => 'b5ebee4644ae5cff6952e39f3320fcdb',
         'redirect' => 'https://jicafood.com/auth/facebook/callback',
-      ],
-
+    ],
+    'cloudflare' => [
+        'account_id' => env('CLOUDFLARE_ACCOUNT_ID'),
+        'api_token' => env('CLOUDFLARE_IMAGES_API_TOKEN'),
+    ],
 ];

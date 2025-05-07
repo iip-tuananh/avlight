@@ -24,18 +24,20 @@ class ProductController extends Controller
     }
     public function allListCate($danhmuc)
     {
-        
+
         if($danhmuc == "tat-ca"){
             $data['list'] = Product::where('status',1)->orderBy('id','DESC')->select('id','category','name','discount','price','images','slug','description')
-            ->paginate(12);
+            ->paginate(32);
             $data['title'] = "Tất cả sản phẩm";
             $data['content'] = 'none';
         }else{
-            $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc])
+            $cate = Category::where('slug',$danhmuc)->first(['id','name','avatar','content']);
+            $data['list'] = Product::with('typecate', 'cate')
+            ->where(['status'=>1,'category'=>$cate->id])
             ->orderBy('id','DESC')
-            ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-            ->paginate(12);
-            $data['cateno'] = Category::where('slug',$danhmuc)->first(['id','name','avatar','content']);
+            ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
+            ->paginate(32);
+            $data['cateno'] = $cate;
             $data['hastagType'] = TypeProduct::where(['status'=>1,'cate_id'=>$data['cateno']->id])->orderBy('id','DESC')
             ->get(['slug','id', 'name','cate_slug']);
             $cate_id = $data['cateno']->id;
@@ -45,18 +47,22 @@ class ProductController extends Controller
         return view('product.list',$data);
     }
     public function allListType($danhmuc,$loaidanhmuc){
-        $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc])
+        $cate = Category::where('slug',$danhmuc)->first(['id','name','slug']);
+        $type = TypeProduct::where('slug',$loaidanhmuc)->first(['id','name','slug','cate_id', 'content']);
+        $data['list'] = Product::with('typecate', 'cate')
+            ->where(function($query) use ($cate, $type) {
+                $query->where(['status'=>1,'category'=>$cate->id,'type_cate'=>$type->id]);
+            })
             ->orderBy('id','DESC')
-            ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-            ->paginate(12);
-        $data['type'] = TypeProduct::where('slug',$loaidanhmuc)->first(['id','name','cate_id','content']);
-        $cate_id = $data['type']->cate_id;
+            ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
+            ->paginate(32);
+        $data['type'] = $type;
         $data['typeCate'] = TypeProduct::where([
             ['status', '=', 1],
-            ['cate_id', '=',$cate_id]
+            ['cate_id', '=',$type->cate_id]
         ])->orderBy('id','DESC')
         ->get(['cate_id','id', 'name','avatar']);
-        $data['hastagType'] = TypeProduct::where(['status'=>1,'cate_id'=>$cate_id])->orderBy('id','DESC')
+        $data['hastagType'] = TypeProduct::where(['status'=>1,'cate_id'=>$type->cate_id])->orderBy('id','DESC')
         ->get(['slug','id', 'name','cate_slug']);
         $data['title'] = languageName($data['type']->name);
         $data['content'] = $data['type']->content;
@@ -66,7 +72,7 @@ class ProductController extends Controller
         $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc,'type_two_slug'=>$thuonghieu])
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-            ->paginate(12);
+            ->paginate(32);
         $data['type'] = TypeProductTwo::where('slug',$thuonghieu)->first(['id','name','cate_id','content']);
         // $cate_id = $data['type']->cate_id;
         // $data['typeCate'] = TypeProduct::where([
@@ -122,7 +128,7 @@ class ProductController extends Controller
                 }else{
                     $product = $product->where('status',1)->where('category',$request->cate)->orderBy('discount','DESC');
                 }
-                
+
             }elseif($request->param == 'price-desc'){
                 if(!empty($request->typecate)){
                     $product = $product->where('status',1)->where('type_cate',$request->typecate)->orderBy('price','DESC');
@@ -130,7 +136,7 @@ class ProductController extends Controller
                 else{
                     $product = $product->where('status',1)->where('category',$request->cate)->orderBy('price','DESC');
                 }
-                
+
             }elseif($request->param == 'price-asc'){
                 if(!empty($request->typecate)){
                     $product = $product->where('status',1)->where('type_cate',$request->typecate)->orderBy('price','ASC');
@@ -138,7 +144,7 @@ class ProductController extends Controller
                 else{
                     $product = $product->where('status',1)->where('category',$request->cate)->orderBy('price','ASC');
                 }
-                
+
             }
         }
         $product = $product->get();
@@ -150,10 +156,10 @@ class ProductController extends Controller
     {
         $data['product'] = Product::with([
             'typeCate' => function ($query) {
-                $query->select('id', 'name','avatar','slug'); 
+                $query->select('id', 'name','avatar','slug');
             },
             'cate' => function ($query) {
-                $query->where('status',1)->limit(5)->select('id','name','avatar','slug'); 
+                $query->where('status',1)->limit(5)->select('id','name','avatar','slug');
             },
         ])->where('id',$id)->first(['id','name','images','type_cate','category','sku','discount','price','content','size','description','slug','preserve','created_at']);
         $data['productlq'] = Product::where('category',$data['product']->category)->take(10)->get();
@@ -211,15 +217,15 @@ class ProductController extends Controller
             }
             session()->put('compareProduct', $compare);
             $compareProduct = session()->get('compareProduct', []);
-            
+
             return response()->json([
                 'data'=> $compareProduct,
                 'qty'=> count($compareProduct),
                 'message' => 'success'
             ]);
-            
+
         }
-        
+
     }
     public function removeCompare(Request $request)
     {
@@ -234,7 +240,7 @@ class ProductController extends Controller
             return response()->json(['html'=>$view]);
         }
 
-        
+
     }
     public function compareList()
     {
@@ -250,5 +256,5 @@ class ProductController extends Controller
          ->paginate(12);
          return view('product.search',$data);
     }
-    
+
 }

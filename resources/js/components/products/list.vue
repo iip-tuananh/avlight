@@ -30,7 +30,8 @@
 								<vs-td>
 									<vs-avatar size="large" :src="JSON.parse(tr.images)[0]" />
 								</vs-td>
-								<vs-td>{{ JSON.parse(tr.name)[0].content }}</vs-td>
+								<vs-td>{{ JSON.parse(tr.name.replace(/\\"/g, '"'))[0].content }}</vs-td>
+								<!-- <vs-td>{{ JSON.parse(tr.name)[0].content }}</vs-td> -->
 								<vs-td v-if="tr.cate != null">
 									{{ JSON.parse(tr.cate)[0].content }}
 								</vs-td>

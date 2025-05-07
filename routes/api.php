@@ -18,7 +18,7 @@ Route::group(['namespace'=>'Api','middleware' => 'api'],function(){
 	Route::post('login','AuthController@login');
 	Route::post('upload-image','AllController@uploadImage');
 	Route::post('upload-image-multi','AllController@uploadImageMulti');
-	
+    Route::post('delete-image','AllController@deleteImage');
 });
 Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function(){
 
@@ -28,7 +28,7 @@ Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function(){
 		return view('welcome');
 	})->middleware('auth');
 
-	Route::post('logout','AuthController@logout'); 
+	Route::post('logout','AuthController@logout');
 	Route::get('getNotification','NotificationController@get');
 	Route::get('profile','AuthController@authentication');
 	Route::group(['prefix'=>'menu'],function(){
@@ -49,7 +49,7 @@ Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function(){
 		Route::post('searchLanguageStatic', 'LanguageController@searchLanguageStatic')->name('language.searchLanguageStatic');
 		Route::post('saveLanguageStaticByLang', 'LanguageController@saveLanguageStaticByLang')->name('language.saveLanguageStaticByLang');
 		Route::get('deleteLanguage/{code}', 'LanguageController@deleteLanguage')->name('language.delete');
-	}); 
+	});
 	Route::group(['prefix'=>'bill','namespace'=>'Bill'], function(){
 		Route::get('list','BillController@list');
 		Route::post('add','BillController@add');
@@ -187,7 +187,7 @@ Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function(){
 		Route::post('changeStatus','CustomerController@changeStatus');
 		Route::post('edit-profile','CustomerController@postEdit');
 	});
-	
+
 	Route::group(['prefix'=>'home'], function(){
 		Route::post('chart','HomeController@chart');
 		Route::get('analytics',function(){

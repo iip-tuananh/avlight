@@ -21,7 +21,7 @@ class Services extends Model
             $query = Services::where([
                 'id' => $id
              ])->first();
-            
+
             if ($query) {
                 $query->name = $request->name;
                 $query->slug = to_slug($request->name);
@@ -29,8 +29,8 @@ class Services extends Model
                 $query->description = json_encode($request->description);
                 $query->status = $request->status;
                 $query->image = $request->image;
-                $query->cate_id = 0;
-                $query->cate_slug = "";
+                $query->cate_id = $request->cate_id;
+                $query->cate_slug = $cate->slug;
                 $query->save();
             }else{
                 $query = new Services();
@@ -40,11 +40,11 @@ class Services extends Model
                 $query->description = json_encode($request->description);
                 $query->status = $request->status;
                 $query->image = $request->image;
-                $query->cate_id = 0;
-                $query->cate_slug = "";
+                $query->cate_id = $request->cate_id;
+                $query->cate_slug = $cate->slug;
                 $query->save();
             }
-            
+
         }else{
                 $query = new Services();
                 $query->name = $request->name;
@@ -53,10 +53,10 @@ class Services extends Model
                 $query->description = json_encode($request->description);
                 $query->status = $request->status;
                 $query->image = $request->image;
-                $query->cate_id = 0;
-                $query->cate_slug = "";
+                $query->cate_id = $request->cate_id;
+                $query->cate_slug = $cate->slug;
                 $query->save();
-            
+
         }
         return $query;
     }

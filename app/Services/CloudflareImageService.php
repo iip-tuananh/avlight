@@ -10,8 +10,8 @@ class CloudflareImageService
 
     public function __construct()
     {
-        $this->apiToken = env('CLOUDFLARE_IMAGES_API_TOKEN');
-        $this->accountId = env('CLOUDFLARE_ACCOUNT_ID');
+        $this->apiToken = config('services.cloudflare.api_token');
+        $this->accountId = config('services.cloudflare.account_id');
     }
 
     /**
@@ -25,7 +25,7 @@ class CloudflareImageService
             'file', file_get_contents($image), $image->getClientOriginalName()
         )->post("https://api.cloudflare.com/client/v4/accounts/{$this->accountId}/images/v1");
 
-       
+
 
         return $response->json();
     }

@@ -54,7 +54,7 @@ class BlogTypegoryController extends Controller
             $urlimg =  $query->image;
             $this->cloudflareService->deleteImage($urlimg);
         }
-        
+
         $query->delete();
         return response()->json(['message'=>'Delete Success'],200);
     }
