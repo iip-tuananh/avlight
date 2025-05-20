@@ -72,6 +72,13 @@
     <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.scss.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     @yield('css')
 </head>
 
@@ -300,6 +307,39 @@
             }
         });
     </script>
+    <script>
+$(document).ready(function() {
+    let timer;
+    $('input[name="keywordsearch"]').on('keyup', function() {
+        let keyword = $(this).val();
+        clearTimeout(timer);
+        if(keyword.length > 1) {
+            timer = setTimeout(function() {
+                $.ajax({
+                    url: '{{ route('ajax.search') }}',
+                    type: 'POST',
+                    data: {
+                        keyword: keyword,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#ajax-search-result').html(response.html).show();
+                    }
+                });
+            }, 250);
+        } else {
+            $('#ajax-search-result').hide();
+        }
+    });
+
+    // Ẩn kết quả khi click ra ngoài
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.searchmobileui').length) {
+            $('#ajax-search-result').hide();
+        }
+    });
+});
+</script>
 </body>
 
 </html>

@@ -35,25 +35,28 @@
                     </div>
                 </div>
                 <div class="form-group">
-                  <label>Ảnh đại diện</label>
+                  <label>Icon đại diện</label>
                   <image-upload
+              
                     v-model="objData.avatar"
                     type="avatar"
                     :title="'danh-muc'"
                   ></image-upload>
                 </div>
                 <div class="form-group">
-                  <label>Ảnh trang chủ</label>
+                  <label>Ảnh đại diện</label>
                   <image-upload
+             
                     v-model="objData.imagehome"
                     type="avatar"
                     :title="'trang-chu'"
                   ></image-upload>
                 </div>
-                <div class="form-group">
-                    <label>Nội dung</label>
-                    <TinyMce v-model="objData.content" />
-                </div>
+                <!-- <div class="form-group">
+                    <label>Vị trí menu</label>
+                    <vs-input  font-size="40px"
+                    label-placeholder="Vị trí menu" type="number" class="w-100" v-model="objData.link_demo" />
+                </div> -->
                 <div class="form-group">
                   <label for="exampleInputName1">Trạng thái</label>
                   <vs-select v-model="objData.status"
@@ -98,6 +101,7 @@ export default {
         avatar: "",
         imagehome: "",
         status: 1,
+        link_demo: "",
       },
       lang:[],
       img: "",

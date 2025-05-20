@@ -1,5 +1,8 @@
 <!-- header area -->
 <header class="header">
+    @php
+        ini_set('memory_limit', '9999M');
+    @endphp
     <!-- header top -->
     <div class="header-top">
         <div class="container">
@@ -53,7 +56,7 @@
                                         <form action="{{ route('search_result') }}" method="post">
                                             @csrf
                                             <div class="form-group d-flex" style="margin-bottom:0;">
-                                                <input type="text" name="keyword" class="form-control"
+                                                <input type="text" name="keywordsearch" class="form-control"
                                                     placeholder="Tìm kiếm sản phẩm..." required="">
                                                 <button type="submit" class="buttonsearch"><i
                                                         class="far fa-search"></i></button>
@@ -61,6 +64,9 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="ajax-search-result" style="display:none;position:absolute;z-index:999;width:100%;background:#fff;">
+                                
                             </div>
                             <div class="header-action-hotline header-action-contact header-action-icon">
                                 <a href="tel:{{ str_replace(' ', '', $setting->phone1) }}"
@@ -232,27 +238,45 @@
                                     phẩm</a>
                                 <ul class="dropdown-menu fade-down">
                                     @foreach ($categoryhome as $item)
-                                        <li class="tuanmenu3">
-                                            <a class="dropdown-item "
-                                                href="{{ route('allListProCate', $item->slug) }}">{!! languageName($item->name) !!}</a>
-                                            @if (count($item->typeCate) > 0)
-                                                <ul class="dropdown-menu-tuan">
-                                                    @foreach ($item->typeCate as $type)
-                                                        <li><a class="dropdown-item"
-                                                                href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}">
-                                                                {!! languageName($type->name) !!}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @else
-                                            @endif
-                                        </li>
-                                    @endforeach
+    <li class="tuanmenu3">
+        <a class="dropdown-item"
+            href="{{ route('allListProCate', $item->slug) }}">{!! languageName($item->name) !!}</a>
+        @if (count($item->typeCate) > 0)
+            <ul class="dropdown-menu-tuan">
+                @foreach ($item->typeCate as $type)
+                    <li class="tuanmenu4">
+                        <a class="dropdown-item"
+                            href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}">
+                            {!! languageName($type->name) !!}
+                        </a>
+                        @if (isset($type->typetwo) && count($type->typetwo) > 0)
+                            <ul class="dropdown-menu-tuan-child">
+                                @foreach ($type->typetwo as $child)
+                                    <li >
+                                        <a class="dropdown-item tuanmenu5"
+                                            href="{{route('allListTypeTwo',['danhmuc'=>$item->slug,'loaidanhmuc'=>$type->slug,'thuonghieu'=>$child->slug])}}">
+                                            {!! languageName($child->name) !!}
+                                     
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+    </li>
+@endforeach
                                 </ul>
                             </li>
                             <style>
                                 .tuanmenu3:hover>.dropdown-item {
+                                    color: #ffffff !important;
+                                    background-color: var(--theme-color);
+                                    font-weight: bold;
+                                }
+                                 .tuanmenu:hover>.dropdown-item {
                                     color: #ffffff !important;
                                     background-color: var(--theme-color);
                                     font-weight: bold;

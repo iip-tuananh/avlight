@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --body-font: "Quicksand", sans-serif;
-    --heading-font: "Quicksand", sans-serif;
+    --body-font:  "Inter", sans-serif;
+    --heading-font: "Inter", sans-serif;
     --theme-color: #ed8957;
     --theme-color2: #FFAE00;
     --theme-bg-light: #F6F6F6;
@@ -75,7 +75,9 @@ a:hover {
 }
 
 a:hover {
-    color: var(--color-blue);
+    /* background-color: red; */
+    font-weight: 700;
+    color: #025aa1;
 }
 
 b,
@@ -502,7 +504,7 @@ label {
     border-bottom-left-radius: 6px;
     background-color: var(--color-white);
     color: var(--color-dark);
-    border-color: rgb(0 63 114);
+    /* border-color: rgb(0 63 114); */
 }
 
 .form-group .form-control::placeholder {
@@ -698,7 +700,7 @@ figcaption {
     font-weight: 700;
     text-transform: capitalize;
     font-size: 27px;
-    color: var(--color-dark);
+    color: #1d5cb9;
     margin-bottom: 0;
     font-family: var(--heading-font);
 }
@@ -765,11 +767,12 @@ figcaption {
 .theme-btn2 {
     font-size: 13px;
     color: var(--color-white);
-    padding: 8px 15px;
+    padding: 6px 5px;
     transition: all 0.5s;
     text-transform: capitalize;
     position: relative;
-    border-radius: 10px;
+    font-size: 11px;
+    border-radius: 0px;
     font-weight: 500;
     cursor: pointer;
     text-align: center;
@@ -786,7 +789,7 @@ figcaption {
     content: "";
     height: 300px;
     width: 300px;
-    background: var(--color-dark);
+    background: #f75601;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -981,7 +984,7 @@ figcaption {
     position: fixed;
     background: var(--color-white);
     box-shadow: var(--box-shadow2);
-    animation: slide-down 0.7s;
+    /* animation: slide-down 0.7s; */
 }
 
 @keyframes slide-down {
@@ -1028,13 +1031,18 @@ figcaption {
     border: none;
     font-size: 14px;
 }
-
+.navbar .nav-item .nav-link{
+      font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
 @media all and (min-width: 992px) {
     .navbar .nav-item .nav-link {
         margin-left: 30px;
         padding: 10px 0 0px 0;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 300;
         color: var(--color-dark);
         text-transform: capitalize;
     }
@@ -1054,7 +1062,7 @@ figcaption {
 
     .navbar .nav-item .dropdown-menu {
         display: block;
-        padding: 10px;
+        padding: 6px;
         margin-top: 0;
         left: 20px;
         /* border-radius: 15px; */
@@ -1070,7 +1078,7 @@ figcaption {
     .navbar .nav-item .dropdown-menu .dropdown-item {
         font-size: 14px;
         padding: 3px 15px;
-        font-weight: 500;
+        font-weight: 300;
         color: var(--color-dark);
         position: relative;
         overflow: hidden;
@@ -1083,7 +1091,7 @@ figcaption {
     .navbar .nav-item .dropdown-menu .dropdown-item:hover {
         background: var(--theme-color);
         color: var(--color-white);
-        padding-left: 25px;
+        /* padding-left: 25px; */
     }
 
     .navbar .nav-item .dropdown-menu .dropdown-item::before {
@@ -1720,7 +1728,7 @@ figcaption {
 
 .hero-single {
     padding-top: 120px;
-    padding-bottom: 150px;
+    padding-bottom: 288px;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
@@ -1738,7 +1746,7 @@ figcaption {
     height: 100%;
     top: 0;
     left: -0.5px;
-    background: linear-gradient(to bottom right, rgba(23, 42, 56, 1) 0%, rgba(23, 42, 56, 0) 100%);
+    /* background: linear-gradient(to bottom right, rgba(23, 42, 56, 1) 0%, rgba(23, 42, 56, 0) 100%); */
     z-index: -1;
 }
 
@@ -2307,7 +2315,7 @@ figcaption {
 }
 
 .service-area.sa-2 .service-img img {
-    border-radius: 50px;
+    border-radius: 15px;
     width: 100%;
     height: 300px;
     object-fit: cover;
@@ -2733,7 +2741,7 @@ figcaption {
 }
 
 .portfolio-img img {
-    border-radius: 50px;
+    border-radius: 11px;
 }
 
 .portfolio-link {
@@ -2765,7 +2773,14 @@ figcaption {
 }
 
 .portfolio-content {
+    transform: translateY(-14px);
+    height: 54px;
+    padding: 4px 5px;
+    background-color: #eb8b57;
     align-items: center;
+    /* margin-bottom: 49px; */
+    /* font-size: 11px; */
+    border-radius: 10px;
     margin-top: 3px;
 }
 
@@ -2778,13 +2793,14 @@ figcaption {
 
 .portfolio-content h4 a {
     font-size: 18px;
-    color: var(--color-dark);
+    color: #ffffff;
     text-align: center;
     font-family: var(--body-font);
 }
 
 .portfolio-content h4 a:hover {
-    color: var(--theme-color);
+    /* background-color: red; */
+    color: #ffffff;
 }
 
 .portfolio-arrow {
@@ -3292,7 +3308,8 @@ figcaption {
 .qa-negative {}
 
 .quote-content {
-    background: var(--color-white);
+    border-radius: 10px;
+    background-color: #ed8f5c;
     border-radius: 20px;
     box-shadow: var(--box-shadow);
     padding: 30px;
@@ -3822,12 +3839,12 @@ figcaption {
     padding: 20px;
     background: var(--color-white);
     border-radius: 20px;
-    box-shadow: var(--box-shadow);
+    /* box-shadow: var(--box-shadow); */
     transition: var(--transition);
 }
 
 .blog-item-img {
-    border-radius: 20px;
+    border-radius: 4px;
     overflow: hidden;
     position: relative;
 }
@@ -3837,7 +3854,7 @@ figcaption {
 }
 
 .blog-item-img img {
-    border-radius: 12px;
+    border-radius: 1px;
     width: 100%;
     height: 239px;
     object-fit: cover;
@@ -3915,7 +3932,8 @@ figcaption {
 
 .blog-item-info h4 a {
     color: var(--color-dark);
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 14px !important;
 }
 
 .blog-item-info h4 a:hover {
@@ -4368,7 +4386,7 @@ figcaption {
     color: var(--color-dark);
     font-weight: 500;
     margin: 0 10px;
-    border-radius: 12px !important;
+    border-radius: 0px !important;
     width: 40px;
     height: 40px;
     line-height: 28px;
@@ -4467,11 +4485,12 @@ figcaption {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 237px;
     gap: 15px;
     padding: 30px 20px;
     position: relative;
     margin-bottom: 25px;
-    border-radius: 15px 50px 50px 50px;
+    /* border-radius: 15px 50px 50px 50px; */
     background: var(--theme-bg-light);
     transition: var(--transition);
 }
@@ -4506,6 +4525,8 @@ figcaption {
 
 .contact-img img {
     width: 100%;
+    object-fit: cover;
+    height: 428px;
     border-radius: 15px;
 }
 
@@ -5509,7 +5530,7 @@ tr {
 .buttonsearch {
     width: 100px;
     border: none;
-    background: #003f72;
+    background: #1d5cb9;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
@@ -5585,7 +5606,7 @@ input::placeholder {
 }
 .tuanmenu3:hover .dropdown-menu-tuan{
     display: block;
-    padding: 10px;
+    /* padding: 10px; */
     top: 0px;
     margin-top: 0;
     left: -15px;
@@ -5599,4 +5620,31 @@ input::placeholder {
     visibility: visible;
     transform: translateY(0);
     transition: var(--transition2);
+}
+.dropdown-menu-tuan-child {
+    display: none;
+    position: absolute;
+    left: 103%;
+    top: -9px;
+    border-left: 1px solid #b8b5b5;
+    min-width: 180px;
+    background: var(--color-white);
+    box-shadow: var(--box-shadow);
+    z-index: 9999;
+    margin-left: -10px;
+    padding: 10px;
+}
+.tuanmenu4:hover > .dropdown-menu-tuan-child {
+    display: block;
+}
+.tuanmenu4 {
+    position: relative;
+}
+.but2:hover{
+    color: #fff !important;
+}
+.portfolio-content:hover {
+    transform: translateY(-30px);
+    background-color: #003f72;
+     transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s;
 }

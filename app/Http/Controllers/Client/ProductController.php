@@ -27,7 +27,7 @@ class ProductController extends Controller
 
         if($danhmuc == "tat-ca"){
             $data['list'] = Product::where('status',1)->orderBy('id','DESC')->select('id','category','name','discount','price','images','slug','description')
-            ->paginate(32);
+            ->paginate(30);
             $data['title'] = "Tất cả sản phẩm";
             $data['content'] = 'none';
         }else{
@@ -36,7 +36,7 @@ class ProductController extends Controller
             ->where(['status'=>1,'category'=>$cate->id])
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
-            ->paginate(32);
+            ->paginate(30);
             $data['cateno'] = $cate;
             $data['hastagType'] = TypeProduct::where(['status'=>1,'cate_id'=>$data['cateno']->id])->orderBy('id','DESC')
             ->get(['slug','id', 'name','cate_slug']);
@@ -55,7 +55,7 @@ class ProductController extends Controller
             })
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
-            ->paginate(32);
+            ->paginate(30);
         $data['type'] = $type;
         $data['typeCate'] = TypeProduct::where([
             ['status', '=', 1],
@@ -72,14 +72,14 @@ class ProductController extends Controller
         $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc,'type_two_slug'=>$thuonghieu])
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-            ->paginate(32);
+            ->paginate(30);
         $data['type'] = TypeProductTwo::where('slug',$thuonghieu)->first(['id','name','cate_id','content']);
-        // $cate_id = $data['type']->cate_id;
-        // $data['typeCate'] = TypeProduct::where([
-        //     ['status', '=', 1],
-        //     ['cate_id', '=',$cate_id]
-        // ])->orderBy('id','DESC')
-        // ->get(['cate_id','id', 'name','avatar']);
+        $cate_id = $data['type']->cate_id;
+        $data['typeCate'] = TypeProduct::where([
+            ['status', '=', 1],
+            ['cate_id', '=',$cate_id]
+        ])->orderBy('id','DESC')
+        ->get(['cate_id','id', 'name','avatar']);
         $data['title'] = languageName($data['type']->name);
         $data['content'] = $data['type']->content;
         return view('product.list',$data);
@@ -247,14 +247,16 @@ class ProductController extends Controller
         $data['list'] = session()->get('compareProduct', []);
         return view('compare.product',$data);
     }
-    public function search_product(Request $request)
-    {
-        $language_current = Session::get('locale');
-        $keyword = $request->keyword;
-         $data['product'] = Product::where(['language'=>$language_current])
-         ->where('name', 'LIKE', '%'.$keyword.'%')
-         ->paginate(12);
-         return view('product.search',$data);
-    }
+ public function search_product(Request $request)
+{
+    $language_current = Session::get('locale');
+    $keyword = $request->keyword;
+    $data['product'] = Product::where('language', $language_current)
+        ->where('name', 'LIKE', '%' . $keyword . '%')
+        ->select('id', 'name', 'price', 'discount', 'images', 'slug') // chỉ lấy cột cần thiết
+        ->take(12);
+        dd($data['product']);
+    return view('product.search', $data);
+}
 
 }

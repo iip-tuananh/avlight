@@ -32,7 +32,7 @@
                         @php
                             $img = json_decode($item->images);
                         @endphp
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-2 mb-2">
                             <form action="{{ route('add.to.cart') }}" method="post" class="variants product-action"
                                 data-cart-form data-id="{{ $item->id }}" enctype="multipart/form-data">
                                 @csrf

@@ -28,7 +28,10 @@ Route::get('/','HomeController@home')->name('home')->middleware(checkLanguage::c
 Route::group(['namespace'=>'Client','middleware' => ['checkLanguage']], function(){
     Route::get('type-product/{id}','PageController@typeproduct');
     Route::get('district/{id}','PageController@district');
-    Route::post('ket-qua-tim-kiem','PageController@search')->name('search_result');
+   
+Route::match(['get', 'post'], 'ket-qua-tim-kiem', 'PageController@search')->name('search_result');
+
+Route::post('ajax-search', 'PageController@ajaxSearch')->name('ajax.search');
     Route::get('dang-nhap.html','AuthController@login')->name('login')->middleware('CheckAuthLogout::class');
     Route::post('dang-nhap.html','AuthController@postLogin')->name('postlogin');
     Route::get('dang-ky.html','AuthController@register')->name('register');

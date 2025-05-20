@@ -28,8 +28,12 @@
        
             <!-- Product Images -->
             <div class="col-md-7 mb-4">
-
-                <img src="{{ $img[0] }}" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
+                <div class="d-flex justify-content-between rpw">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6"> <img src="{{ $img[0] }}" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage"></div>
+                    <div class="col-md-3"></div>
+                   
+                </div>
                 <div class="d-flex justify-content-between">
                     <!-- filepath: c:\laragon\www\avlight\resources\views\product\detail.blade.php -->
                     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -44,6 +48,9 @@
 
                 </div>
             </div>
+            <style>
+                
+            </style>
 
             <!-- Product Details -->
             <div class="col-md-5">

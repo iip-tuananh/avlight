@@ -4,14 +4,13 @@
 	-webkit-line-clamp: 2 !important; /* Limits the text to 2 lines */
 	overflow: hidden; /* Hides the overflowed text */
 	text-overflow: ellipsis; /* Adds ellipsis (...) for overflowed text */
-	font-family: 'Quicksand', sans-serif;
+	font-family: "Inter", sans-serif;
 	font-optical-sizing: auto;
-	font-weight: 500;
-
+	font-weight: 400;
 	font-style: normal;
 }
 .tuanproduct {
-	background-color: rgb(209, 211, 211);
+	background-color: rgb(255 255 255);
 	border-radius: 10px;
 }
 /* Làm mờ nền */
@@ -213,7 +212,7 @@
 	width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng */
 }
 .thumb-tuan {
-	height: 146px !important;
+	height: 100px !important;
 	object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
 	margin: auto;
 }
@@ -1659,23 +1658,142 @@ form h4 {
 	background-color: #f25c0500;
 	border: none;
 	color: white;
-	font-size: 16px;
+	padding: 0px !important;
+	font-size: 13px;
 	font-weight: 400;
 }
 .but2 {
 	background-color: #f25c0500;
 	border: none;
 	color: white;
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: 400;
 }
-body {
-	font-family: 'Quicksand', sans-serif !important;
-	font-optical-sizing: auto;
-	font-style: normal;
-}
+
 .lienheban {
 	height: 527px !important;
 	object-fit: cover !important;
 	margin: 0;
+}
+/* Gợi ý CSS cho kết quả tìm kiếm AJAX */
+/* Kết quả tìm kiếm AJAX đẹp như mẫu */
+#ajax-search-result {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 4px;
+    padding: 0;
+    min-width: 350px;
+}
+.tuanmenu5:hover .tuanmenu4{
+	background: #f25c05;
+}
+    /* Khi hover vào .tuanmenu5, làm nổi bật cha .tuanmenu4 và .tuanmenu3 */
+    .tuanmenu4:has(.tuanmenu5:hover) > .dropdown-item,
+    .tuanmenu3:has(.tuanmenu5:hover) > .dropdown-item {
+        background: var(--theme-color);
+        color: #fff !important;
+        font-weight: bold;
+    }
+    /* Nếu muốn cả .tuanmenu5 cũng nổi bật khi hover */
+    .tuanmenu5:hover {
+        background: var(--theme-color);
+        color: #fff !important;
+        font-weight: bold;
+    }
+    .dropdown-item {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+        color: #fff !important;
+        background-color: var(--theme-color) !important;
+        font-weight: bold;
+	}
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid #f3f3f3;
+    background: #fff;
+    transition: background 0.2s;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #f7f7f7;
+    border: 1px solid #eee;
+}
+
+.search-result-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.search-result-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.search-result-price {
+    color: #d0021b;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search-result-item:hover {
+    background: #f9f9f9;
+}
+
+.search-result-viewall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 0 12px 0;
+    background: #fff;
+}
+
+.search-result-viewall-btn {
+    background: #d0021b;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.search-result-viewall-btn:hover {
+    background: #b80016;
+}
+#ajax-search-result{
+	position: absolute;
+	top:50px;
+	width:auto !important;
+}
+body{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400 !important;
 }

@@ -103,43 +103,49 @@ class PageController extends Controller
     	],200);
     }
 
+ 
     public function search(Request $request)
     {
-        $keyword = $request->keyword;
-
-        // Kiểm tra nếu từ khóa rỗng
-        if (empty($keyword)) {
-            return redirect()->back()->with('error', 'Vui lòng nhập từ khóa tìm kiếm.');
+        // Lấy từ khóa từ request hoặc từ session nếu đang phân trang
+        if ($request->has('keywordsearch')) {
+            $keyword = $request->keywordsearch;
+            // Lưu từ khóa vào session để dùng cho phân trang
+            session(['search_keyword' => $keyword]);
+        } else {
+            // Lấy từ session nếu đang truy cập qua phân trang
+            $keyword = session('search_keyword', '');
         }
-
-        $code = Session::get('locale');
-        $arr = [];
-        $arrb = [];
-        $arrOpt = [];
-
-        // Search option
-        $productOpt = Product::with('cate')
-            ->where('status', 1)
-            ->get()
-            ->toArray();
-
-        foreach ($productOpt as $key => $item) {
-            $fielName = json_decode($item['name']);
-            foreach ($fielName as $i) {
-                if (strpos(strtolower(stripVN($i->content)), strtolower(stripVN($keyword))) !== false && $i->lang_code == $code) {
-                    array_push($arr, $productOpt[$key]);
-                }
-            }
-        }
-
-        $data['keyword'] = $request->keyword;
-        $data['countproduct'] = count($arr);
-        $data['resultPro'] = $arr;
-        // $data['phantrang'] = collect($arr)->paginate(9);
-
-
+        // Tìm kiếm sản phẩm
+ 
+$data['product'] = Product::with([
+    'cate' => function($q) { $q->select('id', 'slug'); },
+    'typecate' => function($q) { $q->select('id', 'slug'); }
+])
+->where('name', 'LIKE', '%' . $keyword . '%')
+->where('status', 1)
+->select('id', 'name', 'price', 'discount', 'images', 'slug', 'category')
+->paginate(18);
+        $data['keyword'] = $keyword;
+        // dd($data['product']);
         return view('search_result', $data);
     }
+  
+public function ajaxSearch(Request $request)
+{
+    $keyword = $request->keyword;
+    // $tukhoa = languageName($keyword);
+    // dd($keyword);
+        $products = Product::where('name', 'LIKE', '%' . $keyword . '%')
+            ->where('status', 1)
+            ->take(5)
+            ->get();
+          
+        $total = Product::where('name', 'LIKE', '%' . $keyword . '%')
+            ->where('status', 1)
+            ->count();
+       $html = view('ajax_search_result', compact('products'))->render();
+        return response()->json(['html' => $html]);
+}
     public function postcontact(Request $request){
         $data = new MessContact();
         $data->name = $request->name;

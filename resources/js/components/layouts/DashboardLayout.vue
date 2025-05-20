@@ -117,6 +117,10 @@ export default {
 							name: 'Danh mục cha',
 							path: '/product/category',
 						},
+						   {
+						name : "Danh mục cấp 2",
+						path: "/product/typetwo"
+						},
 					],
 				},
 				// dự án

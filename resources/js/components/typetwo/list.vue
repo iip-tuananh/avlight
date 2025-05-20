@@ -5,7 +5,7 @@
         <div class="col-md-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Danh sách thương hiệu</h4>
+              <h4 class="card-title">Danh sách danh mục 2</h4>
               <router-link class="nav-link" :to="{name:'add_type_two'}">
                 <vs-button type="gradient" style="float:right;">Thêm mới</vs-button>
               </router-link>
