@@ -43,6 +43,7 @@ class ProductController extends Controller
             $cate_id = $data['cateno']->id;
             $data['title'] = languageName($data['cateno']->name);
             $data['content'] = $data['cateno']->content;
+            // dd($data['list'] );
         }
         return view('product.list',$data);
     }

@@ -974,6 +974,9 @@ figcaption {
 }
 
 .navbar {
+    top: 0px;
+    width: 100%;
+    position: fixed;
     background: #f9f9f9;
     padding-top: 0px;
     padding-bottom: 0px;

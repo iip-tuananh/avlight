@@ -131,7 +131,7 @@
         <div class="row ">
             <div class="col-md-9 tuan-cus">
                 <h2>Thông tin chi tiết</h2>
-                {!! languageName($product->content) !!}
+                {!!languageName($product->content)!!}
             </div>
             <div class="col-md-3 tuan-cus">
                 <h2>Sản phẩm liên quan</h2>

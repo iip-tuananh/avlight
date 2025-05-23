@@ -12,7 +12,9 @@
 
 					<vs-input
 						icon="search"
-						placeholder="Search"
+						id="product-search"
+						placeholder="Search-tuan"
+						class="search-tuan"
 						v-model="keyword"
 						@keyup="searchProduct()"
 					/>

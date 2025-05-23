@@ -103,6 +103,7 @@ export default {
 				{
 					icon: 'mdi mdi-shopping-music menu-icon',
 					name: 'Quản lý sản phẩm',
+					id:'tuan-product',
 					route_name: '',
 					sub: [
 						{
