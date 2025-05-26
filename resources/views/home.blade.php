@@ -46,6 +46,225 @@
         </div>
     </section>
 
+
+    <style>
+        /* ==== CSS ==== */
+        :root {
+            --brand-color: #0056b8;
+            --accent: #f58321;
+            --text-dark: #222;
+            --text-light: #555;
+            --bg-light: #fff;
+            --radius: 50%;
+            --transition: 0.3s ease;
+            --font: 'Segoe UI', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: var(--font);
+            color: var(--text-dark);
+        }
+
+        .about-section {
+            background: var(--bg-light);
+            padding: 60px 20px;
+        }
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* -------- Left: Images -------- */
+        .about-images {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+        .img-circle {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            overflow: hidden;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform var(--transition);
+        }
+        .img-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-circle-1 {
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+        .img-circle-2 {
+            top: 60px;
+            left: 140px;
+            z-index: 2;
+        }
+        .img-circle-3 {
+            top: 180px;
+            left: 50px;
+            z-index: 1;
+        }
+        /* Badge */
+        .experience-badge {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 40px;
+            padding: 12px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 4;
+            transition: transform var(--transition);
+        }
+        .experience-badge .years {
+            font-size: 1.6rem;
+            font-weight: bold;
+            display: block;
+        }
+        .experience-badge .label {
+            font-size: 0. nine5rem;
+        }
+
+        /* Hover effect nhẹ */
+        .about-images:hover .img-circle-1 { transform: translate(-10px,-10px) scale(1.05); }
+        .about-images:hover .img-circle-2 { transform: translate(10px,10px)   scale(1.05); }
+        .about-images:hover .img-circle-3 { transform: translate(-10px,10px)  scale(1.05); }
+        .about-images:hover .experience-badge { transform: translate(5px,-5px) scale(1.05); }
+
+        /* -------- Right: Content -------- */
+        .about-content {
+            flex: 1;
+        }
+        .tagline {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0. ninerem;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .title {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .title span {
+            color: var(--accent);
+        }
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+        .btn-about {
+            display: inline-block;
+            background: var(--brand-color);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background var(--transition), transform var(--transition);
+        }
+        .btn-about:hover {
+            background: #004392;
+            transform: translateY(-2px);
+        }
+
+        .description {
+            display: -webkit-box;             /* tạo flexbox container dọc */
+            -webkit-box-orient: vertical;     /* hướng dọc */
+            -webkit-line-clamp: 5;            /* số dòng tối đa */
+            overflow: hidden;                 /* ẩn phần vượt quá */
+            text-overflow: ellipsis;          /* hiển thị dấu … */
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .about-images {
+                width: 300px;
+                height: 300px;
+                margin-bottom: 40px;
+            }
+            .img-circle {
+                width: 180px;
+                height: 180px;
+            }
+            .img-circle-2 { top: 50px; left: 100px; }
+            .img-circle-3 { top: 130px; left: 30px; }
+            .experience-badge {
+                top: 140px;
+                left: 140px;
+            }
+
+        }
+
+    </style>
+    <!-- ==== HTML ==== -->
+    <section class="about-section">
+        <div class="about-container">
+            @php
+                $imggt = json_decode($gioithieu->image);
+            @endphp
+
+            <!-- Ảnh tròn chồng lấn -->
+            <div class="about-images">
+                @foreach ($imggt as $key => $item)
+                    <div class="col-4">
+                        <img class="img-{{ $key + 1 }} lazy"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                             data-src="{{ $item }}" alt="image">
+                    </div>
+                    <div class="img-circle img-circle-{{ $key + 1 }}">
+                        <img src="{{ $item }}" alt="Ảnh 1">
+                    </div>
+
+                @endforeach
+
+                <div class="experience-badge">
+                    <span class="years">10+</span>
+                    <span class="label">Năm kinh nghiệm</span>
+                </div>
+            </div>
+
+            <!-- Phần văn bản -->
+            <div class="about-content">
+                <span class="tagline">About Us</span>
+                <h2 class="title">
+                    {{ $setting->company }}
+                </h2>
+                <div class="description">
+                    {!! $gioithieu->content !!}
+                </div>
+                <a href="{{ route('aboutUs') }}" class="btn-about">Xem Thêm Về Chúng Tôi →</a>
+            </div>
+        </div>
+    </section>
+
+
+
     @if($categoriesFeatured->count())
         @foreach($categoriesFeatured as $cateFeatured)
             <section class="home-product-new section-distance container">
