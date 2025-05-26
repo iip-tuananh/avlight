@@ -264,7 +264,27 @@
     </section>
 
 
+    <style>
+        h2.m-reset.f-size-6.f-superbold {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5em;  /* khoảng cách giữa text và gạch */
+            margin-bottom: 0.5em;     /* khoảng cách với nội dung dưới */
+        }
 
+        /* 2. Vẽ gạch bằng pseudo-element */
+        h2.m-reset.f-size-6.f-superbold::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;            /* độ dài gạch */
+            height: 1px;            /* độ dày gạch */
+            background-color: currentColor; /* cùng màu text */
+            border-radius: 2px;     /* bo góc nhẹ */
+        }
+    </style>
     @if($categoriesFeatured->count())
         @foreach($categoriesFeatured as $cateFeatured)
             <section class="home-product-new section-distance container">
@@ -272,10 +292,6 @@
                     <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">{{languageName($cateFeatured->name)}}</h2>
                     <div class="home-custom-header-flex d-flex-vertical d-flex-center">
                         <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="collections/all.html" title="Xem tất cả">Xem tất cả</a>
-                        <div class="d-flex-vertical d-flex-center layout-gap-1unit">
-                            <hr>
-                            <hr>
-                        </div>
                     </div>
                 </div>
                 <div class="home-product-new-slider">
@@ -360,7 +376,7 @@
         /*}*/
         .services-section {
             position: relative;
-            background: #0247af;
+            background: rgb(0 0 0 / 63%);
             z-index: 1;
             padding: 80px 0;
         }
@@ -372,7 +388,7 @@
             height: 100%;
             left: 0;
             top: 0;
-            background-image: url(https://avlight.azas.vn/frontend/img/03.png);
+            background-image: url(/frontend/assets/spe.png);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -679,14 +695,13 @@
 
 
     <div class="home-banner-double section-distance" style='margin-top: 50px'>
-        <div class="d-flex-vertical d-flex-center layout-gap-0.5unit  home-custom-header">
+        <div class="d-flex-vertical d-flex-center layout-gap-0.5unit  home-custom-header  ">
             <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">Dự án của chúng tôi</h2>
+            <div class='home-custom-header-flex'>
+            </div>
             <div class="home-custom-header-flex d-flex-vertical d-flex-center">
                 <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="#" title="Xem tất cả ">Xem tất cả</a>
-                <div class="d-flex-vertical d-flex-center layout-gap-1unit">
-                    <hr>
-                    <hr>
-                </div>
+
             </div>
         </div>
 
@@ -746,7 +761,7 @@
                 /*content: '';*/
                 position: absolute;
                 inset: 0;
-                background: rgba(0,0,0,0.4);
+                background: rgb(0 0 0 / 63%);
                 z-index: 1;
             }
 
@@ -1106,6 +1121,8 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+
+            height: 520px;
         }
 
         /* ==== Form Column ==== */
@@ -1115,6 +1132,8 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+
+            height: 100%;
         }
 
         .contact-title {
@@ -1180,11 +1199,14 @@
             width: 350px;
             overflow: hidden;
             position: relative;
+
+            /* Chiều cao 100% theo .contact-card */
+            height: 100%;
         }
 
         .contact-image-wrapper img {
             height: 100%;      /* luôn cao bằng form-wrapper */
-            width: auto;       /* giữ tỉ lệ */
+            width: 100%;       /* giữ tỉ lệ */
             object-fit: cover;
             transition: transform .5s;
         }
@@ -1245,7 +1267,7 @@
             </div>
             <!-- IMAGE/INFO -->
             <div class="contact-image-wrapper">
-                <img src="https://avlight.azas.vn/frontend/img/amthanh.jpg" alt="Sản phẩm mẫu">
+                <img src="/frontend/assets/c2.png" alt="Sản phẩm mẫu">
             </div>
         </div>
     </section>
@@ -1316,7 +1338,7 @@
         height: 100%;
         left: 0;
         top: 0;
-        background-image: url(https://avlight.azas.vn/frontend/img/02.png);
+        background-image: url(/frontend/assets/spe.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -1324,7 +1346,7 @@
         z-index: -1;
     }
     .feedback-section {
-        background: #0247af;
+        background: rgb(0 0 0 / 63%);
         padding: 60px 20px;
     }
 
@@ -1591,7 +1613,7 @@
     <script>
         $(document).ready(function(){
             $('.home-banner-double-slider').owlCarousel({
-                items: 2,
+                items: 3,
                 loop: true,
                 nav: true,
                 dots: false,
@@ -1602,8 +1624,8 @@
                 ],
                 responsive: {
                     0:   { items: 1 },
-                    768: { items: 2 },
-                    992: { items: 2 }
+                    768: { items: 3 },
+                    992: { items: 3 }
                 }
             });
         });
