@@ -1042,7 +1042,7 @@
                                     <div class="article-item-wrap">
                                         <a href="{{ route('detailBlog', $item->slug) }}"
                                            class="article-item-image" title="Kinh nghiệm lựa chọn nội thất chung cư">
-                                            <img loading="lazy" decoding="async" width="600" height="400"
+                                            <img loading="lazy" decoding="async"
                                                  src="{{ $item->image }}" alt="{!! languageName($item->title) !!}"
                                                  title="{!! languageName($item->title) !!}">
                                         </a>

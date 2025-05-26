@@ -4167,7 +4167,7 @@ footer.footers2 .footers2-wrap .footers2-bot p a strong:hover {
 .article-item .article-item-wrap .article-item-image img {
     transition: all .5s;
     aspect-ratio: 4/3;
-    object-fit: contain;
+    object-fit: cover;
     margin: 0 auto
 }
 

@@ -179,7 +179,9 @@
             aspect-ratio: 1 !important;
         }
     </style>
-    <style>.product-item .product-item-wrap .product-item-top .product-item-top-image .product-item-top-image-showcase img{ width: 100% !important; height: 100% !important; object-fit: cover !important; }</style>
+    <style>.product-item .product-item-wrap .product-item-top .product-item-top-image .product-item-top-image-showcase img
+        { width: 100% !important; height: 100% !important;  }
+    </style>
     <!-- Color Feature -->
     <style>
         .shop-filter .shop-filter-item.color.xanh label,
@@ -306,7 +308,7 @@
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/plugined63.css?1745557375056">
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/fancyed63.css?1745557375056">
-    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/main.scssed63.css?1745557375056">
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/main.scssed63.css?174555737505612">
     <!-- INDEX -->
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/index.scssed63.css?1745557375056">
     <!-- COLLECTION -->
