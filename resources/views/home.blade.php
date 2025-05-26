@@ -176,7 +176,7 @@
         }
         .btn-about {
             display: inline-block;
-            background: var(--brand-color);
+            background: #ce0808;
             color: #fff;
             padding: 12px 24px;
             border-radius: 6px;
@@ -185,7 +185,12 @@
             transition: background var(--transition), transform var(--transition);
         }
         .btn-about:hover {
-            background: #004392;
+            background: #ce0808;
+            transform: translateY(-2px);
+        }
+
+        a:hover {
+            color: #fff !important;
             transform: translateY(-2px);
         }
 
@@ -1632,28 +1637,39 @@
     </script>
 
     <script>
-        function equalize(selector) {
-            var maxH = 0;
-            // reset về auto để đo đúng
-            $(selector)
-                .css('height', 'auto')
-                .each(function() {
-                    maxH = Math.max(maxH, $(this).outerHeight());
-                })
-                .height(maxH);
-        }
-
-        function equalizeAll() {
-            equalize('.home-blog-item');
-            equalize('.article-item-detail');
-        }
-
-        // Chạy sau khi window load (ảnh + font đã xong), và mỗi khi resize
-        $(window).on('load resize', equalizeAll);
-
-        // Nếu là nội dung động thêm (ví dụ AJAX), gọi equalizeAll() sau khi render lại.
-
+        $(function(){
+            // 1) Equalize chiều cao cho .article-item-detail
+            function equalizeDetails() {
+                var maxH = 0;
+                $('.article-item-detail-title')
+                    .css('height','auto')
+                    .each(function(){
+                        maxH = Math.max(maxH, $(this).outerHeight());
+                    })
+                    .height(maxH);
+            }
+            // 2) (Nếu cần) Equalize chiều cao cho toàn .home-blog-item
+            function equalizeItems() {
+                var maxH = 0;
+                $('.home-blog-item')
+                    .css('height','auto')
+                    .each(function(){
+                        maxH = Math.max(maxH, $(this).outerHeight());
+                    })
+                    .height(maxH);
+            }
+            // 3) Gọi cả hai
+            function equalizeAll() {
+                equalizeDetails();
+                equalizeItems();
+            }
+            // 4) Thiết lập các event
+            $(window).on('load resize orientationchange', equalizeAll);
+            // 5) Và gọi ngay một lần cho chắc khi DOM ready
+            equalizeAll();
+        });
     </script>
+
 
     <script>
         // ==== JS ====
