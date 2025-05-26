@@ -186,13 +186,10 @@
         }
         .btn-about:hover {
             background: #ce0808;
-            transform: translateY(-2px);
-        }
-
-        a:hover {
             color: #fff !important;
             transform: translateY(-2px);
         }
+
 
         .description {
             display: -webkit-box;             /* tạo flexbox container dọc */
