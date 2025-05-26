@@ -28,6 +28,16 @@
                 v-model="objData.description"
               />
             </div>
+                <div class="form-group">
+                    <label>Liên kết</label>
+                    <vs-input
+                        type="text"
+                        size="default"
+                        placeholder="Link liên kết"
+                        class="w-100"
+                        v-model="objData.link"
+                    />
+                </div>
             <div class="form-group">
                 <label>Trạng thái</label>
                 <vs-select v-model="objData.status"
@@ -36,11 +46,18 @@
                       <vs-select-item  value="0" text="Ẩn" />
                     </vs-select>
               </div>
+                <div class="form-group">
+                    <label for="is_featured">Hiển thị lên trang chủ</label>
+                    <vs-select v-model="objData.is_featured">
+                        <vs-select-item value="1" text="Có" />
+                        <vs-select-item value="0" text="Không" />
+                    </vs-select>
+                </div>
             </div>
           </div>
-          
+
         </div>
-        
+
       </div>
       <div class="row fixxed">
         <div class="col-12">
@@ -73,6 +90,7 @@ export default {
       objData: {
         id: this.$route.params.id,
         name: "",
+          link: "",
         content: [
           {
             lang_code:'vi',
@@ -81,7 +99,8 @@ export default {
         ],
         description: "",
         status: 1,
-        image: ""
+          is_featured: 0,
+          image: ""
       },
       lang:[]
     };
@@ -148,7 +167,7 @@ export default {
               }
           });
       }
-      
+
     },
     editById() {
       this.loadings(true);

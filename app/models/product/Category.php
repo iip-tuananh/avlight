@@ -15,7 +15,7 @@ class Category extends Model
     public function rule()
     {
         return [
-            
+
         ];
     }
     public function typeCate()
@@ -26,6 +26,7 @@ class Category extends Model
     {
         return $this->hasMany(Product::class,'category','id')->where('discountStatus',1)->orderBy('id','DESC');
     }
+
     public function saveCate($request)
     {
         $id = $request->id;
@@ -40,6 +41,7 @@ class Category extends Model
                 $query->status = $request->status;
                 $query->avatar = $request->avatar;
                 $query->imagehome = $request->imagehome;
+                $query->is_featured = $request->is_featured;
                 $query->save();
             }else{
                 $query = new Category();
@@ -51,9 +53,10 @@ class Category extends Model
                 $query->status = $request->status;
                 $query->avatar = $request->avatar;
                 $query->imagehome = $request->imagehome;
+                $query->is_featured = $request->is_featured;
                 $query->save();
             }
-            
+
         }else{
             $query = new Category();
             $query->quiz_id = 0;
@@ -64,8 +67,9 @@ class Category extends Model
             $query->status = $request->status;
             $query->avatar = $request->avatar;
             $query->imagehome = $request->imagehome;
+            $query->is_featured = $request->is_featured;
             $query->save();
-            
+
         }
         return $query;
     }

@@ -1,335 +1,346 @@
-<!-- header area -->
 <header class="header">
-    @php
-        ini_set('memory_limit', '9999M');
-    @endphp
-    <!-- header top -->
-    <div class="header-top">
-        <div class="container">
-            <div class="header-top-wrap">
-                <div class="header-top-left">
-                    <div class="header-top-list">
-                        <ul>
-                            <li></li>
-                        </ul>
+    <div class="container">
+        <div class="header-top">
+            <div class="header-left">
+                <a title="F1GENZ Smart Furniture" aria-label="F1GENZ Smart Furniture" href="{{ route('home') }}">
+                    <img title="F1GENZ Smart Furniture"
+                         src="{{ $setting->logo }}" alt="F1GENZ Smart Furniture">
+                </a>
+            </div>
+            <div class="header-center">
+                <form class="tool-search" action="#">
+                    <input type="hidden" name="type" value="product">
+                    <input required name="q" autocomplete="off" type="text" placeholder="Tìm kiếm sản phẩm...">
+                    <button type="submit" title="Tìm kiếm"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 612.01 612.01" style="enable-background: new 0 0 512 512" xml:space="preserve" class=""> <path d="M606.209,578.714L448.198,423.228C489.576,378.272,515,318.817,515,253.393C514.98,113.439,399.704,0,257.493,0 C115.282,0,0.006,113.439,0.006,253.393s115.276,253.393,257.487,253.393c61.445,0,117.801-21.253,162.068-56.586 l158.624,156.099c7.729,7.614,20.277,7.614,28.006,0C613.938,598.686,613.938,586.328,606.209,578.714z M257.493,467.8 c-120.326,0-217.869-95.993-217.869-214.407S137.167,38.986,257.493,38.986c120.327,0,217.869,95.993,217.869,214.407 S377.82,467.8,257.493,467.8z" fill="#000000" data-original="#000000" class=""></path></svg></button>
+                    <button class="tool-search-overplay" title="Đóng"></button>
+                    <div class="tool-search-smart"></div>
+                </form>
+            </div>
+            <div class="header-right">
+                <div class="header-right-phone">
+                    <a href="tel:{{ str_replace(' ', '', $setting->phone1) }}" title="Gọi ngay {{ str_replace(' ', '', $setting->phone1) }}" aria-label="Gọi ngay 1800.67.50">
+                        <svg style="fill:#4c4c4c" version="1.1" width="30" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 473.806 473.806" xml:space="preserve"><path d="M374.456,293.506c-9.7-10.1-21.4-15.5-33.8-15.5c-12.3,0-24.1,5.3-34.2,15.4l-31.6,31.5c-2.6-1.4-5.2-2.7-7.7-4
+	c-3.6-1.8-7-3.5-9.9-5.3c-29.6-18.8-56.5-43.3-82.3-75c-12.5-15.8-20.9-29.1-27-42.6c8.2-7.5,15.8-15.3,23.2-22.8
+	c2.8-2.8,5.6-5.7,8.4-8.5c21-21,21-48.2,0-69.2l-27.3-27.3c-3.1-3.1-6.3-6.3-9.3-9.5c-6-6.2-12.3-12.6-18.8-18.6
+	c-9.7-9.6-21.3-14.7-33.5-14.7s-24,5.1-34,14.7c-0.1,0.1-0.1,0.1-0.2,0.2l-34,34.3c-12.8,12.8-20.1,28.4-21.7,46.5
+	c-2.4,29.2,6.2,56.4,12.8,74.2c16.2,43.7,40.4,84.2,76.5,127.6c43.8,52.3,96.5,93.6,156.7,122.7c23,10.9,53.7,23.8,88,26
+	c2.1,0.1,4.3,0.2,6.3,0.2c23.1,0,42.5-8.3,57.7-24.8c0.1-0.2,0.3-0.3,0.4-0.5c5.2-6.3,11.2-12,17.5-18.1c4.3-4.1,8.7-8.4,13-12.9
+	c9.9-10.3,15.1-22.3,15.1-34.6c0-12.4-5.3-24.3-15.4-34.3L374.456,293.506z M410.256,398.806
+	C410.156,398.806,410.156,398.906,410.256,398.806c-3.9,4.2-7.9,8-12.2,12.2c-6.5,6.2-13.1,12.7-19.3,20
+	c-10.1,10.8-22,15.9-37.6,15.9c-1.5,0-3.1,0-4.6-0.1c-29.7-1.9-57.3-13.5-78-23.4c-56.6-27.4-106.3-66.3-147.6-115.6
+	c-34.1-41.1-56.9-79.1-72-119.9c-9.3-24.9-12.7-44.3-11.2-62.6c1-11.7,5.5-21.4,13.8-29.7l34.1-34.1c4.9-4.6,10.1-7.1,15.2-7.1
+	c6.3,0,11.4,3.8,14.6,7c0.1,0.1,0.2,0.2,0.3,0.3c6.1,5.7,11.9,11.6,18,17.9c3.1,3.2,6.3,6.4,9.5,9.7l27.3,27.3
+	c10.6,10.6,10.6,20.4,0,31c-2.9,2.9-5.7,5.8-8.6,8.6c-8.4,8.6-16.4,16.6-25.1,24.4c-0.2,0.2-0.4,0.3-0.5,0.5
+	c-8.6,8.6-7,17-5.2,22.7c0.1,0.3,0.2,0.6,0.3,0.9c7.1,17.2,17.1,33.4,32.3,52.7l0.1,0.1c27.6,34,56.7,60.5,88.8,80.8
+	c4.1,2.6,8.3,4.7,12.3,6.7c3.6,1.8,7,3.5,9.9,5.3c0.4,0.2,0.8,0.5,1.2,0.7c3.4,1.7,6.6,2.5,9.9,2.5c8.3,0,13.5-5.2,15.2-6.9
+	l34.2-34.2c3.4-3.4,8.8-7.5,15.1-7.5c6.2,0,11.3,3.9,14.4,7.3c0.1,0.1,0.1,0.1,0.2,0.2l55.1,55.1
+	C420.456,377.706,420.456,388.206,410.256,398.806z"/><path d="M256.056,112.706c26.2,4.4,50,16.8,69,35.8s31.3,42.8,35.8,69c1.1,6.6,6.8,11.2,13.3,11.2c0.8,0,1.5-0.1,2.3-0.2
+	c7.4-1.2,12.3-8.2,11.1-15.6c-5.4-31.7-20.4-60.6-43.3-83.5s-51.8-37.9-83.5-43.3c-7.4-1.2-14.3,3.7-15.6,11
+	S248.656,111.506,256.056,112.706z"/><path d="M473.256,209.006c-8.9-52.2-33.5-99.7-71.3-137.5s-85.3-62.4-137.5-71.3c-7.3-1.3-14.2,3.7-15.5,11
+	c-1.2,7.4,3.7,14.3,11.1,15.6c46.6,7.9,89.1,30,122.9,63.7c33.8,33.8,55.8,76.3,63.7,122.9c1.1,6.6,6.8,11.2,13.3,11.2
+	c0.8,0,1.5-0.1,2.3-0.2C469.556,223.306,474.556,216.306,473.256,209.006z"/></svg>					</a>
+                    <div class="header-right-phone-detail">
+                        <span>Hotline 1</span>
+                        <a href="tel:{{ str_replace(' ', '', $setting->phone1) }}"  title="Gọi ngay {{ str_replace(' ', '', $setting->phone1) }}" aria-label="Gọi ngay 1800.67.50">
+                            {{ str_replace(' ', '', $setting->phone1) }}
+                        </a>
                     </div>
                 </div>
+                <div class="header-right-phone">
+                    <a href="tel:{{ str_replace(' ', '', $setting->phone2) }}" title="Gọi ngay {{ str_replace(' ', '', $setting->phone2) }}" aria-label="Gọi ngay {{ str_replace(' ', '', $setting->phone2) }}">
+                        <svg style="fill:#4c4c4c" version="1.1" width="30" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 473.806 473.806" xml:space="preserve"><path d="M374.456,293.506c-9.7-10.1-21.4-15.5-33.8-15.5c-12.3,0-24.1,5.3-34.2,15.4l-31.6,31.5c-2.6-1.4-5.2-2.7-7.7-4
+	c-3.6-1.8-7-3.5-9.9-5.3c-29.6-18.8-56.5-43.3-82.3-75c-12.5-15.8-20.9-29.1-27-42.6c8.2-7.5,15.8-15.3,23.2-22.8
+	c2.8-2.8,5.6-5.7,8.4-8.5c21-21,21-48.2,0-69.2l-27.3-27.3c-3.1-3.1-6.3-6.3-9.3-9.5c-6-6.2-12.3-12.6-18.8-18.6
+	c-9.7-9.6-21.3-14.7-33.5-14.7s-24,5.1-34,14.7c-0.1,0.1-0.1,0.1-0.2,0.2l-34,34.3c-12.8,12.8-20.1,28.4-21.7,46.5
+	c-2.4,29.2,6.2,56.4,12.8,74.2c16.2,43.7,40.4,84.2,76.5,127.6c43.8,52.3,96.5,93.6,156.7,122.7c23,10.9,53.7,23.8,88,26
+	c2.1,0.1,4.3,0.2,6.3,0.2c23.1,0,42.5-8.3,57.7-24.8c0.1-0.2,0.3-0.3,0.4-0.5c5.2-6.3,11.2-12,17.5-18.1c4.3-4.1,8.7-8.4,13-12.9
+	c9.9-10.3,15.1-22.3,15.1-34.6c0-12.4-5.3-24.3-15.4-34.3L374.456,293.506z M410.256,398.806
+	C410.156,398.806,410.156,398.906,410.256,398.806c-3.9,4.2-7.9,8-12.2,12.2c-6.5,6.2-13.1,12.7-19.3,20
+	c-10.1,10.8-22,15.9-37.6,15.9c-1.5,0-3.1,0-4.6-0.1c-29.7-1.9-57.3-13.5-78-23.4c-56.6-27.4-106.3-66.3-147.6-115.6
+	c-34.1-41.1-56.9-79.1-72-119.9c-9.3-24.9-12.7-44.3-11.2-62.6c1-11.7,5.5-21.4,13.8-29.7l34.1-34.1c4.9-4.6,10.1-7.1,15.2-7.1
+	c6.3,0,11.4,3.8,14.6,7c0.1,0.1,0.2,0.2,0.3,0.3c6.1,5.7,11.9,11.6,18,17.9c3.1,3.2,6.3,6.4,9.5,9.7l27.3,27.3
+	c10.6,10.6,10.6,20.4,0,31c-2.9,2.9-5.7,5.8-8.6,8.6c-8.4,8.6-16.4,16.6-25.1,24.4c-0.2,0.2-0.4,0.3-0.5,0.5
+	c-8.6,8.6-7,17-5.2,22.7c0.1,0.3,0.2,0.6,0.3,0.9c7.1,17.2,17.1,33.4,32.3,52.7l0.1,0.1c27.6,34,56.7,60.5,88.8,80.8
+	c4.1,2.6,8.3,4.7,12.3,6.7c3.6,1.8,7,3.5,9.9,5.3c0.4,0.2,0.8,0.5,1.2,0.7c3.4,1.7,6.6,2.5,9.9,2.5c8.3,0,13.5-5.2,15.2-6.9
+	l34.2-34.2c3.4-3.4,8.8-7.5,15.1-7.5c6.2,0,11.3,3.9,14.4,7.3c0.1,0.1,0.1,0.1,0.2,0.2l55.1,55.1
+	C420.456,377.706,420.456,388.206,410.256,398.806z"/><path d="M256.056,112.706c26.2,4.4,50,16.8,69,35.8s31.3,42.8,35.8,69c1.1,6.6,6.8,11.2,13.3,11.2c0.8,0,1.5-0.1,2.3-0.2
+	c7.4-1.2,12.3-8.2,11.1-15.6c-5.4-31.7-20.4-60.6-43.3-83.5s-51.8-37.9-83.5-43.3c-7.4-1.2-14.3,3.7-15.6,11
+	S248.656,111.506,256.056,112.706z"/><path d="M473.256,209.006c-8.9-52.2-33.5-99.7-71.3-137.5s-85.3-62.4-137.5-71.3c-7.3-1.3-14.2,3.7-15.5,11
+	c-1.2,7.4,3.7,14.3,11.1,15.6c46.6,7.9,89.1,30,122.9,63.7c33.8,33.8,55.8,76.3,63.7,122.9c1.1,6.6,6.8,11.2,13.3,11.2
+	c0.8,0,1.5-0.1,2.3-0.2C469.556,223.306,474.556,216.306,473.256,209.006z"/></svg>					</a>
+                    <div class="header-right-phone-detail">
+                        <span>Hotline 2</span>
+                        <a href="tel:{{ str_replace(' ', '', $setting->phone2) }}"  title="Gọi ngay {{ str_replace(' ', '', $setting->phone2) }}" aria-label="Gọi ngay 1800.67.50">
+                            {{ str_replace(' ', '', $setting->phone2) }}
+                        </a>
+                    </div>
+                </div>
+                <button class="shop-tool has-count" type="button" data-type="shop-wishlist-header" title="Yêu thích">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" x="0" y="0" viewBox="0 0 512 512" style="enable-background: new 0 0 512 512" xml:space="preserve" class=""> <path d="M359.511,37.984c-38.907,0-75.282,14.653-103.511,41.478c-28.229-26.825-64.605-41.478-103.511-41.478 C68.406,37.984,0,108.033,0,194.135c0,49.918,42.543,112.126,126.449,184.895c61.346,53.204,123.555,93.023,124.176,93.419 c1.639,1.045,3.507,1.567,5.375,1.567c1.868,0,3.736-0.523,5.376-1.568c0.621-0.396,62.83-40.215,124.176-93.419 C469.457,306.26,512,244.052,512,194.135C512,108.033,443.594,37.984,359.511,37.984z M372.62,363.771 c-49.885,43.284-100.379,77.567-116.62,88.301c-16.216-10.715-66.578-44.903-116.448-88.153C61.34,296.089,20,237.378,20,194.135 C20,119.06,79.435,57.984,152.489,57.984c36.726,0,70.877,15.094,96.161,42.501c1.893,2.052,4.558,3.219,7.35,3.219 s5.457-1.167,7.35-3.219c25.285-27.406,59.435-42.5,96.161-42.5C432.565,57.984,492,119.06,492,194.135 C492,237.344,450.719,296.003,372.62,363.771z" fill="#000000" data-original="#000000"></path> <path d="M347.379,93.307l-0.376,0.065c-5.438,0.966-9.063,6.157-8.097,11.595c0.861,4.846,5.078,8.252,9.834,8.252 c0.581,0,1.17-0.051,1.76-0.156l0.199-0.034c5.446-0.917,9.118-6.075,8.201-11.521C357.983,96.06,352.82,92.393,347.379,93.307z" fill="#000000" data-original="#000000"></path> <path d="M439.056,131.382c-12.278-16.867-29.718-29.43-49.106-35.375c-5.281-1.621-10.873,1.349-12.492,6.629 c-1.619,5.28,1.349,10.873,6.629,12.492c31.959,9.8,54.279,41.078,54.279,76.063c0,5.523,4.477,10,10,10s10-4.477,9.999-10.001 C458.365,169.416,451.688,148.735,439.056,131.382z" fill="#000000" data-original="#000000"></path></svg>
+                    <span class="shop-wishlist-count">0</span>
+                </button>
+                <button class="shop-tool has-count" type="button" data-type="shop-cart-header" title="Giỏ hàng">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" x="0" y="0" viewBox="0 0 459.361 459.361" style="enable-background: new 0 0 512 512" xml:space="preserve" class=""> <path d="M371.2,325.731c19.1-0.2,35.8-13.1,40.7-31.6l47.1-175.4c1.5-5.7-1.8-11.5-7.5-13.1c-0.9-0.2-1.8-0.4-2.7-0.4H94.5 l-24.1-89c-1.2-4.6-5.4-7.9-10.2-7.9H0v21.3h51.8l23.3,87c-0.1,0.7-0.1,1.4,0,2.1l48,176c0.3,1.4,0.8,2.9,1.3,4.3l16.2,59 c-15.6,8.3-26.2,24.7-26.2,43.6c0,27.3,22.1,49.4,49.4,49.4c27.3,0,49.4-22.1,49.4-49.4c0-8.5-2.2-16.6-6-23.6 c-0.9-1.6-1.8-3.2-2.9-4.8H330c-5.6,8-9,17.8-9,28.4c0,27.3,22.1,49.4,49.4,49.4s49.4-22.1,49.4-49.4c0-12.9-4.9-24.6-13-33.4 c-8.7-9.9-21.5-16.2-35.8-16.3H161.9l-7.5-27.5c3.2,0.8,6.5,1.3,9.8,1.3H371.2z M370.5,373.231c15.7,0,28.4,12.7,28.4,28.4 s-12.7,28.4-28.4,28.4c-15.7,0-28.4-12.7-28.4-28.4S354.8,373.231,370.5,373.231z M163.8,373.231c15.7,0,28.3,12.8,28.3,28.4 c0,15.7-12.7,28.4-28.4,28.4c-15.7,0-28.3-12.7-28.3-28.4S148.1,373.231,163.8,373.231z M144.8,290.931l-23.9-87.4l-21.3-76.8 h334.9l-43.3,162.6c-2.4,9.3-10.7,15.8-20.3,16H164C155.3,304.831,147.7,299.231,144.8,290.931z" fill="#000000" data-original="#000000"></path></svg>
+                    <span class="shop-cart-count">0</span>
+                </button>
+                <button class="shop-tool" type="button" data-type="shop-menu-mobile-header" title="Menu">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve"><g><path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03 C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"></path><path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03 S379.58,180.455,372.939,180.455z"></path><path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909 c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"></path></g></svg>
+                </button>
             </div>
         </div>
     </div>
-    <!-- header top end -->
-    <!-- navbar -->
-    <div class="main-navigation">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container position-relative">
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="{{ $setting->logo }}" alt="logo">
-                </a>
-                <div class="mobile-menu-right">
-                    <div class="mobile-menu-btn">
-                        <button type="button" class="nav-right-link search-box-outer"><i
-                                class="far fa-search"></i></button>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
-                        aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <a href="{{ route('home') }}" class="offcanvas-brand" id="offcanvasNavbarLabel">
-                            <img src="{{ $setting->logo }}" alt="">
-                        </a>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
-                                class="far fa-xmark"></i></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <!-- nav-right -->
-                        <div class="nav-right">
-                            <div class="header-top-right">
-                                <div class="flexsearchuis d-lg-block d-none">
-                                    <div class="searchmobileui">
-                                        <form action="{{ route('search_result') }}" method="post">
-                                            @csrf
-                                            <div class="form-group d-flex" style="margin-bottom:0;">
-                                                <input type="text" name="keywordsearch" class="form-control"
-                                                    placeholder="Tìm kiếm sản phẩm..." required="">
-                                                <button type="submit" class="buttonsearch"><i
-                                                        class="far fa-search"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="ajax-search-result" style="display:none;position:absolute;z-index:999;width:100%;background:#fff;">
-                                
-                            </div>
-                            <div class="header-action-hotline header-action-contact header-action-icon">
-                                <a href="tel:{{ str_replace(' ', '', $setting->phone1) }}"
-                                    class="header-action-hotline icon-state d-flex align-items-center"
-                                    style="gap: 10px;">
-                                    <span class="box-action-icon">
-                                        <svg class="icon-svg svg-icon-hotline" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 512 512" width="30" height="30">
-                                            <g>
-                                                <path
-                                                    d="m123.832031 475.464844c39.558594 23.804687 84.789063 36.351562 131.261719 36.351562 140.824219 0 256.90625-114.914062 256.90625-255.910156 0-140.832031-115.917969-255.90625-256.90625-255.90625-140.558594 0-254.910156 114.800781-254.910156 255.90625 0 47.09375 12.550781 92.667969 36.351562 132.257812l-36.535156 123.835938zm-93.65625-219.558594c0-124.570312 100.898438-225.917969 224.917969-225.917969 125.121094 0 226.917969 101.347657 226.917969 225.917969 0 124.574219-101.796875 225.917969-226.917969 225.917969-43.054688 0-84.894531-12.195313-120.984375-35.273438l-5.765625-3.683593-83.988281 24.78125 24.777343-83.992188-3.683593-5.761719c-23.078125-36.097656-35.273438-78.277343-35.273438-121.988281zm0 0"
-                                                    data-original="#000000" class="active-path"
-                                                    data-old_color="#000000"></path>
-                                                <path
-                                                    d="m124.628906 208.753906c4.953125 26.011719 19.65625 76.042969 62.464844 118.851563 42.808594 42.808593 92.839844 57.515625 118.855469 62.46875 29.789062 5.671875 73.503906 6.527343 94.867187-14.835938l11.910156-11.910156c6.011719-6.011719 9.324219-14.007813 9.324219-22.511719s-3.3125-16.496094-9.324219-22.507812l-47.628906-47.628906c-6.015625-6.015626-14.007812-9.324219-22.511718-9.324219-8.503907 0-16.496094 3.308593-22.511719 9.324219l-11.90625 11.90625c-7.273438 7.273437-21.003907 7.304687-28.332031.089843l-47.507813-49.5c-.070313-.074219-.140625-.148437-.214844-.21875-7.285156-7.285156-7.285156-19.140625 0-26.425781l11.90625-11.90625c12.445313-12.445312 12.445313-32.582031 0-45.023438l-47.628906-47.628906c-12.410156-12.410156-32.605469-12.410156-45.019531 0l-11.90625 11.910156v-.003906c-17.050782 17.054688-22.734375 53.40625-14.835938 94.875zm36.042969-73.664062c12.5-12.214844 11.832031-12.449219 13.210937-12.449219.472657 0 .945313.179687 1.304688.539063 50.1875 50.457031 48.171875 47.492187 48.171875 48.9375 0 .503906-.183594.945312-.539063 1.304687l-11.910156 11.90625c-18.964844 18.964844-19.039062 49.664063-.121094 68.714844l47.535157 49.53125c.074219.070312.144531.144531.21875.21875 18.960937 18.960937 51.808593 19.023437 70.832031 0l11.90625-11.90625c.71875-.71875 1.890625-.71875 2.609375 0 50.1875 50.453125 48.171875 47.488281 48.171875 48.933593 0 .507813-.183594.945313-.539062 1.304688l-11.910157 11.90625c-8.160156 8.160156-34.152343 13.042969-68.054687 6.585938-22.625-4.3125-66.128906-17.085938-103.257813-54.214844-37.128906-37.128906-49.902343-80.632813-54.210937-103.257813-6.460938-33.902343-1.578125-59.898437 6.582031-68.054687zm0 0"
-                                                    data-original="#000000" class="active-path"
-                                                    data-old_color="#000000"></path>
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <span class="box-action-text">
-                                        <span class="text_name-title">Hotline:</span> <br>
-                                        <span class="text_name">{{ $setting->phone1 }}</span>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="header-action-icon header-action_cart icon-state">
-                                <div class="header-action_text">
-                                    <a class="header-action__link header-action-toggle" href="javascript:void(0)"
-                                        id="site-cart-handle" aria-label="Giỏ hàng" title="Giỏ hàng" style="display: flex; align-items: center; gap: 10px;">
-                                        <span class="box-action-icon" style="position: relative;">
-                                            <svg version="1.1" class="svg-ico-cart icon-svg" id="Capa_1"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="30" height="30" viewBox="0 0 446.853 446.853"
-                                                style="enable-background:new 0 0 446.853 446.853;" xml:space="preserve">
-                                                <g>
-                                                    <path d="M444.274,93.36c-2.558-3.666-6.674-5.932-11.145-6.123L155.942,75.289c-7.953-0.348-14.599,5.792-14.939,13.708
-                                                        c-0.338,7.913,5.792,14.599,13.707,14.939l258.421,11.14L362.32,273.61H136.205L95.354,51.179
-                                                        c-0.898-4.875-4.245-8.942-8.861-10.753L19.586,14.141c-7.374-2.887-15.695,0.735-18.591,8.1c-2.891,7.369,0.73,15.695,8.1,18.591
-                                                        l59.491,23.371l41.572,226.335c1.253,6.804,7.183,11.746,14.104,11.746h6.896l-15.747,43.74c-1.318,3.664-0.775,7.733,1.468,10.916
-                                                        c2.24,3.184,5.883,5.078,9.772,5.078h11.045c-6.844,7.617-11.045,17.646-11.045,28.675c0,23.718,19.299,43.012,43.012,43.012
-                                                        s43.012-19.294,43.012-43.012c0-11.028-4.201-21.058-11.044-28.675h93.777c-6.847,7.617-11.047,17.646-11.047,28.675
-                                                        c0,23.718,19.294,43.012,43.012,43.012c23.719,0,43.012-19.294,43.012-43.012c0-11.028-4.2-21.058-11.042-28.675h13.432
-                                                        c6.6,0,11.948-5.349,11.948-11.947c0-6.6-5.349-11.948-11.948-11.948H143.651l12.902-35.843h216.221
-                                                        c6.235,0,11.752-4.028,13.651-9.96l59.739-186.387C447.536,101.679,446.832,97.028,444.274,93.36z M169.664,409.814
-                                                        c-10.543,0-19.117-8.573-19.117-19.116s8.574-19.117,19.117-19.117s19.116,8.574,19.116,19.117S180.207,409.814,169.664,409.814z
-                                                        M327.373,409.814c-10.543,0-19.116-8.573-19.116-19.116s8.573-19.117,19.116-19.117s19.116,8.574,19.116,19.117
-                                                        S337.916,409.814,327.373,409.814z"></path>
-                                                </g>
-                                            </svg>
-                                            <span class="count-holder" style="position: absolute; top: -10px; right: -10px; background-color: var(--theme-color); color: #fff; border-radius: 50%; padding: 0 5px; font-size: 12px;">
-                                                <span class="count">0</span>
-                                            </span>
-                                        </span>
-                                        <span class="box-action-text">
-                                            <span class="txtbl">Giỏ hàng</span><br>
-                                            <span class="txtbl">của bạn</span>
-                                        </span>
-                                    </a>
-                                </div>
-                                {{-- <div class="header_dropdown_content">
-                                    <span class="box-triangle">
-                                        <svg viewBox="0 0 20 9" role="presentation">
-                                            <path
-                                                d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                fill="#ffffff"></path>
-                                        </svg>
-                                    </span>
-                                    <div class="">
-                                        <div class="site-cart">
-                                            <div class="cart-ttbold">
-                                                <p class="ttbold">Giỏ hàng</p>
-                                            </div>
-                                            <div class="cart-view clearfix">
-                                                <div class="cart-view-scroll">
-                                                    <table id="clone-item-cart" class="table-clone-cart">
-                                                        <tbody>
-                                                            <tr class="item_2 hidden">
-                                                                <td class="img"><a href=""
-                                                                        title=""><img src=""
-                                                                            alt=""></a></td>
-                                                                <td>
-                                                                    <p class="pro-title">
-                                                                        <a class="pro-title-view" href=""
-                                                                            title=""></a>
-                                                                        <span class="variant"></span>
-                                                                    </p>
-                                                                    <div class="mini-cart_quantity">
-                                                                        <div class="pro-quantity-view"><span
-                                                                                class="qty-value"></span></div>
-                                                                        <div class="pro-price-view"></div>
-                                                                    </div>
-                                                                    <div class="remove_link remove-cart"></div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <table id="cart-view">
-
-                                                        <tbody>
-                                                            <tr class="item-cart_empty">
-                                                                <td>
-                                                                    <div class="svgico-mini-cart">
-                                                                        <svg width="81" height="70"
-                                                                            viewBox="0 0 81 70">
-                                                                            <g transform="translate(0 2)"
-                                                                                stroke-width="4" stroke="#1e2d7d"
-                                                                                fill="none" fill-rule="evenodd">
-                                                                                <circle stroke-linecap="square"
-                                                                                    cx="34" cy="60"
-                                                                                    r="6"></circle>
-                                                                                <circle stroke-linecap="square"
-                                                                                    cx="67" cy="60"
-                                                                                    r="6"></circle>
-                                                                                <path
-                                                                                    d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547">
-                                                                                </path>
-                                                                            </g>
-                                                                        </svg>
-                                                                    </div>
-                                                                    Hiện chưa có sản phẩm
-                                                                </td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="line"></div>
-                                                <div class="cart-view-total">
-                                                    <table class="table-total">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="text-left">TỔNG TIỀN:</td>
-                                                                <td class="text-right" id="total-view-cart">0₫</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><a href="/cart"
-                                                                        class="linktocart site-button black text-center">Xem
-                                                                        giỏ hàng</a></td>
-                                                                <td><a href="/checkout"
-                                                                        class="linktocheckout site-button black text-center">Thanh
-                                                                        toán</a></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                            </div>
-                        </div>
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item ">
-                                <a class="nav-link active" href="{{ route('home') }}">Trang chủ</a>
+    <div class="header-menu">
+        <div class="container">
+            <div class="header-menu-wrap">
+                <div class="header-menu-left">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve"><g><path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03 C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"></path><path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03 S379.58,180.455,372.939,180.455z"></path><path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909 c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"></path></g></svg>
+                    <span>Danh mục menu</span>
+                    <nav class="header-menu-sidebar">
+                        <ul>
+                            <li class="active">
+                                <a href="{{ route('home') }}" title="Trang chủ" aria-label="Trang chủ">Trang chủ</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Giới
-                                    thiệu</a>
-                                <ul class="dropdown-menu fade-down">
-                                    <li><a class="dropdown-item" href="{{ route('aboutUs') }}">Về chúng tôi</a></li>
-                                    {{-- <li><a class="dropdown-item" href="{{ route('aboutUs') }}">Liên hệ</a></li> --}}
-                                </ul>
-                            </li>
+                            <li class="hasChild">
+                                <a href="#" title="Sản phẩm" aria-label="Sản phẩm">Sản phẩm<span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg></span></a>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Sản
-                                    phẩm</a>
-                                <ul class="dropdown-menu fade-down">
+                                <ul class="menu1">
                                     @foreach ($categoryhome as $item)
-    <li class="tuanmenu3">
-        <a class="dropdown-item"
-            href="{{ route('allListProCate', $item->slug) }}">{!! languageName($item->name) !!}</a>
-        @if (count($item->typeCate) > 0)
-            <ul class="dropdown-menu-tuan">
-                @foreach ($item->typeCate as $type)
-                    <li class="tuanmenu4">
-                        <a class="dropdown-item"
-                            href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}">
-                            {!! languageName($type->name) !!}
-                        </a>
-                        @if (isset($type->typetwo) && count($type->typetwo) > 0)
-                            <ul class="dropdown-menu-tuan-child">
-                                @foreach ($type->typetwo as $child)
-                                    <li >
-                                        <a class="dropdown-item tuanmenu5"
-                                            href="{{route('allListTypeTwo',['danhmuc'=>$item->slug,'loaidanhmuc'=>$type->slug,'thuonghieu'=>$child->slug])}}">
-                                            {!! languageName($child->name) !!}
-                                     
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
-        @endif
-    </li>
-@endforeach
-                                </ul>
-                            </li>
-                            <style>
-                                .tuanmenu3:hover>.dropdown-item {
-                                    color: #ffffff !important;
-                                    background-color: var(--theme-color);
-                                    font-weight: bold;
-                                }
-                                 .tuanmenu:hover>.dropdown-item {
-                                    color: #ffffff !important;
-                                    background-color: var(--theme-color);
-                                    font-weight: bold;
-                                }
-                            </style>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('duanTieuBieu') }}">Dự Án</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Hỗ trợ -
-                                    Dịch vụ</a>
-                                <ul class="dropdown-menu fade-down">
-                                    @foreach ($servicecate as $item)
-                                        <li><a class="dropdown-item" href="{{ route('serviceCateList', $item->slug) }}">{{ ($item->name) }}</a></li>
+                                        <li class="{{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">
+                                            <a href="{{ route('allListProCate', $item->slug) }}" title="{!! languageName($item->name) !!}" aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}
+                                            </a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
+
+
+                            <li class="">
+                                <a href="{{ route('duanTieuBieu') }}" title="" aria-label="">Dự Án</a>
+                            </li>
+
+                            <li class="hasChild">
+                                <a href="#" title="" aria-label="">Hỗ trợ -
+                                    Dịch vụ
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
+                                             xml:space="preserve" class=""><g>
+                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
+                                            </g></svg>
+                                    </span>
+                                </a>
+                                <ul class="menu1">
+
+                                    @foreach ($servicecate as $item)
+
+                                        <li class="">
+                                            <a href="{{ route('serviceCateList', $item->slug) }}"
+                                               title="{{ ($item->name) }}" aria-label="{{ ($item->name) }}">
+                                                {{ ($item->name) }}
+                                            </a>
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+                            </li>
+
                             @foreach ($blogCate as $item)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link {{ count($item->typeCate) > 0 ? 'dropdown-toggle' : '' }} "
-                                        href="{{ route('listCateBlog', ['slug' => $item->slug]) }}"
-                                        @if (count($item->typeCate) > 0) data-bs-toggle="dropdown" @endif>{{ languageName($item->name) }}</a>
+                                <li class=" {{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">
+                                    <a href="{{ route('listCateBlog', ['slug' => $item->slug]) }}" title="" aria-label="">{{ languageName($item->name) }}
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
+                                             xml:space="preserve" class=""><g>
+                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
+                                            </g></svg>
+                                    </span>
+                                    </a>
                                     @if (count($item->typeCate) > 0)
-                                        <ul class="dropdown-menu fade-down">
+                                        <ul class="menu1">
                                             @foreach ($item->typeCate as $type)
-                                                <li><a class="dropdown-item"
-                                                        href="{{ route('listTypeBlog', ['slug' => $type->slug]) }}">{{ languageName($type->name) }}</a>
+                                                <li class="">
+                                                    <a href="{{ route('listTypeBlog', ['slug' => $type->slug]) }}"
+                                                       title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
+                                                    </a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     @endif
+
                                 </li>
                             @endforeach
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('contactUs') }}">Liên hệ</a>
+                            <li class="">
+                                <a href="{{ route('contactUs') }}" title="Liên hệ" aria-label="Liên hệ">Liên hệ</a>
                             </li>
                         </ul>
+                    </nav>
+                </div>
+
+                <div class="header-menu-center header-menu-horizontal">
+                    <nav class="header-menu-horizontal-nav">
+                        <ul class="menu0">
+                            <li class="header-menu-horizontal-head">
+                                <label>Danh mục</label>
+                                <button type="button" data-type="close-menu-mobile" title="Đóng"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" x="0" y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script></script><path xmlns="http://www.w3.org/2000/svg" d="m4.59 59.41a2 2 0 0 0 2.83 0l24.58-24.58 24.59 24.58a2 2 0 0 0 2.83-2.83l-24.59-24.58 24.58-24.59a2 2 0 0 0 -2.83-2.83l-24.58 24.59-24.59-24.58a2 2 0 0 0 -2.82 2.82l24.58 24.59-24.58 24.59a2 2 0 0 0 0 2.82z" fill="#000000" data-original="#000000" class=""></path></g></svg></button>
+                            </li>
+                            <li class="active">
+                                <a href="{{ route('home') }}" title="Trang chủ" aria-label="Trang chủ">Trang chủ</a>
+                            </li>
+                            <li class="hasChild">
+                                <a href="#" title="Sản phẩm" aria-label="Nhóm sản phẩm">Sản phẩm
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
+                                             xml:space="preserve" class=""><g>
+                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
+                                            </g></svg>
+                                    </span>
+                                </a>
+                                <ul class="menu1">
+                                    @foreach ($categoryhome as $item)
+                                        <li class="{{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">
+                                            <a href="{{ route('allListProCate', $item->slug) }}" title="{!! languageName($item->name) !!}" aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}
+                                            </a>
+                                            <ul class="menu2">
+                                                @foreach ($item->typeCate as $type)
+                                                    <li class="{{ (isset($type->typetwo) && count($type->typetwo) > 0) ? 'hasChild' : '' }}">
+                                                        <a href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}" title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
+                                                        </a>
+                                                        @if (isset($type->typetwo) && count($type->typetwo) > 0)
+                                                            <ul class="menu3">
+                                                                @foreach ($type->typetwo as $child)
+                                                                    <li class="">
+                                                                        <a href="{{route('allListTypeTwo',['danhmuc'=>$item->slug,'loaidanhmuc'=>$type->slug,'thuonghieu'=>$child->slug])}}"
+                                                                           title="{!! languageName($child->name) !!}" aria-label="{!! languageName($child->name) !!}">{!! languageName($child->name) !!}
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+
+                            <li class="">
+                                <a href="{{ route('duanTieuBieu') }}" title="" aria-label="">Dự Án</a>
+                            </li>
+
+                            <li class="hasChild">
+                                <a href="#" title="" aria-label="">Hỗ trợ -
+                                    Dịch vụ
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
+                                             xml:space="preserve" class=""><g>
+                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
+                                            </g></svg>
+                                    </span>
+                                </a>
+                                <ul class="menu1">
+
+                                @foreach ($servicecate as $item)
+
+                                        <li class="">
+                                            <a href="{{ route('serviceCateList', $item->slug) }}"
+                                               title="{{ ($item->name) }}" aria-label="{{ ($item->name) }}">
+                                                {{ ($item->name) }}
+                                            </a>
+                                        </li>
+
+                                @endforeach
+
+                                </ul>
+                            </li>
+
+                            @foreach ($blogCate as $item)
+                                <li class=" {{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">
+                                    <a href="{{ route('listCateBlog', ['slug' => $item->slug]) }}" title="" aria-label="">{{ languageName($item->name) }}
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
+                                             xml:space="preserve" class=""><g>
+                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
+                                            </g></svg>
+                                    </span>
+                                    </a>
+                                    @if (count($item->typeCate) > 0)
+                                        <ul class="menu1">
+                                            @foreach ($item->typeCate as $type)
+                                                <li class="">
+                                                    <a href="{{ route('listTypeBlog', ['slug' => $type->slug]) }}"
+                                                       title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                </li>
+                            @endforeach
+                            <li class="">
+                                <a href="{{ route('contactUs') }}" title="Liên hệ" aria-label="Liên hệ">Liên hệ</a>
+                            </li>
+
+                            <li class="header-menu-horizontal-foot">
+                                <div class="section-title-all">
+                                    <span>Hổ trợ 24/7</span>
+                                    <p>Đừng ngừng ngại liên hệ chúng tôi, hổ trợ 24/7 từ thứ 2 - thứ 7. Hotline: 1900.63.60.99</p>
+                                </div>
+                                <form id="mc-form3" action="https://gmail.us21.list-manage.com/subscribe/post?u=ddd0880c66f534593afa12e75&amp;id=fe6449bc79&amp;f_id=00cd9be1f0">
+                                    <input aria-label="Địa chỉ Email" type="email" placeholder="Nhập email ưu đãi" name="EMAIL" required autocomplete="off">
+                                    <button type="submit" title="Đăng ký nhận tin" name="subscribe">Đăng ký</button>
+                                </form>
+                                <ul class="shop-social">
+                                    <li>
+                                        <a href="collections/all.html" target="_blank" aria-label="F1GENZ Smart Furniture - Facebook" title="F1GENZ Smart Furniture - Facebook">
+                                            <img width="30" height="30" loading="lazy" title="F1GENZ Smart Furniture - Facebook"
+                                                 src="/frontend/assets/facebook__6__53aaa8d352524d3eb025af5203eaa437_icon.png" alt="F1GENZ Smart Furniture - Facebook">
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="collections/all.html" target="_blank" aria-label="F1GENZ Smart Furniture - Youtube" title="F1GENZ Smart Furniture - Youtube">
+                                            <img width="30" height="30" loading="lazy" title="F1GENZ Smart Furniture - Youtube"
+                                                 src="/frontend/assets/youtube__5__4f04522e10494557a651f53a33ad4d76_icon.png" alt="F1GENZ Smart Furniture - Youtube">
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="collections/all.html" target="_blank" aria-label="F1GENZ Smart Furniture - Pinterest" title="F1GENZ Smart Furniture - Pinterest">
+                                            <img width="30" height="30" loading="lazy" title="F1GENZ Smart Furniture - Pinterest"
+                                                 src="/frontend/assets/pinterest_a1a15995132a4275845412deba5f1193_icon.png" alt="F1GENZ Smart Furniture - Youtube">
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="collections/all.html" target="_blank" aria-label="F1GENZ Smart Furniture - TikTok" title="F1GENZ Smart Furniture - TikTok">
+                                            <img width="30" height="30" loading="lazy" title="F1GENZ Smart Furniture - TikTok"
+                                                 src="/frontend/assets/tik-tok_d85bb4e7468c43ac9ed5437649b7405c_icon.png" alt="F1GENZ Smart Furniture - TikTok">
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="collections/all.html" target="_blank" aria-label="F1GENZ Smart Furniture - Instagram" title="F1GENZ Smart Furniture - Instagram">
+                                            <img width="30" height="30" loading="lazy" title="F1GENZ Smart Furniture - Instagram"
+                                                 src="/frontend/assets/instagram__3__7de3ebbce1f24003b516ca6c1d7c24d5_icon.png" alt="F1GENZ Smart Furniture - Instagram">
+                                        </a>
+                                    </li>
+                                </ul>		</li>
+                        </ul>
+                    </nav>
+                    <div class="header-menu-arrow">
+                        <button style="pointer-events: none;" type="button" class="header-menu-arrow-prev" title="Trước" data-action="prev"><i class="fa fa-chevron-left"></i></button>
+                        <button type="button" class="header-menu-arrow-next" title="Sau" data-action="next"><i class="fa fa-chevron-right"></i></button>
                     </div>
                 </div>
+
             </div>
-        </nav>
-    </div>
-    <!-- navbar end-->
-</header>
-<!-- header area end -->
-<!-- popup search -->
-<div class="search-popup">
-    <button class="close-search"><span class="far fa-times"></span></button>
-    <form action="#">
-        <div class="form-group">
-            <input type="search" name="search-field" class="form-control" placeholder="Search Here..." required>
-            <button type="submit"><i class="far fa-search"></i></button>
         </div>
-    </form>
-</div>
-<!-- popup search end -->
+    </div>
+</header>

@@ -10,8 +10,8 @@
                 <div class="col-md-3">
                   </div>
               </div>
-              
-              
+
+
               <!-- <p class="card-description">Basic form elements</p> -->
               <form class="forms-sample">
                 <div class="form-group">
@@ -60,6 +60,13 @@
                       <vs-select-item  value="0" text="Ẩn" />
                     </vs-select>
                 </div>
+                  <div class="form-group">
+                      <label for="is_featured">Hiển thị lên trang chủ</label>
+                      <vs-select v-model="objData.is_featured">
+                          <vs-select-item value="1" text="Có" />
+                          <vs-select-item value="0" text="Không" />
+                      </vs-select>
+                  </div>
               </form>
             </div>
           </div>
@@ -98,6 +105,7 @@ export default {
         imagehome: "",
         status: "",
         link_demo:"",
+        is_featured: 0,
       },
       lang:[],
       img: "",
@@ -126,9 +134,9 @@ export default {
     saveEdit() {
       this.errors = [];
       if(this.objData.name[0].content == '') this.errors.push('Tên danh mục không được để trống');
-      if(!this.objData.link_demo || this.objData.link_demo.trim() === '') {
-  this.errors.push('Vị trí không được để trống');
-  }
+  //     if(!this.objData.link_demo || this.objData.link_demo.trim() === '') {
+  // this.errors.push('Vị trí không được để trống');
+  // }
       if (this.errors.length > 0) {
         this.errors.forEach((value, key) => {
           this.$error(value)

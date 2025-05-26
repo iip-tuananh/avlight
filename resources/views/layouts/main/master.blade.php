@@ -1,345 +1,402 @@
 {{-- https://live.themewild.com/logisto/service.html --}}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="theme-color" content="#d70018">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-    <meta name='revisit-after' content='2 days' />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
-    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
-    <meta http-equiv="Content-Language" content="vi" />
-    <link rel="alternate" href="{{ url()->current() }}" hreflang="vi-vn" />
-    <meta name="description" content="@yield('description')">
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow">
-    <meta name="revisit-after" content="1 days" />
-    <meta name="generator" content="@yield('title')" />
-    <meta name="rating" content="General">
-    <meta name="application-name" content="@yield('title')" />
-    <meta name="theme-color" content="#ed3235" />
-    <meta name="msapplication-TileColor" content="#ed3235" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-title" content="{{ url()->current() }}" />
-    <link rel="touch-icon-precomposed" href="@yield('image')" sizes="700x700">
-    <meta property="og:url" content="">
-    <meta property="og:title" content="@yield('title')">
-    <meta property="og:description" content="@yield('description')">
-    <meta property="og:image" content="@yield('image')">
-    <meta property="og:site_name" content="{{ url()->current() }}">
-    <meta property="og:image:alt" content="@yield('title')">
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="vi_VN" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@{{ url() - > current() }}" />
-    <meta name="twitter:title" content="@yield('title')" />
-    <meta name="twitter:description" content="@yield('description')" />
-    <meta name="twitter:image" content="@yield('image')" />
-    <meta name="twitter:url" content="" />
-    <meta itemprop="name" content="@yield('title')">
-    <meta itemprop="description" content="@yield('description')">
-    <meta itemprop="image" content="@yield('image')">
-    <meta itemprop="url" content="">
-    <link rel="canonical" href="{{ \Request::url() }}">
-    <!-- <link rel="amphtml" href="amp/" /> -->
-    <link rel="image_src" href="@yield('image')" />
-    <link rel="image_src" href="@yield('image')" />
-    <link rel="shortcut icon" href="{{ url('' . $setting->favicon) }}" type="image/x-icon">
-    <link rel="icon" href="{{ url('' . $setting->favicon) }}" type="image/x-icon">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <!-- css -->
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/all-fontawesome.min.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/animate.min.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/magnific-popup.min.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/nice-select.min.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/style.css">
-    <link rel="stylesheet" href="{{ env('AWS_R2_URL') }}/frontend/css/callbutton.css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/tuan.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet"> --}}
-    <link rel="preconnect"
-        href="//fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=vietnamese">
-    <link rel="preload" href="//fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=vietnamese"
-        as="style">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=vietnamese"
-        rel="stylesheet">
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.scss.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    @include('layouts.main.head')
     @yield('css')
 </head>
-
 <body>
-
-
-    <a href="{{ route('listCart') }}" id="giohang">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="soluong count_item_pr">0</span>
-    </a>
-    <!-- filepath: c:\laragon\www\avlight\resources\views\product\detail.blade.php -->
-    <!-- filepath: c:\laragon\www\avlight\resources\views\layouts\main\master.blade.php -->
-
-
-    @if (session('success'))
-        <div class="overlay" id="overlay"></div>
-        <div class="alert alert-success custom-alert" id="success-alert">
-            {{ session('success') }}
-            <button type="button" class="close-alert"
-                onclick="closeAlert('success-alert', 'overlay')">&times;</button>
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="overlay" id="overlay"></div>
-        <div class="alert alert-danger custom-alert" id="error-alert">
-            {{ session('error') }}
-            <button type="button" class="close-alert"
-                onclick="closeAlert('error-alert', 'overlay')">&times;</button>
-        </div>
-    @endif
     @include('layouts.header.index')
+    <main class="main-layout">
+        @yield('content')
+    </main>
 
-    @yield('content')
-    <!-- footer area -->
     @include('layouts.footer.index')
-    <!-- footer area end -->
-    <div class="flexsearchui d-lg-block d-none">
-        <div class="searchmobileui">
-            <form action="https://tracking.tnhlog.vn/login" method="get">
-                <div class="form-group d-flex" style="margin-bottom:0;">
-                    <input type="text" name="search" class="form-control" placeholder="Nhập mã tra cứu..."
-                        required="" style="border-radius: 0px;">
-                    <button type="submit" class="buttonsearch"><i class="far fa-search"></i></button>
-                </div>
+
+
+
+    <div class="shop-mobar">
+        <div class="shop-mobar-wrap">
+            <ul>
+                <li>
+                    <a class="" aria-label="F1GENZ Smart Furniture - Trang chủ"
+                       href="index.html" title="Trang chủ">
+                        <img loading="lazy" decoding="async" width="64" height="64"
+                             src="/frontend/assets/shop_mobar_item_image_1ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Trang chủ" title="Trang chủ">
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="" aria-label="F1GENZ Smart Furniture - Trang sản phẩm"
+                       href="collections/all.html" title="Trang sản phẩm">
+                        <img loading="lazy" decoding="async" width="64" height="64"
+                             src="/frontend/assets/shop_mobar_item_image_2ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Trang sản phẩm" title="Trang sản phẩm">
+                        <span>Trang sản phẩm</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="" aria-label="F1GENZ Smart Furniture - Trang tin tức"
+                       href="blogs/all.html" title="Trang tin tức">
+                        <img loading="lazy" decoding="async" width="64" height="64"
+                             src="/frontend/assets/shop_mobar_item_image_3ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Trang tin tức" title="Trang tin tức">
+                        <span>Trang tin tức</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool-contact-popup" aria-label="F1GENZ Smart Furniture - Đăng ký"
+                       href="account/logina3b1.html" title="Đăng ký">
+                        <img loading="lazy" decoding="async" width="64" height="64"
+                             src="/frontend/assets/shop_mobar_item_image_4ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Đăng ký" title="Đăng ký">
+                        <span>Đăng ký</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-phone" id="shop-modal-phone">
+        <div class="modal-phone-wrap">
+            <div class="section-title-all">
+                <span>Liên hệ ngay với chúng tôi:</span>
+                <p>Nhận ngay deal hời <b style="font-weight:bold;color:#f30;font-size:25px;">9%</b> cho tất cả dự án:
+                    <b>HOTLINE: </b> <b style="font-weight:bold;color:#f30;">1900.63.60.99</b></p>
+            </div>
+
+            <form method="post" action="https://f1genz-smart-furniture.mysapo.net/postcontact" id="contact" accept-charset="UTF-8"><input name="FormType" type="hidden" value="contact"/><input name="utf8" type="hidden" value="true"/><input type="hidden" id="Token-a1c89c2ee64b43ea9fa9aca637cdb093" name="Token" /><noscript data-src="../www.google.com/recaptcha/apif78f.js?render=6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK"></noscript><noscript>grecaptcha.ready(function() {grecaptcha.execute("6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK", {action: "contact"}).then(function(token) {document.getElementById("Token-a1c89c2ee64b43ea9fa9aca637cdb093").value = token});});</noscript>
+                <input type="hidden" name="contact[name]" id="shop-modal-phone-name" value="">
+                <input type="hidden" name="contact[email]" id="shop-modal-phone-email" value="">
+                <input type="number" placeholder="Nhập số điện thoại của bạn..." name="contact[phone]" id="shop-modal-phone-number" value="">
+                <input type="hidden" name="contact[body]" id="shop-modal-phone-body" value="Nhận ngay deal hời 9% cho tất cả dự án:
+HOTLINE:  1900.63.60.99">
+                <button type="submit" title="Đăng ký"><span>Đăng ký</span></button>
             </form>
         </div>
     </div>
-    <div onclick="window.location.href= 'tel:{{ $setting->phone1 }}'" class="hotline-phone-ring-wrap">
-        <div class="hotline-phone-ring">
-            <div class="hotline-phone-ring-circle"></div>
-            <div class="hotline-phone-ring-circle-fill"></div>
-            <div class="hotline-phone-ring-img-circle">
-                <a href="tel:{{ $setting->phone1 }}" class="pps-btn-img">
-                    <img src="{{ url('frontend/img/phone.png') }}" alt="Gọi điện thoại" width="50">
-                </a>
+    <div class="shop-cart-sidebar">
+        <div class="shop-cart-sidebar-head">
+            <label>Giỏ hàng</label>
+            <button type="button" data-type="shop-cart-sidebar-close" title="Đóng">
+                <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15" height="15"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg>
+            </button>
+            <div class="shop-cart-sidebar-top-freeship">
+                <div class="shop-freeship" data-freeship-price="50000000">
+                    <div class="shop-freeship-bar">
+                        <div class="shop-freeship-bar-main"><span></span></div>
+                    </div>
+                    <div class="shop-freeship-note">
+                        Mua thêm <span>50.000.000₫</span> để được miễn phí giao hàng trên toàn quốc
+                    </div>
+                </div>
+                <div class="shop-cart-sidebar-top-freeship-label">
+                    <img class="lazyload" width="75" height="62" title="Free Ship"
+                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                         data-src="https://file.hstatic.net/200000306687/file/giphy__1__c91b6f02cea04a969d655681bb73caf8_small.gif" alt=" - Free Ship">
+                </div>
             </div>
         </div>
-        <a href="tel:{{ $setting->phone1 }}">
-        </a>
-        <div class="hotline-bar"><a href="tel:{{ $setting->phone1 }}">
-            </a><a href="tel:{{ $setting->phone1 }}">
-                <span class="text-hotline">{{ $setting->phone1 }}</span>
-            </a>
+        <div class="shop-cart-sidebar-body">
+            <div class="shop-cart-sidebar-yes"></div>
+            <div class="shop-cart-sidebar-no">Giỏ hàng của bạn còn trống</div>
         </div>
+        <div class="shop-cart-sidebar-foot">
+            <button type="button" data-type="shop-cart-sidebar-note-action" title="Thêm ghi chú">Thêm ghi chú</button>
+            <a href="cart.html" title="Xem chi tiết giỏ hàng" aria-label="Xem chi tiết giỏ hàng">Xem chi tiết giỏ hàng</a>
+            <p>Phí ship & thuế được tính ở Trang Thanh Toán</p>
+            <a class="toCheckout" href="cart.html" title="Thanh toán" aria-label="Thanh toán">
+                <span>Thanh toán</span>
+                <span></span>
+                <span>0₫</span>
+            </a>
+            <div class="shop-cart-sidebar-note">
+                <label>Thêm ghi chú</label>
+                <textarea placeholder="Chúng tôi có thể giúp gì cho bạn?"></textarea>
+                <button type="button" data-type="shop-cart-sidebar-note-save" title="Lưu">Lưu</button>
+            </div>
+        </div>
+    </div>
+    <div class="shop-social-sidebar">
 
-    </div>
-    <div class="inner-fabs">
-        <a target="blank" href="https://zalo.me/0918816218" class="fabs roundCool" id="challenges-fab"
-            data-tooltip="Nhắn tin Zalo">
-            <img class="inner-fab-icon" src="{{ url('frontend/img/zalo.png') }}" alt="challenges-icon"
-                border="0">
-        </a>
-        <a target="blank" href="https://zalo.me/0913912236" class="fabs roundCool" id="chat-fab"
-            data-tooltip="Nhắn tin Zalo">
-            <img class="inner-fab-icon" src="{{ url('frontend/img/zalo.png') }}" alt="chat-active-icon"
-                border="0">
-        </a>
-        <a target="blank" href="{{ $setting->facebook }}" class="fabs roundCool" id="chat-fab"
-            data-tooltip="Fanpage">
-            <img class="inner-fab-icon" src="{{ url('frontend/img/fbicon.png') }}" alt="chat-active-icon"
-                border="0">
-        </a>
-    </div>
-    <div class="fabs roundCool call-animation" id="main-fab">
-        <img class="img-circle" src="{{ url('frontend/img/lienhe.png') }}" alt="" width="135">
-    </div>
-    {{-- <div class="totop">
-        <a href="#"><i class="bi bi-chevron-up"></i></a>
-    </div> --}}
 
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/modernizr.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/imagesloaded.pkgd.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery.magnific-popup.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/isotope.pkgd.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery.appear.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery.easing.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/owl.carousel.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/counter-up.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/jquery.nice-select.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/wow.min.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/main.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/callbutton.js"></script>
-    <script src="{{ env('AWS_R2_URL') }}/frontend/js/notify.min.js"></script>
-    <script src="{{ asset('frontend/js/addcart.js') }}"></script>
-    <script src="{{ asset('frontend/js/toast.js') }}"></script>
-    @yield('js')
+
+
+
+
+
+        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Zalo" aria-label="F1GENZ Smart Furniture - Zalo" target="_blank">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_1ed63.png?1745557375056" alt="Social Zalo" title="Social Zalo">
+            Zalo
+        </a>
+
+
+
+
+
+
+
+
+        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Snapchat" aria-label="F1GENZ Smart Furniture - Snapchat" target="_blank">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_2ed63.png?1745557375056" alt="Social Snapchat" title="Social Snapchat">
+            Snapchat
+        </a>
+
+
+
+
+
+
+
+
+        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Tiktok" aria-label="F1GENZ Smart Furniture - Tiktok" target="_blank">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_3ed63.png?1745557375056" alt="Social Tiktok" title="Social Tiktok">
+            Tiktok
+        </a>
+
+
+
+
+
+
+
+
+        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Instagram" aria-label="F1GENZ Smart Furniture - Instagram" target="_blank">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_4ed63.png?1745557375056" alt="Social Instagram" title="Social Instagram">
+            Instagram
+        </a>
+
+
+
+
+
+
+
+
+        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Youtube" aria-label="F1GENZ Smart Furniture - Youtube" target="_blank">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_5ed63.png?1745557375056" alt="Social Youtube" title="Social Youtube">
+            Youtube
+        </a>
+
+
+
+
+
+
+
+
+        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Messenger" aria-label="F1GENZ Smart Furniture - Messenger" target="_blank">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_6ed63.png?1745557375056" alt="Social Messenger" title="Social Messenger">
+            Messenger
+        </a>
+
+
+        <button class="hiddenMob" data-fancybox data-src="#shop-modal-phone" style="background-color: #ffffff;" title="F1GENZ Smart Furniture - Support">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/shop_social_sidebar_item_image_7ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Hổ trợ 24/7" title="Hổ trợ 24/7">
+            Hổ trợ 24/7
+        </button>
+        <button class="back-to-top" title="Back to top">
+            <img width="32" height="32" loading="lazy" decoding="async"
+                 src="/frontend/assets/arrow-up_eb1426bb7fc647eab89f9279695752cd.png" alt="Back to top" title="Back to top">
+            Lên đầu trang
+        </button>
+    </div>
+    <div class="shop-wishlist-modal" data-name="Yêu thích">
+        <div class="shop-wishlist-modal-head">
+            <div class="container">
+                <label>Danh mục sản phẩm yêu thích</label>
+                <button type="button" data-type="shop-wishlist-modal-close" title="Đóng"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" x="0" y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script></script><path xmlns="http://www.w3.org/2000/svg" d="m4.59 59.41a2 2 0 0 0 2.83 0l24.58-24.58 24.59 24.58a2 2 0 0 0 2.83-2.83l-24.59-24.58 24.58-24.59a2 2 0 0 0 -2.83-2.83l-24.58 24.59-24.59-24.58a2 2 0 0 0 -2.82 2.82l24.58 24.59-24.58 24.59a2 2 0 0 0 0 2.82z" fill="#000000" data-original="#000000" class=""></path></g></svg></button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="shop-wishlist-modal-body">
+                <p class="shop-wishlist-modal-null wcs-null w-100 text-center">Chưa có sản phẩm trong danh sách yêu thích</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="shop-compare-modal" data-name="So sánh">
+        <div class="shop-compare-modal-head">
+            <div class="container">
+                <label>Danh mục sản phẩm so sánh</label>
+                <button type="button" data-type="shop-compare-modal-close" title="Đóng"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" x="0" y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script></script><path xmlns="http://www.w3.org/2000/svg" d="m4.59 59.41a2 2 0 0 0 2.83 0l24.58-24.58 24.59 24.58a2 2 0 0 0 2.83-2.83l-24.59-24.58 24.58-24.59a2 2 0 0 0 -2.83-2.83l-24.58 24.59-24.59-24.58a2 2 0 0 0 -2.82 2.82l24.58 24.59-24.58 24.59a2 2 0 0 0 0 2.82z" fill="#000000" data-original="#000000" class=""></path></g></svg></button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="shop-compare-modal-body">
+                <p class="shop-compare-modal-null wcs-null w-100 text-center">Chưa có sản phẩm trong danh sách so sánh</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="modalLogo">
+                                <a href="index.html" title="F1GENZ Smart Furniture" aria-label="F1GENZ Smart Furniture">
+                                    <img src="/frontend/assets/shop_logo_imageed63.png?1745557375056" alt="F1GENZ Smart Furniture">
+                                </a>
+                            </div>
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="modalLoginTab" data-toggle="pill" href="#modalLogin" role="tab" aria-controls="modalLogin" aria-selected="true" title="Đăng nhập" aria-label="Đăng nhập">Đăng nhập</a>
+                                <a class="nav-link" id="modalForgetTab" data-toggle="pill" href="#modalForget" role="tab" aria-controls="modalForget" aria-selected="false" title="Quên mật khẩu" aria-label="Quên mật khẩu">Quên mật khẩu</a>
+                                <a class="nav-link" id="modalRegisterTab" data-toggle="pill" href="#modalRegister" role="tab" aria-controls="modalRegister" aria-selected="false" title="Đăng ký" aria-label="Đăng ký">Đăng ký</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="modalLogin" role="tabpanel" aria-labelledby="modalLoginTab">
+                                    <label class="text-center">ĐĂNG NHẬP</label>
+                                    <div class="login-form-body">
+                                        <form method="post" action="https://f1genz-smart-furniture.mysapo.net/account/login" id="customer_login" accept-charset="UTF-8"><input name="FormType" type="hidden" value="customer_login"/><input name="utf8" type="hidden" value="true"/>
+                                            <div class="form-group">
+                                                <label for="login-email">Email*</label>
+                                                <input type="email" id="login-email" class="form-control" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="login-password">Mật khẩu*</label>
+                                                <input type="password" id="login-password" class="form-control" name="password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary hoverOpacity">
+                                                    ĐĂNG NHẬP
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                        <div class="socialLogin">
+                                            Hoặc đăng nhập bằng:
+                                            <a title="Đăng nhập Facebook" aria-label="Đăng nhập Facebook" href="#" class="social-login--facebook" onclick="loginFacebook()"><img width="129" height="37" alt="facebook-login-button" src="http://bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
+                                            <a title="Đăng nhập Google" aria-label="Đăng nhập Google" href="#" class="social-login--google" onclick="loginGoogle()"><img width="129" height="37" alt="google-login-button" src="http://bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="modalForget" role="tabpanel" aria-labelledby="modalForgetTab">
+                                    <label class="text-center">QUÊN MẬT KHẨU</label>
+                                    <div class="recover-form-body">
+
+
+                                        <form method="post" action="https://f1genz-smart-furniture.mysapo.net/account/recover" id="recover_customer_password" accept-charset="UTF-8"><input name="FormType" type="hidden" value="recover_customer_password"/><input name="utf8" type="hidden" value="true"/>
+
+                                            <div class="form-group">
+                                                <label for="recover-email">Email*</label>
+                                                <input type="email" id="recover-email" class="form-control" name="Email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary hoverOpacity">
+                                                    Gửi
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="modalRegister" role="tabpanel" aria-labelledby="modalRegisterTab">
+                                    <label class="text-center">ĐĂNG KÝ</label>
+                                    <div class="register-form-body">
+                                        <form method="post" action="https://f1genz-smart-furniture.mysapo.net/account/register" id="customer_register" accept-charset="UTF-8"><input name="FormType" type="hidden" value="customer_register"/><input name="utf8" type="hidden" value="true"/><input type="hidden" id="Token-23fa686583f44c6c807d3e6ad0839549" name="Token" /><noscript data-src="../www.google.com/recaptcha/apif78f.js?render=6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK"></noscript><noscript>grecaptcha.ready(function() {grecaptcha.execute("6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK", {action: "customer_register"}).then(function(token) {document.getElementById("Token-23fa686583f44c6c807d3e6ad0839549").value = token});});</noscript>
+                                            <div class="form-group">
+                                                <label for="register-last-name">Họ của bạn*</label>
+                                                <input type="text" id="register-last-name" class="form-control" name="lastName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="register-first-name">Tên của bạn*</label>
+                                                <input type="text" id="register-first-name" class="form-control" name="firstName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="register-phone">Số điện thoại</label>
+                                                <input type="number" id="register-phone" class="form-control" name="phone">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="register-email">Email*</label>
+                                                <input type="email" id="register-email" class="form-control" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="register-password">Mật khẩu*</label>
+                                                <input type="password"  id="register-password" class="form-control" name="password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary hoverOpacity">
+                                                    ĐĂNG KÝ
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="closeModal"><i class="lni lni-close"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="pop-sale">
+        <div class="pop-sale-img">
+            <img width="110" height="110" loading="lazy" decoding="async"
+                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="sale popup">
+        </div>
+        <div class="pop-sale-content">
+            <a href="#" class="pop-sale-title" aria-label="F1GENZ Smart Furniture"></a>
+            <p><span class="pop-sale-name"></span> vừa mua cách đây <span class="pop-sale-minutes"></span> phút</p>
+            <a href="#" class="pop-sale-title-buynow">Mua ngay</a>
+        </div>
+    </div>
+
     <script>
-        $('.product-tuan-slider').owlCarousel({
-            loop: false,
-            margin: 30,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            navText: [
-                "<i class='far fa-arrow-left'></i>",
-                "<i class='far fa-arrow-right'></i>"
-            ],
-            rows: 2,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 4
-                }
-            }
-        });
+        if(f1genzPS){
+            var scriptTiktok = document.createElement("script");
+            scriptTiktok.src = "../sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok/falcon/embed/embed_v1.0.13.js";
+            $("head").append(scriptTiktok);
+        }
     </script>
-    <script>
-        $('.product-detail-slider').owlCarousel({
-            loop: false,
-            margin: 30,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            navText: [
-                "<i class='far fa-arrow-left'></i>",
-                "<i class='far fa-arrow-right'></i>"
-            ],
-            rows: 2,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 4
-                }
-            }
+
+    <script >
+        $("body").removeClass("preload");
+        document.addEventListener('lazybeforeunveil', function(e){
+            var bg = e.target.getAttribute('data-bg');
+            if(bg) e.target.style.backgroundImage = 'url(' + bg + ')';
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lấy tất cả các nút "Thêm vào giỏ"
-            const addToCartButtons = document.querySelectorAll('.themgio');
-
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault(); // Ngăn chặn hành động mặc định
-
-                    // Lấy ID sản phẩm từ thuộc tính data-id
-                    const productId = this.getAttribute('data-id');
-
-                    // Tạo dữ liệu gửi đi
-                    const formData = new FormData();
-                    formData.append('_token', '{{ csrf_token() }}'); // CSRF token
-                    formData.append('product_id', productId);
-                    formData.append('quantity', 1); // Số lượng mặc định là 1
-
-                    // Gửi request AJAX
-                    fetch('{{ route('add.to.cart') }}', {
-                            method: 'POST',
-                            body: formData,
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                toastr.success(data.message);
-                                const cartCountElements = document.querySelectorAll(
-                                    '.count_item_pr');
-                                if (cartCountElements.length > 0) {
-                                    cartCountElements.forEach(element => {
-                                        element.textContent = data
-                                            .cartCount; // Cập nhật số lượng từ server
+        if(window.noPS){
+            window.addEventListener("load", (event) => {
+                if($('input[name="Token"]').length > 0){
+                    $.getScript('../www.google.com/recaptcha/apif78f.js?render=6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK').done(function(s,r){
+                        $('head').append(s);
+                        $('input[name="Token"]').each(function(){
+                            var flagId = $(this).attr('id');
+                            grecaptcha.ready(function() {
+                                grecaptcha.execute('6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK', {action: 'submit'})
+                                    .then(function(token) {
+                                        document.getElementById(flagId).value = token;
                                     });
-                                }
-                            } else {
-                                toastr.error('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.');
-                            }
+                            });
                         })
-                        .catch(error => {
-                            console.error('Lỗi:', error);
-                            alert('Không thể thêm sản phẩm vào giỏ hàng.');
-                        });
-                });
+                    });
+                }
+
+                $('img[loading="lazy"]').each(function(){
+                    $(this).removeAttr('loading');
+                })
             });
-        });
+        }else{
+            // Jquery touch
+            jQuery.event.special.touchstart={setup:function(e,t,n){this.addEventListener("touchstart",n,{passive:!t.includes("noPreventDefault")})}},jQuery.event.special.touchmove={setup:function(e,t,n){this.addEventListener("touchmove",n,{passive:!t.includes("noPreventDefault")})}};
+        }
     </script>
-    <script>
-        function closeAlert(alertId, overlayId) {
-            const alertElement = document.getElementById(alertId);
-            const overlayElement = document.getElementById(overlayId);
-            if (alertElement) {
-                alertElement.style.display = 'none';
-            }
-            if (overlayElement) {
-                overlayElement.style.display = 'none';
-            }
-        }
+    <button class="overplay-all" title="Đóng"></button>
 
-        // Hiển thị overlay khi thông báo xuất hiện
-        document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('overlay');
-            const successAlert = document.getElementById('success-alert');
-            const errorAlert = document.getElementById('error-alert');
-
-            if (successAlert || errorAlert) {
-                overlay.style.display = 'block';
-            }
-        });
-    </script>
-    <script>
-$(document).ready(function() {
-    let timer;
-    $('input[name="keywordsearch"]').on('keyup', function() {
-        let keyword = $(this).val();
-        clearTimeout(timer);
-        if(keyword.length > 1) {
-            timer = setTimeout(function() {
-                $.ajax({
-                    url: '{{ route('ajax.search') }}',
-                    type: 'POST',
-                    data: {
-                        keyword: keyword,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        $('#ajax-search-result').html(response.html).show();
-                    }
-                });
-            }, 250);
-        } else {
-            $('#ajax-search-result').hide();
-        }
-    });
-
-    // Ẩn kết quả khi click ra ngoài
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('.searchmobileui').length) {
-            $('#ajax-search-result').hide();
-        }
-    });
-});
-</script>
+    @stack('script')
 </body>
 
 </html>

@@ -20,6 +20,8 @@ class BannerAds extends Model
                 $query->content = json_encode($request->content);
                 $query->description = $request->description;
                 $query->status = $request->status;
+                $query->is_featured = $request->is_featured;
+                $query->link = $request->link;
                 $query->image = $request->image;
                 $query->save();
             }else{
@@ -29,10 +31,12 @@ class BannerAds extends Model
                 $query->content = json_encode($request->content);
                 $query->description = $request->description;
                 $query->status = $request->status;
+                $query->is_featured = $request->is_featured;
+                $query->link = $request->link;
                 $query->image = $request->image;
                 $query->save();
             }
-            
+
         }else{
                 $query = new BannerAds();
                 $query->name = $request->name;
@@ -40,9 +44,11 @@ class BannerAds extends Model
                 $query->content = json_encode($request->content);
                 $query->description = $request->description;
                 $query->status = $request->status;
+                $query->is_featured = $request->is_featured;
+                $query->link = $request->link;
                 $query->image = $request->image;
                 $query->save();
-            
+
         }
         return $query;
     }

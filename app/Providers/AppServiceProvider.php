@@ -49,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
             // $promotio = Promotion::where('status',1)->orderBy('id','DESC')->get();
             $servicehome = Services::where('status',1)->orderBy('id','desc')->limit(10)->get();
             $servicecate = ServiceCate::where('status',1)->orderBy('id','DESC')->get();
+
             // $giaiphap = Solution::where('status',1)->orderBy('id','DESC')->get();
             $setting = Setting::first();
             $lang = Language::get();

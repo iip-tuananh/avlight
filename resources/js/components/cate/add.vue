@@ -37,7 +37,7 @@
                 <div class="form-group">
                   <label>Icon đại diện</label>
                   <image-upload
-              
+
                     v-model="objData.avatar"
                     type="avatar"
                     :title="'danh-muc'"
@@ -46,7 +46,7 @@
                 <div class="form-group">
                   <label>Ảnh đại diện</label>
                   <image-upload
-             
+
                     v-model="objData.imagehome"
                     type="avatar"
                     :title="'trang-chu'"
@@ -65,6 +65,14 @@
                       <vs-select-item  value="0" text="Ẩn" />
                     </vs-select>
                 </div>
+
+                  <div class="form-group">
+                      <label for="is_featured">Hiển thị lên trang chủ</label>
+                      <vs-select v-model="objData.is_featured">
+                          <vs-select-item value="1" text="Có" />
+                          <vs-select-item value="0" text="Không" />
+                      </vs-select>
+                  </div>
               </form>
             </div>
           </div>
@@ -102,6 +110,7 @@ export default {
         imagehome: "",
         status: 1,
         link_demo: "",
+        is_featured: 0,
       },
       lang:[],
       img: "",
