@@ -1575,18 +1575,21 @@
     <!-- Đảm bảo bạn đã import OwlCarousel JS & CSS trước -->
 
     <script>
-        // Hàm cân bằng chiều cao
+        // 1) Hàm cân bằng chiều cao
         function equalizeSlideHeights() {
             var maxH = 0;
-            // reset trước khi đo
-            $('.home-banner-triple-slider .owl-item .home-banner-triple-item-container')
-                .css('height', 'auto')
-                .each(function() {
-                    maxH = Math.max(maxH, $(this).outerHeight());
-                });
-            // gán chiều cao cao nhất cho tất cả
-            $('.home-banner-triple-slider .owl-item .home-banner-triple-item-container')
-                .height(maxH);
+            var $items = $('.home-banner-triple-slider .owl-item .home-banner-triple-item-container');
+
+            // Reset về auto để đo đúng
+            $items.css('height', 'auto');
+
+            // Tìm max
+            $items.each(function() {
+                maxH = Math.max(maxH, $(this).outerHeight());
+            });
+
+            // Gán lại height cho tất cả
+            $items.height(maxH);
         }
 
         $(document).ready(function() {
@@ -1597,7 +1600,7 @@
                 dots: true,
                 smartSpeed: 500,
                 responsive: {
-                    0: { items: 1 },
+                    0:   { items: 1 },
                     768: { items: 2 },
                     992: { items: 3 }
                 },
@@ -1605,15 +1608,63 @@
                     '<span class="custom-nav prev">&lsaquo;</span>',
                     '<span class="custom-nav next">&rsaquo;</span>'
                 ],
-                // gọi hàm sau khi slider khởi tạo xong và khi resize
-                onInitialized: equalizeSlideHeights,
-                onResized: equalizeSlideHeights
+                // Sự kiện khi slider khởi tạo xong
+                onInitialized: function() {
+                    // Đợi 100ms để chắc đã render hoàn chỉnh
+                    setTimeout(equalizeSlideHeights, 200);
+                },
+                // Sự kiện khi slider được refresh
+                onRefreshed: equalizeSlideHeights
             });
 
-            // và nếu cần, gọi thêm mỗi khi slider dịch chuyển
+            // Sau mỗi lần chuyển slide
             $slider.on('translated.owl.carousel', equalizeSlideHeights);
+
+            // Và đừng quên đo lại khi window load (ảnh xong)
+            $(window).on('load resize', equalizeSlideHeights);
         });
     </script>
+
+    {{--    <script>--}}
+{{--        // Hàm cân bằng chiều cao--}}
+{{--        function equalizeSlideHeights() {--}}
+{{--            var maxH = 0;--}}
+{{--            // reset trước khi đo--}}
+{{--            $('.home-banner-triple-slider .owl-item .home-banner-triple-item-container')--}}
+{{--                .css('height', 'auto')--}}
+{{--                .each(function() {--}}
+{{--                    maxH = Math.max(maxH, $(this).outerHeight());--}}
+{{--                });--}}
+{{--            // gán chiều cao cao nhất cho tất cả--}}
+{{--            $('.home-banner-triple-slider .owl-item .home-banner-triple-item-container')--}}
+{{--                .height(maxH);--}}
+{{--        }--}}
+
+{{--        $(document).ready(function() {--}}
+{{--            var $slider = $('.home-banner-triple-slider').owlCarousel({--}}
+{{--                loop: true,--}}
+{{--                margin: 20,--}}
+{{--                nav: true,--}}
+{{--                dots: true,--}}
+{{--                smartSpeed: 500,--}}
+{{--                responsive: {--}}
+{{--                    0: { items: 1 },--}}
+{{--                    768: { items: 2 },--}}
+{{--                    992: { items: 3 }--}}
+{{--                },--}}
+{{--                navText: [--}}
+{{--                    '<span class="custom-nav prev">&lsaquo;</span>',--}}
+{{--                    '<span class="custom-nav next">&rsaquo;</span>'--}}
+{{--                ],--}}
+{{--                // gọi hàm sau khi slider khởi tạo xong và khi resize--}}
+{{--                onInitialized: equalizeSlideHeights,--}}
+{{--                onResized: equalizeSlideHeights--}}
+{{--            });--}}
+
+{{--            // và nếu cần, gọi thêm mỗi khi slider dịch chuyển--}}
+{{--            $slider.on('translated.owl.carousel', equalizeSlideHeights);--}}
+{{--        });--}}
+{{--    </script>--}}
 
     <script>
         $(document).ready(function(){
