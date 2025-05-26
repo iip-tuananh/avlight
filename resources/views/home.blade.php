@@ -1315,7 +1315,7 @@
                         <div class="testimonial-arrow"></div>
                         <div class="testimonial-footer">
                             <div class="testimonial-avatar">
-                                <img src="{{ $item->avatar }}" alt="Avatar">
+                                <img style='max-width: 100px' src="{{ $item->avatar }}" alt="Avatar">
                             </div>
                             <div class="testimonial-info">
                                 <h4>{{ languageName($item->name) }}</h4>
