@@ -609,7 +609,7 @@
                         <div class="home-banner-triple-item">
                             <div class="home-banner-triple-item-container">
                                 <img src="{{ $item->image }}"
-                                     alt="Phòng khách thanh lịch" loading="lazy">
+                                     alt="">
                                 <div class="hover-info">
                                     <div class="hover-content">
                                         <h3 class="service-title">{{ $item->name }}</h3>
@@ -1042,7 +1042,7 @@
                                     <div class="article-item-wrap">
                                         <a href="{{ route('detailBlog', $item->slug) }}"
                                            class="article-item-image" title="Kinh nghiệm lựa chọn nội thất chung cư">
-                                            <img loading="lazy" decoding="async"
+                                            <img
                                                  src="{{ $item->image }}" alt="{!! languageName($item->title) !!}"
                                                  title="{!! languageName($item->title) !!}">
                                         </a>
@@ -1685,37 +1685,64 @@
     </script>
 
     <script>
+        // $(function(){
+        //     // 1) Equalize chiều cao cho .article-item-detail
+        //     function equalizeDetails() {
+        //         var maxH = 0;
+        //         $('.article-item-detail-title')
+        //             .css('height','auto')
+        //             .each(function(){
+        //                 maxH = Math.max(maxH, $(this).outerHeight());
+        //             })
+        //             .height(maxH);
+        //     }
+        //     // 2) (Nếu cần) Equalize chiều cao cho toàn .home-blog-item
+        //     function equalizeItems() {
+        //         var maxH = 0;
+        //         $('.home-blog-item')
+        //             .css('height','auto')
+        //             .each(function(){
+        //                 maxH = Math.max(maxH, $(this).outerHeight());
+        //             })
+        //             .height(maxH);
+        //     }
+        //     // 3) Gọi cả hai
+        //     function equalizeAll() {
+        //         equalizeDetails();
+        //         equalizeItems();
+        //     }
+        //     // 4) Thiết lập các event
+        //     $(window).on('load resize orientationchange', equalizeAll);
+        //     // 5) Và gọi ngay một lần cho chắc khi DOM ready
+        //     equalizeAll();
+        // });
+
+
         $(function(){
-            // 1) Equalize chiều cao cho .article-item-detail
             function equalizeDetails() {
+                var $els = $('.article-item-detail-title');
                 var maxH = 0;
-                $('.article-item-detail-title')
-                    .css('height','auto')
-                    .each(function(){
-                        maxH = Math.max(maxH, $(this).outerHeight());
-                    })
-                    .height(maxH);
+                $els.css('height','auto').each(function(){
+                    maxH = Math.max(maxH, $(this).outerHeight());
+                });
+                if (maxH) $els.height(maxH);
             }
-            // 2) (Nếu cần) Equalize chiều cao cho toàn .home-blog-item
             function equalizeItems() {
+                var $els = $('.home-blog-item');
                 var maxH = 0;
-                $('.home-blog-item')
-                    .css('height','auto')
-                    .each(function(){
-                        maxH = Math.max(maxH, $(this).outerHeight());
-                    })
-                    .height(maxH);
+                $els.css('height','auto').each(function(){
+                    maxH = Math.max(maxH, $(this).outerHeight());
+                });
+                if (maxH) $els.height(maxH);
             }
-            // 3) Gọi cả hai
             function equalizeAll() {
                 equalizeDetails();
                 equalizeItems();
             }
-            // 4) Thiết lập các event
+            // Chỉ sau khi window.load, rồi mới cả resize/orientationchange
             $(window).on('load resize orientationchange', equalizeAll);
-            // 5) Và gọi ngay một lần cho chắc khi DOM ready
-            equalizeAll();
         });
+
     </script>
 
 
