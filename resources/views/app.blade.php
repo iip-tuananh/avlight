@@ -27,8 +27,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
         window.__ENV__ = window.__ENV || {};
-        // __ENV__.link = 'https://avlight.azas.vn/';
-        __ENV__.link = 'http://127.0.0.1:8000/';
+        __ENV__.link = 'https://avlight.azas.vn/';
+        // __ENV__.link = 'http://127.0.0.1:8000/';
         window.Laravel = {!! json_encode([
             'csrf_token' => csrf_token(),
         ]) !!};
