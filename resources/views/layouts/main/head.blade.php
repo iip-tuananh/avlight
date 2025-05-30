@@ -5,7 +5,7 @@
     <meta name="revisit-after" content="1 day">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="HandheldFriendly" content="true">
-    <link rel="shortcut icon" href="/frontend/assets/faviconed63.png?1745557375056" type="image/png">
+    <link rel="shortcut icon" href="{{ url('' . $setting->favicon) }}" type="image/png">
     <title>@yield('title')</title>
     <link rel="canonical" href="{{ \Request::url() }}">
     <link rel="alternate" href="{{ url()->current() }}" hreflang="vi-vn" />
