@@ -18,6 +18,10 @@ class TypeProductTwo extends Model
     {
         return $this->hasOne(TypeProduct::class,'id','type_id');
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class,'type_two');
+    }
     public function saveTypeTwo($request)
     {
         $cat = Category::where('id',$request->cate_id)->first('slug');
@@ -51,7 +55,7 @@ class TypeProductTwo extends Model
                 $query->avatar = $request->avatar;
                 $query->save();
             }
-            
+
         }else{
                 $query = new TypeProductTwo();
                 $query->name = json_encode($request->name);
@@ -64,7 +68,7 @@ class TypeProductTwo extends Model
                 $query->status = $request->status;
                 $query->avatar = $request->avatar;
                 $query->save();
-            
+
         }
         return $query;
     }

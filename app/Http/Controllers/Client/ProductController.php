@@ -31,7 +31,20 @@ class ProductController extends Controller
             $data['title'] = "Tất cả sản phẩm";
             $data['content'] = 'none';
         }else{
-            $cate = Category::where('slug',$danhmuc)->first(['id','name','avatar','content']);
+            $cate = Category::where('slug',$danhmuc)->first(['id','name','avatar','content', 'slug']);
+            $productTypes = TypeProduct::query()->where('cate_id', $cate->id)->get();
+            $productTypes->each(function($typeCate){
+                $products = $typeCate->products()
+                    ->where('status', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->limit(10)
+                    ->get();
+
+                $typeCate->setRelation('products', $products);
+            });
+            $data['productCategories'] = $productTypes;
+
+
             $data['list'] = Product::with('typecate', 'cate')
             ->where(['status'=>1,'category'=>$cate->id])
             ->orderBy('id','DESC')
@@ -45,11 +58,48 @@ class ProductController extends Controller
             $data['content'] = $data['cateno']->content;
             // dd($data['list'] );
         }
-        return view('product.list',$data);
+
+        return view('product.category',$data);
     }
     public function allListType($danhmuc,$loaidanhmuc){
         $cate = Category::where('slug',$danhmuc)->first(['id','name','slug']);
         $type = TypeProduct::where('slug',$loaidanhmuc)->first(['id','name','slug','cate_id', 'content']);
+        $data['type'] = $type;
+
+        if($type->typetwo()->where('status', 1)->count()) {
+            $data['hasTypeTwo'] = true;
+
+            $typesTwo = $type->typetwo()->where('status', 1)->get();
+            $typesTwo->each(function($typeTwo) use ($cate, $type) {
+                $products = $typeTwo->products()
+                    ->where('status', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->limit(10)
+                    ->get();
+
+                if(! $products->count()) {
+
+                    $products = Product::with('typecate', 'cate')
+                        ->where(function($query) use ($cate, $type) {
+                            $query->where(['status'=>1,'category'=>$cate->id,'type_cate'=>$type->id]);
+                        })
+                        ->orderBy('id','DESC')
+                        ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
+                        ->paginate(10);
+                }
+
+                $typeTwo->setRelation('products', $products);
+            });
+
+            $data['productCategories'] = $typesTwo;
+            $data['title'] = languageName($data['type']->name);
+
+            return view('product.category',$data);
+        }
+
+
+
+
         $data['list'] = Product::with('typecate', 'cate')
             ->where(function($query) use ($cate, $type) {
                 $query->where(['status'=>1,'category'=>$cate->id,'type_cate'=>$type->id]);
@@ -74,6 +124,14 @@ class ProductController extends Controller
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
             ->paginate(30);
+
+        if(! $data['list']->count()) {
+            $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc])
+                ->orderBy('id','DESC')
+                ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
+                ->paginate(30);
+        }
+
         $data['type'] = TypeProductTwo::where('slug',$thuonghieu)->first(['id','name','cate_id','content']);
         $cate_id = $data['type']->cate_id;
         $data['typeCate'] = TypeProduct::where([

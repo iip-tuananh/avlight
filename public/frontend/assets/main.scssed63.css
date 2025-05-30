@@ -843,7 +843,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 
 .slick-slider .slick-track {
     padding: 2px 0;
-    margin-left: initial
+    /*margin-left: initial*/
 }
 
 .slick-slider .slick-track div, .slick-slider .slick-track a, .slick-slider .slick-track a:focus, .slick-slider .slick-track div:focus, .slick-slider .slick-track article:focus, .slick-slider .slick-track article {
@@ -1644,7 +1644,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left .header-menu-sidebar > ul > li > .menu1 > li {
-    width: calc(100% / 4);
+    width: calc(100% / 3);
     margin-bottom: 10px
 }
 

@@ -357,7 +357,7 @@ HOTLINE:  1900.63.60.99">
     <script>
         if(f1genzPS){
             var scriptTiktok = document.createElement("script");
-            scriptTiktok.src = "../sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok/falcon/embed/embed_v1.0.13.js";
+            scriptTiktok.src = "/frontend/assets/embed_v1.0.13.js";
             $("head").append(scriptTiktok);
         }
     </script>

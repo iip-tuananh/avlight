@@ -103,7 +103,7 @@ class PageController extends Controller
     	],200);
     }
 
- 
+
     public function search(Request $request)
     {
         // Lấy từ khóa từ request hoặc từ session nếu đang phân trang
@@ -116,7 +116,7 @@ class PageController extends Controller
             $keyword = session('search_keyword', '');
         }
         // Tìm kiếm sản phẩm
- 
+
 $data['product'] = Product::with([
     'cate' => function($q) { $q->select('id', 'slug'); },
     'typecate' => function($q) { $q->select('id', 'slug'); }
@@ -129,7 +129,7 @@ $data['product'] = Product::with([
         // dd($data['product']);
         return view('search_result', $data);
     }
-  
+
 public function ajaxSearch(Request $request)
 {
     $keyword = $request->keyword;
@@ -139,7 +139,7 @@ public function ajaxSearch(Request $request)
             ->where('status', 1)
             ->take(5)
             ->get();
-          
+
         $total = Product::where('name', 'LIKE', '%' . $keyword . '%')
             ->where('status', 1)
             ->count();
@@ -151,15 +151,21 @@ public function ajaxSearch(Request $request)
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->mess = $request->mess;
+        $data->mess = $request->message;
         $data->save();
         if($data){
-            return \Redirect::to('/')->with('success', 'Gửi tin thành công');
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Gửi tin thành công'
+            ]);
         }else{
-            return back()->with('error', 'Gửi tin thất bại');
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Gửi tin thất bại'
+            ], 500);
         }
-
     }
+
     public function serviceCateList($slug)
     {
         $data['listService'] = Services::where(['cate_slug'=>$slug])->orderBy('id','DESC')->paginate(15);

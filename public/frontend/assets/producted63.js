@@ -5,8 +5,6 @@ F1GENZ.Product = {
 		self.zoom();
 		if(window.F1GENZ_vars.shop.featured.shopping){
 			self.changeOption();
-			self.render();
-			self.setStatusVariants();
 			self.checkOptionFirst();
 			self.addCart();
 			self.fsale();
@@ -35,7 +33,7 @@ F1GENZ.Product = {
 		})
 	},
 	fsale: function(){
-		var doneTime = (hours, minutes, seconds) => { 
+		var doneTime = (hours, minutes, seconds) => {
 			var html = `<span class="hours"><b>${hours}</b><strong>Giờ</strong></span><span class="minutes"><b>${minutes}</b><strong>Phút</strong></span><span class="seconds"><b>${seconds}</b><strong>Giây</strong></span>`;
 			return html;
 		}
@@ -44,14 +42,14 @@ F1GENZ.Product = {
 				var now_date = moment(new Date()).format("DD/MM/YYYY");
 				$('.main-product-fsale [data-start][data-end]').each(function(){
 					// Start
-					var init_timeS = moment(F1GENZ.Helper.formatTime($(this).attr('data-start'))).format("HH:mm:ss"); 
+					var init_timeS = moment(F1GENZ.Helper.formatTime($(this).attr('data-start'))).format("HH:mm:ss");
 					var finish_dateS = `${now_date} ${init_timeS}`;
 					$(this).attr('data-start', finish_dateS);
 
 					// End
-					var init_timeE = moment(F1GENZ.Helper.formatTime($(this).attr('data-end'))).format("HH:mm:ss"); 
+					var init_timeE = moment(F1GENZ.Helper.formatTime($(this).attr('data-end'))).format("HH:mm:ss");
 					var finish_dateE = `${now_date} ${init_timeE}`;
-					$(this).attr('data-end', finish_dateE); 
+					$(this).attr('data-end', finish_dateE);
 				})
 			}
 
@@ -59,7 +57,7 @@ F1GENZ.Product = {
 				var $that = $(this);
 				var timeS_Attr = $(this).attr('data-start');
 				var timeE_Attr = $(this).attr('data-end');
-				if(timeS_Attr && timeE_Attr){ 
+				if(timeS_Attr && timeE_Attr){
 					var timeS = F1GENZ.Helper.formatTime(timeS_Attr);
 					var timeE = F1GENZ.Helper.formatTime(timeE_Attr);
 					var now = new Date().getTime();
@@ -87,9 +85,9 @@ F1GENZ.Product = {
 						var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 						var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 						$that.find('[data-start][data-end]').html(doneTime((hours < 10 ? '0' + hours : hours), (minutes < 10 ? '0' + minutes : minutes), (seconds < 10 ? '0' + seconds : seconds)))
-						if (distance < 0) { 
+						if (distance < 0) {
 							clearInterval(countdown);
-							$that.find('[data-start][data-end]').html(doneTime("00", "00", "00")); 
+							$that.find('[data-start][data-end]').html(doneTime("00", "00", "00"));
 						}
 					}
 				}, 1000);
@@ -120,12 +118,12 @@ F1GENZ.Product = {
 				ops1.push(v['option1']);
 			}
 		});
-		self.statusVariants = opsAll; 
-		self.statusOption1 = ops1; 
+		self.statusVariants = opsAll;
+		self.statusOption1 = ops1;
 	},
 	checkOptionFirst: function(){
 		var self = this;
-		var flagClick0 = false; 
+		var flagClick0 = false;
 		$('.main-product .product-sw-line').eq(0).find('.product-sw-select-item input').addClass('soldOut').prop('checked',false);
 		$.each(self.statusOption1, function(keyC1, valC1){
 			$.each(self.statusVariants, function(keyC2, valC2){
@@ -153,7 +151,7 @@ F1GENZ.Product = {
 		if(name.indexOf(1) !== -1){
 			$('.main-product .product-sw-line').eq(1).find('.product-sw-select-item input').addClass('soldOut');//.prop('checked',false);
 			$('.main-product .product-sw-line').eq(2).find('.product-sw-select-item input').addClass('soldOut');//.prop('checked',false);
-			var flagClick1 = true; 
+			var flagClick1 = true;
 			$('.main-product .product-sw-line').eq(1).find('input').each(function(key1, val1){
 				var flagOption1 = $(this).val();
 				if(window.F1GENZ_vars.product.data.options.length === 3){
@@ -320,7 +318,7 @@ F1GENZ.Product = {
 			$.each(window.F1GENZ_vars.product.data.variants, function(i, v){
 				if(v.available){
 					if(v.option1 && v.option1.length > 0){
-						if($('.main-product .trigger-option-sw[data-name="option1"]').is('input')){ 
+						if($('.main-product .trigger-option-sw[data-name="option1"]').is('input')){
 							$('.main-product .trigger-option-sw[data-name="option1"][value="'+v.option1+'"]').trigger('click');
 						}else{
 							$('.main-product .trigger-option-sw[data-name="option1"]').val(v.option1).trigger('change');
@@ -370,11 +368,11 @@ F1GENZ.Product = {
 	gallery: function(){
 		var self = this;
 		if(window.F1GENZ_vars.product.featured.style_gallery == "style1"){
-			$('.main-product .main-product-feature .main-product-feature-thumbs').slick({ 
+			$('.main-product .main-product-feature .main-product-feature-thumbs').slick({
 				slidesToShow: 4,
 				slidesToScroll: 1,
 				arrows: true,
-				prevArrow:"<button type='button' class='slick-prev'>‹</button>", 
+				prevArrow:"<button type='button' class='slick-prev'>‹</button>",
 				nextArrow:"<button type='button' class='slick-next'>›</button>",
 				touchThreshold: 100,
 				infinite: true,
@@ -402,11 +400,11 @@ F1GENZ.Product = {
 			})
 		}else if(window.F1GENZ_vars.product.featured.style_gallery == "style2"){
 			self.zoom();
-			$('.main-product .main-product-feature .main-product-feature-thumbs').slick({ 
+			$('.main-product .main-product-feature .main-product-feature-thumbs').slick({
 				slidesToShow: 4,
 				slidesToScroll: 1,
 				arrows: true,
-				prevArrow:"<button type='button' class='slick-prev'>‹</button>", 
+				prevArrow:"<button type='button' class='slick-prev'>‹</button>",
 				nextArrow:"<button type='button' class='slick-next'>›</button>",
 				vertical: true,
 				verticalSwiping: true,
@@ -421,7 +419,7 @@ F1GENZ.Product = {
 				$(".main-product-feature-featured source").attr("srcset", src);
 			})
 		}else if(window.F1GENZ_vars.product.featured.style_gallery == "style5"){
-			$('.main-product .main-product-feature-outside .main-product-feature-thumbs').slick({ 
+			$('.main-product .main-product-feature-outside .main-product-feature-thumbs').slick({
 				slidesToShow: window.F1GENZ_vars.product.featured.item_in_style5,
 				speed: 10000,
 				cssEase: 'linear',
@@ -429,7 +427,7 @@ F1GENZ.Product = {
 				autoplaySpeed: 0,
 				slidesToScroll: 1,
 				arrows: true,
-				prevArrow:"<button type='button' class='slick-prev'>‹</button>", 
+				prevArrow:"<button type='button' class='slick-prev'>‹</button>",
 				nextArrow:"<button type='button' class='slick-next'>›</button>",
 				touchThreshold: 100,
 				infinite: true,
@@ -439,7 +437,7 @@ F1GENZ.Product = {
 				dots: false,
 				responsive: [
 					{
-						breakpoint: 767, 
+						breakpoint: 767,
 						settings: {
 							slidesToShow: 2,
 							slidesToScroll: 2,
@@ -471,21 +469,22 @@ F1GENZ.Product = {
 			textBox.select();
 			document.execCommand("copy");
 			$(this).text('Đã sao chép');
-			setTimeout(function(){ 
+			setTimeout(function(){
 				$(this).text('Sao chép');
 			}, 3000);
 			$('body, html').addClass('open-noscroll open-share');
 		})
 	},
 	relate: function(){
+        console.log($('.main-product-relate').length)
 		if($('.main-product-relate').length > 0 && $('.main-product-relate .product-item').length > 0){
-			F1GENZ.Helper.productSlider('.main-product .main-product-relate .main-product-relate-data', 5, 3, 3, 1, { arrows: true }); 
+			F1GENZ.Helper.productSlider('.main-product .main-product-relate .main-product-relate-data', 5, 3, 3, 1, { arrows: true });
 		}
 	},
 	preOrder: function(){
 		$('body').on('click', 'button[data-type="main-product-send-help"]', function(e){
-			$('#preOrder-modal').modal(); 
-			$('#preOrder-hard').val(window.F1GENZ_vars.product.data.name);  
+			$('#preOrder-modal').modal();
+			$('#preOrder-hard').val(window.F1GENZ_vars.product.data.name);
 		});
 		$('body').on('submit', '#preOrder-modal form', function(e){
 			e.preventDefault();

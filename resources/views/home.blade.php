@@ -293,7 +293,7 @@
                 <div class="d-flex-vertical d-flex-center layout-gap-0.5unit home-product-header home-custom-header">
                     <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">{{languageName($cateFeatured->name)}}</h2>
                     <div class="home-custom-header-flex d-flex-vertical d-flex-center">
-                        <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="collections/all.html" title="Xem tất cả">Xem tất cả</a>
+                        <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="{{ route('allListProCate', ['danhmuc' => $cateFeatured->slug]) }}" title="Xem tất cả">Xem tất cả</a>
                     </div>
                 </div>
                 <div class="home-product-new-slider">
@@ -301,59 +301,9 @@
                         @php
                             $img = json_decode($productFeatured->images);
                         @endphp
-                        <div class="product-item" data-id="122987584{{$productFeatured->id}}" data-handle="{{ languageName($productFeatured->name) }}">
-                            <div class="product-item-wrap">
-                                <div class="product-item-top">
-                                    <div class="product-item-top-image">
-                                        <a href="tu-quan-ao-3-cua-5-ngan-f1genz-cao-cap.html" class="product-item-top-image-showcase">
-                                            <img src="{{ $img[0] }}"
-                                                 alt='{{ languageName($productFeatured->name) }}'
-                                                 title='{{ languageName($productFeatured->name) }}' width="480" height="480" loading="lazy" decoding="async">
-                                        </a>
-                                    </div>
-                                    @if ($productFeatured->price > 0 && $productFeatured->discount > 0)
-                                        @php
-                                            $percent = ($productFeatured->price - $productFeatured->discount) / $productFeatured->price * 100;
-                                        @endphp
-                                    <div class="product-item-label-sale"><span>-{{ round($percent, 2) }}%</span></div>
-                                    @endif
-                                </div>
-                                <div class="product-item-detail">
-                                    <div class="product-item-detail-flex">
-                                        <a class="product-item-detail-vendor" href="tu-quan-ao-3-cua-5-ngan-f1genz-cao-cap.html"
-                                           title="{{ languageName($productFeatured->name) }}" aria-label="F1GENZ">
-                                            <span>{{ languageName($productFeatured->name) }}</span>
-                                        </a>
-                                        <div class="sapo-product-reviews-badge" data-id="36799063"></div>
-                                    </div>
-                                    <h3 class="product-item-detail-title">
-                                        <a  href="tu-quan-ao-3-cua-5-ngan-f1genz-cao-cap.html"
-                                            title="{{ languageName($productFeatured->name) }}" aria-label="{{ languageName($productFeatured->name) }}">
-                                            {{ languageName($productFeatured->name) }}</a></h3>
-                                    <div class="product-item-detail-price">
-                                        @if ($productFeatured->price > 0)
-                                            @if ($productFeatured->discount > 0)
-                                                <strong>{{ number_format($productFeatured->discount) }}₫</strong>
-                                                <del>{{ number_format($productFeatured->price) }}₫</del>
-                                            @else
-                                                <strong>{{ number_format($productFeatured->price) }}₫</strong>
-                                            @endif
-                                        @else
-                                            <strong>Đang cập nhật</strong>
-                                        @endif
-                                    </div>
 
-                                    <div class="product-item-detail-gallery-items">
+                        @include('layouts.product.item', ['product' => $productFeatured])
 
-                                    </div>
-
-
-                                    <div class="product-item-actions">
-                                        <button type="button" title="Thêm vào giỏ" class="button-fstyle1 shop-addLoop-button" data-type="shop-addLoop-button"><span>Thêm vào giỏ</span></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     @endforeach
                 </div>
             </section>

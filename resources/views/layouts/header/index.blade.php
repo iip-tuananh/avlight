@@ -88,107 +88,59 @@
     </div>
     <div class="header-menu">
         <div class="container">
+            <style>
+                .header-menu-sidebar > ul {
+                    max-height: 300px;       /* hoặc height: 300px; tuỳ bạn */
+                    overflow-y: auto;        /* bật scroll dọc khi quá cao */
+                }
+
+                /* 2. Tuỳ chỉnh thanh cuộn cho đẹp */
+                .header-menu-sidebar > ul::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .header-menu-sidebar > ul::-webkit-scrollbar-thumb {
+                    background: rgba(0,0,0,0.2);
+                    border-radius: 3px;
+                }
+                .header-menu-sidebar > ul::-webkit-scrollbar-track {
+                    background: rgba(0,0,0,0.05);
+                }
+            </style>
             <div class="header-menu-wrap">
                 <div class="header-menu-left">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve"><g><path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03 C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"></path><path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03 S379.58,180.455,372.939,180.455z"></path><path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909 c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"></path></g></svg>
-                    <span>Danh mục menu</span>
+                    <span>Danh mục sản phẩm</span>
                     <nav class="header-menu-sidebar">
-                        <ul>
-                            <li class="active">
-                                <a href="{{ route('home') }}" title="Trang chủ" aria-label="Trang chủ">Trang chủ</a>
-                            </li>
-                            <li class="hasChild">
-                                <a href="#" title="Sản phẩm" aria-label="Sản phẩm">Sản phẩm<span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg></span></a>
-
-                                <ul class="menu1">
-                                    @foreach ($categoryhome as $item)
-                                        <li class="{{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">
-                                            <a href="{{ route('allListProCate', $item->slug) }}" title="{!! languageName($item->name) !!}" aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}
-                                            </a>
-                                            <ul class="menu2">
-                                                @foreach ($item->typeCate as $type)
-                                                    <li class="{{ (isset($type->typetwo) && count($type->typetwo) > 0) ? 'hasChild' : '' }}">
-                                                        <a href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}" title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
-                                                        </a>
-                                                        @if (isset($type->typetwo) && count($type->typetwo) > 0)
-                                                            <ul class="menu3">
-                                                                @foreach ($type->typetwo as $child)
-                                                                    <li class="">
-                                                                        <a href="{{route('allListTypeTwo',['danhmuc'=>$item->slug,'loaidanhmuc'=>$type->slug,'thuonghieu'=>$child->slug])}}"
-                                                                           title="{!! languageName($child->name) !!}" aria-label="{!! languageName($child->name) !!}">{!! languageName($child->name) !!}
-                                                                        </a>
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-
-
-                            <li class="">
-                                <a href="{{ route('duanTieuBieu') }}" title="" aria-label="">Dự Án</a>
-                            </li>
-
-                            <li class="hasChild">
-                                <a href="#" title="" aria-label="">Hỗ trợ -
-                                    Dịch vụ
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
-                                             xml:space="preserve" class=""><g>
-                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
-                                            </g></svg>
-                                    </span>
-                                </a>
-                                <ul class="menu1">
-
-                                    @foreach ($servicecate as $item)
-
-                                        <li class="">
-                                            <a href="{{ route('serviceCateList', $item->slug) }}"
-                                               title="{{ ($item->name) }}" aria-label="{{ ($item->name) }}">
-                                                {{ ($item->name) }}
-                                            </a>
-                                        </li>
-
-                                    @endforeach
-
-                                </ul>
-                            </li>
-
-                            @foreach ($blogCate as $item)
-                                <li class=" {{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">
-                                    <a href="{{ route('listCateBlog', ['slug' => $item->slug]) }}" title="" aria-label="">{{ languageName($item->name) }}
-                                        <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                             width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512"
-                                             xml:space="preserve" class=""><g>
-                                                <path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path>
-                                            </g></svg>
-                                    </span>
+                        <ul >
+                            @foreach ($categoryhome as $item)
+                                <li class="hasChild">
+                                    <a href="{{ route('allListProCate', $item->slug) }}" title="{!! languageName($item->name) !!}" aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}<span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg></span>
                                     </a>
-                                    @if (count($item->typeCate) > 0)
-                                        <ul class="menu1">
-                                            @foreach ($item->typeCate as $type)
-                                                <li class="">
-                                                    <a href="{{ route('listTypeBlog', ['slug' => $type->slug]) }}"
-                                                       title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
 
+                                    <ul class="menu1">
+                                        @foreach ($item->typeCate as $type)
+                                            <li class="{{ (isset($type->typetwo) && count($type->typetwo) > 0) ? 'hasChild' : '' }}">
+                                                <a href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}" title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
+                                                </a>
+                                                @if (isset($type->typetwo) && count($type->typetwo) > 0)
+                                                    <ul class="menu2">
+                                                        @foreach ($type->typetwo as $child)
+                                                            <li class="">
+                                                                <a href="{{route('allListTypeTwo',['danhmuc'=>$item->slug,'loaidanhmuc'=>$type->slug,'thuonghieu'=>$child->slug])}}"
+                                                                   title="{!! languageName($child->name) !!}" aria-label="{!! languageName($child->name) !!}">{!! languageName($child->name) !!}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
+
+                                        @endforeach
+                                    </ul>
                                 </li>
                             @endforeach
-                            <li class="">
-                                <a href="{{ route('contactUs') }}" title="Liên hệ" aria-label="Liên hệ">Liên hệ</a>
-                            </li>
+
+
                         </ul>
                     </nav>
                 </div>
@@ -203,7 +155,20 @@
                             <li class="active">
                                 <a href="{{ route('home') }}" title="Trang chủ" aria-label="Trang chủ">Trang chủ</a>
                             </li>
-                            <li class="hasChild">
+
+                            <style>
+                                .mobile-only {
+                                    display: none;
+                                }
+
+                                /* Chỉ hiện trên mobile */
+                                @media (max-width: 767px) {
+                                    .mobile-only {
+                                        display: block;   /* hoặc display: list-item tùy layout UL */
+                                    }
+                                }
+                            </style>
+                            <li class="hasChild mobile-only">
                                 <a href="#" title="Sản phẩm" aria-label="Nhóm sản phẩm">Sản phẩm
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"

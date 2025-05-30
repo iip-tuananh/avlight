@@ -20,6 +20,12 @@ class TypeProduct extends Model
     {
         return $this->hasMany(TypeProductTwo::class,'type_id','id');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class,'type_cate');
+    }
+
     public function saveTypeCate($request)
     {
         $cat = Category::where('id',$request->cate_id)->first('slug');
@@ -53,7 +59,7 @@ class TypeProduct extends Model
                 $query->avatar = $request->avatar;
                 $query->save();
             }
-            
+
         }else{
                 $query = new TypeProduct();
                 $query->quiz_id = 0;
@@ -66,7 +72,7 @@ class TypeProduct extends Model
                 $query->status = $request->status;
                 $query->avatar = $request->avatar;
                 $query->save();
-            
+
         }
         return $query;
     }

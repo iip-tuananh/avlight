@@ -19,7 +19,7 @@
     <meta property="og:image:alt" content="@yield('title')">
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="vi_VN" />
-    <script src="../f1genz.com/ps.js"></script>
+    <script src="/frontend/assets/ps.js"></script>
     <script>if(typeof f1genzPS === "undefined"){ var f1genzPS = true; window.noPS = f1genzPS; }</script>
     <script>
         var Bizweb = Bizweb || {};
@@ -56,12 +56,14 @@
 
         var meta = {};
 
+        meta.product = {"id": 36799044, "vendor": "F1GENZ", "name": "Ghế trơn đen cao cấp",
+            "type": "Ghế", "price": 2100000 };
+
 
         for (var attr in meta) {
             window.BizwebAnalytics.meta[attr] = meta[attr];
         }
     </script>
-    <script id="sapoStats" data-src="/dist/js/stats.min.js?v=96f2ff2"></script>
     <script>
         window.F1GENZ_vars = {
             template: "index",
@@ -129,7 +131,7 @@
             var aweSome = document.createElement("link");
             aweSome.type = "text/css";
             aweSome.rel = "stylesheet";
-            aweSome.href ="../pro.fontawesome.com/releases/v5.12.1/css/all.css";
+            aweSome.href ="/frontend/assets/all.css";
             document.head.appendChild(aweSome);
 
             var mainFont = document.createElement("link");
@@ -145,6 +147,7 @@
         .preload * { -webkit-transition: none !important; -moz-transition: none !important; -ms-transition: none !important;	-o-transition: none !important; }
         .w-100{ width: 100% !important; }
     </style>
+
     <link rel="dns-prefetch" href="index.html">
     <link rel="dns-prefetch" href="http://hstatic.net/">
     <link rel="dns-prefetch" href="http://theme.hstatic.net/">
@@ -308,10 +311,16 @@
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/plugined63.css?1745557375056">
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/fancyed63.css?1745557375056">
-    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/main.scssed63.css?174555737505612">
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/main.scssed63.css?17455573750561234">
     <!-- INDEX -->
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/index.scssed63.css?1745557375056">
     <!-- COLLECTION -->
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/collection.scssed63.css?1745557375056">
+
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/plyr.css"/>
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/product.scssed63.css?1745557375056">
+
+
     <!-- For Footer -->
     <style>
         @media(max-width: 1024px){
@@ -330,7 +339,13 @@
     <script fetchpriority="low" defer src="/frontend/assets/option_selection.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/api.jquery.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/mained63.js?1745557375056"></script>
-    <script fetchpriority="low" defer src="/frontend/assets/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
+    <script fetchpriority="low" defer src="/frontend/assets/jquery.elevatezoom.min.js"></script>
+    <script fetchpriority="low" defer src="/frontend/assets/plyr.min.js"></script>
+    <script fetchpriority="low" defer src="/frontend/assets/imagesloaded.pkgd.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/isotope.pkgd.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/indexed63.js?1745557375056"></script>
+    <script fetchpriority="low" defer src="/frontend/assets/collectioned63.js?1745557375056"></script>
+    <script fetchpriority="low" defer src="/frontend/assets/producted63.js?1745557375056"></script>
+
+
     <script>var ProductReviewsAppUtil=ProductReviewsAppUtil || {};ProductReviewsAppUtil.store={name: 'F1GENZ Smart Furniture'};</script>

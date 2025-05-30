@@ -28,7 +28,7 @@ Route::get('/','HomeController@home')->name('home')->middleware(checkLanguage::c
 Route::group(['namespace'=>'Client','middleware' => ['checkLanguage']], function(){
     Route::get('type-product/{id}','PageController@typeproduct');
     Route::get('district/{id}','PageController@district');
-   
+
 Route::match(['get', 'post'], 'ket-qua-tim-kiem', 'PageController@search')->name('search_result');
 
 Route::post('ajax-search', 'PageController@ajaxSearch')->name('ajax.search');
@@ -84,6 +84,8 @@ Route::post('ajax-search', 'PageController@ajaxSearch')->name('ajax.search');
 
     Route::get('tat-ca-san-pham.html','ProductController@allProduct')->name('allProduct');
     Route::get('chi-tiet/{cate}/{type}/{id}.html','ProductController@detail_product')->name('detailProduct');
+
+
     Route::get('{danhmuc}.html','ProductController@allListCate')->name('allListProCate');
     Route::get('{danhmuc}/{loaidanhmuc}.html','ProductController@allListType')->name('allListType');
     Route::get('{danhmuc}/{loaidanhmuc}/{thuonghieu}.html','ProductController@allListTypeTwo')->name('allListTypeTwo');
