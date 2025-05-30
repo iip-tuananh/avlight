@@ -319,6 +319,8 @@
 
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/plyr.css"/>
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/product.scssed63.css?1745557375056">
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/page.scssed63.css?1745557375056">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <!-- For Footer -->
@@ -338,7 +340,7 @@
     <script fetchpriority="low" defer src="/frontend/assets/fancybox.umd.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/option_selection.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/api.jquery.js"></script>
-    <script fetchpriority="low" defer src="/frontend/assets/mained63.js?1745557375056"></script>
+    <script fetchpriority="low" defer src="/frontend/assets/mained63.js?17455573750561122"></script>
     <script fetchpriority="low" defer src="/frontend/assets/jquery.elevatezoom.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/plyr.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/imagesloaded.pkgd.min.js"></script>

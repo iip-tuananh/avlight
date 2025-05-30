@@ -27,7 +27,7 @@ class ProductController extends Controller
 
         if($danhmuc == "tat-ca"){
             $data['list'] = Product::where('status',1)->orderBy('id','DESC')->select('id','category','name','discount','price','images','slug','description')
-            ->paginate(30);
+            ->paginate(32);
             $data['title'] = "Tất cả sản phẩm";
             $data['content'] = 'none';
         }else{
@@ -49,7 +49,7 @@ class ProductController extends Controller
             ->where(['status'=>1,'category'=>$cate->id])
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
-            ->paginate(30);
+            ->paginate(32);
             $data['cateno'] = $cate;
             $data['hastagType'] = TypeProduct::where(['status'=>1,'cate_id'=>$data['cateno']->id])->orderBy('id','DESC')
             ->get(['slug','id', 'name','cate_slug']);
@@ -106,7 +106,7 @@ class ProductController extends Controller
             })
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description','type_cate','category')
-            ->paginate(30);
+            ->paginate(32);
         $data['type'] = $type;
         $data['typeCate'] = TypeProduct::where([
             ['status', '=', 1],
@@ -123,13 +123,13 @@ class ProductController extends Controller
         $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc,'type_two_slug'=>$thuonghieu])
             ->orderBy('id','DESC')
             ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-            ->paginate(30);
+            ->paginate(32);
 
         if(! $data['list']->count()) {
             $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc])
                 ->orderBy('id','DESC')
                 ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-                ->paginate(30);
+                ->paginate(32);
         }
 
         $data['type'] = TypeProductTwo::where('slug',$thuonghieu)->first(['id','name','cate_id','content']);

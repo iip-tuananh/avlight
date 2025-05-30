@@ -112,16 +112,16 @@
 
                     <div class="main-product-cta">
                         @if ($product->price > 0)
-                        <button type="button" data-type="main-product-add" title="Thêm vào giỏ">
+                        <button type="button" data-type="main-product-add" onclick='addToCart({{ $product->id }})' title="Thêm vào giỏ">
                             <strong>Thêm vào giỏ</strong>
                             <span>Chọn ngay sản phẩm bạn yêu thích</span>
                         </button>
                         @endif
                         <button type="button" data-type="main-product-send-help" title="Tư vấn">
                             <strong>Tư vấn</strong>
-                            <span>Tư vấn thiết kế nội thất tùy chọn</span>
+                            <span>Kết nối với chúng tôi để được tư vấn</span>
                         </button>
-                        <button type="button" data-type="main-product-send-info" onclick="window.open('pages/lien-he.html')" title="Liên hệ">
+                        <button type="button" data-type="main-product-send-info" onclick="window.open('/lien-he.html')" title="Liên hệ">
                             <strong>Liên hệ</strong>
                             <span>Chúng tôi luôn bên bạn 24/7</span>
                         </button>

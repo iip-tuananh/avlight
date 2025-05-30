@@ -8,9 +8,10 @@
     <meta name="description" content=" Thanh toán đơn hàng" />
     <title>Thông tin - Thanh toán đơn hàng</title>
     <link rel="shortcut icon" href="{{ $setting->favicon }}" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
-    <link rel="stylesheet" href="{{ url('frontend/css/checkout.vendor.min.css?v=4fcd86c') }}">
-    <link rel="stylesheet" href="{{ url('frontend/css/checkout.min.css?v=17ca415') }}">
+
+    <link rel="stylesheet" href="/frontend/assets/checkout.min.css">
+    <link rel="stylesheet" href="/frontend/assets/checkout.vendor.min.css?v=4fcd86c">
+
     <style>
     </style>
     <!-- End checkout custom css -->
@@ -53,25 +54,65 @@
         <div class="wrap">
             <main class="main">
                 <header class="main__header">
-                
+
+                    <style>
+                        /* Container chính */
+                        .progress-bar {
+                            display: inline-flex;
+                            align-items: center;
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        /* Item chung */
+                        .progress-bar__item {
+                            display: inline-flex;
+                            align-items: center;
+                            font-size: 14px;
+                            color: #555;
+                        }
+
+                        /* Link bên trong (nếu có) */
+                        .progress-bar__item a {
+                            color: inherit;
+                            text-decoration: none;
+                        }
+
+                        /* Separator ">" cho mọi item trừ cái cuối */
+                        .progress-bar__item:not(:last-child)::after {
+                            content: '>';
+                            display: inline-block;
+                            margin: 0 8px;
+                            color: #999;
+                        }
+
+                        /* Item đang active */
+                        .progress-bar__item--current {
+                            font-weight: 600;
+                            color: #333;
+                        }
+
+                        /* Item chưa đến (muted) */
+                        .progress-bar__item--muted {
+                            color: #bbb;
+                        }
+
+                    </style>
                     <nav>
                         <ul class="progress-bar">
-                            <li class="">
+                            <li class="progress-bar__item">
                                 <a href="{{ route('home') }}">Về trang chủ</a>
-                                <span class="progress-bar__pipe"></span>
+                            </li>
+                            <li class="progress-bar__item ">
+                                Thông tin
                             </li>
                             <li class="progress-bar__item progress-bar__item--current">
-                                <span>Thông tin</span>
-                                <span class="progress-bar__pipe"></span>
-                            </li>
-                            <li
-                                class="progress-bar__item
-                           progress-bar__item--muted
-                           ">
-                                <span>Thanh toán</span>
+                                Thanh toán
                             </li>
                         </ul>
                     </nav>
+
                 </header>
                 <div class="main__content">
                     <form method="post" novalidate="novalidate" action="{{ route('postBill') }}" id="submitForm">

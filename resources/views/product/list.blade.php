@@ -60,7 +60,7 @@
                     <div class="main-collection-info">
                         <h1 class="titleStyle1">{{ $title }}</h1>
                     </div>
-                    <div class="main-collection-data five">
+                    <div class="main-collection-data four">
                         @foreach ($list as $item)
                             @include('layouts.product.item', ['product' => $item])
                         @endforeach

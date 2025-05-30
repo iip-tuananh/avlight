@@ -43,13 +43,13 @@ class CartController extends Controller
                 $billdetail->code_bill = $code_bill;
                 $billdetail->code_product = $item['id'];
                 $billdetail->name = $item['name'];
-               
+
                     if ($item['discount'] > 0) {
                         $billdetail->price = $item['discount'];
                     } else {
                         $billdetail->price = $item['price'];
                     }
-                
+
                 $billdetail->qty = $item['quantity'];
                 $billdetail->images = $item['image'];
                 // $billdetail->variant = $item['status_variant'] == 1 ? $item['variant'] : '';
@@ -74,7 +74,7 @@ class CartController extends Controller
             return back()->with('error', 'Gửi đơn hàng thất bại');
         }
     }
-   
+
 public function listCart()
 {
     $data['cart'] = session()->get('cart', []); // Lấy giỏ hàng từ session
@@ -96,14 +96,14 @@ public function listCart()
     public function addToCart(Request $request)
     {
         $productId = $request->input('product_id');
-   
+
         $quantity = $request->input('quantity', 1);
         // dd($request->all());
         $product = Product::find($productId);
         if (!$product) {
             return response()->json(['success' => false, 'message' => 'Sản phẩm không tồn tại.']);
         }
-    
+
         $cart = session()->get('cart', []);
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] += $quantity;
@@ -117,8 +117,9 @@ public function listCart()
                 "image" => json_decode($product->images)[0],
             ];
         }
-    
+
         session()->put('cart', $cart);
+
         $totalPrice = 0;
         $cartCount = 0;
         foreach ($cart as $item) {
@@ -126,7 +127,7 @@ public function listCart()
             $totalPrice += $price * $item['quantity'];
             $cartCount += $item['quantity'];
         }
-    
+
         return response()->json([
             'success' => true,
             'message' => 'Sản phẩm đã được thêm vào giỏ hàng.',
@@ -137,7 +138,7 @@ public function listCart()
     // cần lưu lại
 
 
-    // update  
+    // update
     public function update(Request $request)
     {
         // Kiểm tra xem product_id và quantity có được gửi không
@@ -229,7 +230,7 @@ public function remove(Request $request)
     {
         return view('cart.orderSuccess');
     }
-   
+
 public function getCartCount()
 {
     $cart = session()->get('cart', []);

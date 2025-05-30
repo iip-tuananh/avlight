@@ -57,6 +57,8 @@ Route::post('ajax-search', 'PageController@ajaxSearch')->name('ajax.search');
     });
     Route::get('quickview/{id}','PageController@quickview')->name('quickview');
     Route::get('bang-gia.html','PageController@baogia')->name('banggia');
+    Route::get('tim-kiem', 'PageController@search')->name('page.search');
+
 
     Route::get('gio-hang.html', 'CartController@listCart')->name('listCart');
     Route::post('add-to-cart', 'CartController@addToCart')->name('add.to.cart');

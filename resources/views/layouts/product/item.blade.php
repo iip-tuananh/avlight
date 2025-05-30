@@ -7,7 +7,7 @@
         <div class="product-item-top">
             <div class="product-item-top-image">
                 <a href="{{ route('detailProduct', ['cate' => $product->cate_slug ?? $product->cate->slug, 'type' => $product->type_slug ?? $product->typecate->slug, 'id' => $product->id]) }}" class="product-item-top-image-showcase">
-                    <img src="{{ $img[0] }}"
+                    <img src="{{ is_array($img) ? $img[0] : ''}}"
                          alt='{{ languageName($product->name) }}'
                          title='{{ languageName($product->name) }}' width="480" height="480" loading="lazy" decoding="async">
                 </a>
@@ -51,7 +51,7 @@
 
             <div class="product-item-actions">
                 @if($product->price > 0)
-                    <button type="button" title="Thêm vào giỏ" class="button-fstyle1 shop-addLoop-button" data-type="shop-addLoop-button"><span>Thêm vào giỏ</span></button>
+                    <button type="button" title="Thêm vào giỏ" class="button-fstyle1" onclick='addToCart({{ $product->id }})'><span>Thêm vào giỏ</span></button>
                 @else
                     <a href='{{ route('detailProduct', ['cate' => $product->cate_slug ?? $product->cate->slug, 'type' => $product->type_slug ?? $product->typecate->slug, 'id' => $product->id]) }}'>
                         <button type="button" title="Xem thêm" class="button-fstyle1"><span>Xem thêm</span></button>

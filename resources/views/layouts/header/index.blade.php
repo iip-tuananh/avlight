@@ -8,9 +8,9 @@
                 </a>
             </div>
             <div class="header-center">
-                <form class="tool-search" action="#">
+                <form class="tool-search" action="#" id='searchForm'>
                     <input type="hidden" name="type" value="product">
-                    <input required name="q" autocomplete="off" type="text" placeholder="Tìm kiếm sản phẩm...">
+                    <input required name="keywords" id="search-input" autocomplete="off" type="text" placeholder="Tìm kiếm sản phẩm...">
                     <button type="submit" title="Tìm kiếm"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 612.01 612.01" style="enable-background: new 0 0 512 512" xml:space="preserve" class=""> <path d="M606.209,578.714L448.198,423.228C489.576,378.272,515,318.817,515,253.393C514.98,113.439,399.704,0,257.493,0 C115.282,0,0.006,113.439,0.006,253.393s115.276,253.393,257.487,253.393c61.445,0,117.801-21.253,162.068-56.586 l158.624,156.099c7.729,7.614,20.277,7.614,28.006,0C613.938,598.686,613.938,586.328,606.209,578.714z M257.493,467.8 c-120.326,0-217.869-95.993-217.869-214.407S137.167,38.986,257.493,38.986c120.327,0,217.869,95.993,217.869,214.407 S377.82,467.8,257.493,467.8z" fill="#000000" data-original="#000000" class=""></path></svg></button>
                     <button class="tool-search-overplay" title="Đóng"></button>
                     <div class="tool-search-smart"></div>
@@ -76,10 +76,21 @@
                     </div>
                 </div>
 
-                <button class="shop-tool has-count" type="button" data-type="shop-cart-header" title="Giỏ hàng">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" x="0" y="0" viewBox="0 0 459.361 459.361" style="enable-background: new 0 0 512 512" xml:space="preserve" class=""> <path d="M371.2,325.731c19.1-0.2,35.8-13.1,40.7-31.6l47.1-175.4c1.5-5.7-1.8-11.5-7.5-13.1c-0.9-0.2-1.8-0.4-2.7-0.4H94.5 l-24.1-89c-1.2-4.6-5.4-7.9-10.2-7.9H0v21.3h51.8l23.3,87c-0.1,0.7-0.1,1.4,0,2.1l48,176c0.3,1.4,0.8,2.9,1.3,4.3l16.2,59 c-15.6,8.3-26.2,24.7-26.2,43.6c0,27.3,22.1,49.4,49.4,49.4c27.3,0,49.4-22.1,49.4-49.4c0-8.5-2.2-16.6-6-23.6 c-0.9-1.6-1.8-3.2-2.9-4.8H330c-5.6,8-9,17.8-9,28.4c0,27.3,22.1,49.4,49.4,49.4s49.4-22.1,49.4-49.4c0-12.9-4.9-24.6-13-33.4 c-8.7-9.9-21.5-16.2-35.8-16.3H161.9l-7.5-27.5c3.2,0.8,6.5,1.3,9.8,1.3H371.2z M370.5,373.231c15.7,0,28.4,12.7,28.4,28.4 s-12.7,28.4-28.4,28.4c-15.7,0-28.4-12.7-28.4-28.4S354.8,373.231,370.5,373.231z M163.8,373.231c15.7,0,28.3,12.8,28.3,28.4 c0,15.7-12.7,28.4-28.4,28.4c-15.7,0-28.3-12.7-28.3-28.4S148.1,373.231,163.8,373.231z M144.8,290.931l-23.9-87.4l-21.3-76.8 h334.9l-43.3,162.6c-2.4,9.3-10.7,15.8-20.3,16H164C155.3,304.831,147.7,299.231,144.8,290.931z" fill="#000000" data-original="#000000"></path></svg>
-                    <span class="shop-cart-count">0</span>
-                </button>
+                @php $qty = 0 ; @endphp
+                @foreach((array) session('cart') as $id => $details)
+                    @php
+                        $qty += $details['quantity'] ;
+                    @endphp
+                @endforeach
+
+                <a href='{{ route('listCart') }}'>
+                    <button class="shop-tool has-count" type="button" title="Giỏ hàng">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" x="0" y="0" viewBox="0 0 459.361 459.361" style="enable-background: new 0 0 512 512" xml:space="preserve" class=""> <path d="M371.2,325.731c19.1-0.2,35.8-13.1,40.7-31.6l47.1-175.4c1.5-5.7-1.8-11.5-7.5-13.1c-0.9-0.2-1.8-0.4-2.7-0.4H94.5 l-24.1-89c-1.2-4.6-5.4-7.9-10.2-7.9H0v21.3h51.8l23.3,87c-0.1,0.7-0.1,1.4,0,2.1l48,176c0.3,1.4,0.8,2.9,1.3,4.3l16.2,59 c-15.6,8.3-26.2,24.7-26.2,43.6c0,27.3,22.1,49.4,49.4,49.4c27.3,0,49.4-22.1,49.4-49.4c0-8.5-2.2-16.6-6-23.6 c-0.9-1.6-1.8-3.2-2.9-4.8H330c-5.6,8-9,17.8-9,28.4c0,27.3,22.1,49.4,49.4,49.4s49.4-22.1,49.4-49.4c0-12.9-4.9-24.6-13-33.4 c-8.7-9.9-21.5-16.2-35.8-16.3H161.9l-7.5-27.5c3.2,0.8,6.5,1.3,9.8,1.3H371.2z M370.5,373.231c15.7,0,28.4,12.7,28.4,28.4 s-12.7,28.4-28.4,28.4c-15.7,0-28.4-12.7-28.4-28.4S354.8,373.231,370.5,373.231z M163.8,373.231c15.7,0,28.3,12.8,28.3,28.4 c0,15.7-12.7,28.4-28.4,28.4c-15.7,0-28.3-12.7-28.3-28.4S148.1,373.231,163.8,373.231z M144.8,290.931l-23.9-87.4l-21.3-76.8 h334.9l-43.3,162.6c-2.4,9.3-10.7,15.8-20.3,16H164C155.3,304.831,147.7,299.231,144.8,290.931z" fill="#000000" data-original="#000000"></path></svg>
+                        <span class="shop-cart-count" id='cart-count'>{{ $qty }}</span>
+                    </button>
+                </a>
+
+
                 <button class="shop-tool" type="button" data-type="shop-menu-mobile-header" title="Menu">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve"><g><path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03 C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"></path><path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03 S379.58,180.455,372.939,180.455z"></path><path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909 c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"></path></g></svg>
                 </button>
@@ -114,13 +125,18 @@
                         <ul >
                             @foreach ($categoryhome as $item)
                                 <li class="hasChild">
-                                    <a href="{{ route('allListProCate', $item->slug) }}" title="{!! languageName($item->name) !!}" aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}<span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg></span>
+                                    <a data-href="{{ route('allListProCate', $item->slug) }}"
+                                       onclick='event.preventDefault(); nextUrl(this);'
+                                       title="{!! languageName($item->name) !!}"
+                                       aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}<span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M44 108a3.988 3.988 0 0 1-2.828-1.172 3.997 3.997 0 0 1 0-5.656L78.344 64 41.172 26.828c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l40 40a3.997 3.997 0 0 1 0 5.656l-40 40A3.988 3.988 0 0 1 44 108z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg></span>
                                     </a>
 
                                     <ul class="menu1">
                                         @foreach ($item->typeCate as $type)
                                             <li class="{{ (isset($type->typetwo) && count($type->typetwo) > 0) ? 'hasChild' : '' }}">
-                                                <a href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}" title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
+                                                <a data-href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}"
+                                                   onclick='event.preventDefault(); nextUrl(this);'
+                                                   title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}
                                                 </a>
                                                 @if (isset($type->typetwo) && count($type->typetwo) > 0)
                                                     <ul class="menu2">
@@ -134,8 +150,35 @@
                                                     </ul>
                                                 @endif
                                             </li>
-
                                         @endforeach
+
+{{--                                            <li class="{{ count($item->typeCate) > 0 ? 'hasChild' : '' }}">--}}
+{{--                                                <a href="{{ route('allListProCate', $item->slug) }}" title="{!! languageName($item->name) !!}" aria-label="{!! languageName($item->name) !!}">{!! languageName($item->name) !!}--}}
+{{--                                                </a>--}}
+{{--                                                <ul class="menu2">--}}
+{{--                                                    @foreach ($item->typeCate as $type)--}}
+{{--                                                        <li class="{{ (isset($type->typetwo) && count($type->typetwo) > 0) ? 'hasChild' : '' }}">--}}
+{{--                                                            <a href="{{ route('allListType', ['danhmuc' => $type->cate_slug, 'loaidanhmuc' => $type->slug]) }}" title="{!! languageName($type->name) !!}" aria-label="{!! languageName($type->name) !!}">{!! languageName($type->name) !!}--}}
+{{--                                                            </a>--}}
+{{--                                                            @if (isset($type->typetwo) && count($type->typetwo) > 0)--}}
+{{--                                                                <ul class="menu3">--}}
+{{--                                                                    @foreach ($type->typetwo as $child)--}}
+{{--                                                                        <li class="">--}}
+{{--                                                                            <a href="{{route('allListTypeTwo',['danhmuc'=>$item->slug,'loaidanhmuc'=>$type->slug,'thuonghieu'=>$child->slug])}}"--}}
+{{--                                                                               title="{!! languageName($child->name) !!}" aria-label="{!! languageName($child->name) !!}">{!! languageName($child->name) !!}--}}
+{{--                                                                            </a>--}}
+{{--                                                                        </li>--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                </ul>--}}
+{{--                                                            @endif--}}
+{{--                                                        </li>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </ul>--}}
+{{--                                            </li>--}}
+
+
+
+
                                     </ul>
                                 </li>
                             @endforeach
@@ -152,7 +195,7 @@
                                 <label>Danh mục</label>
                                 <button type="button" data-type="close-menu-mobile" title="Đóng"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" x="0" y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script></script><path xmlns="http://www.w3.org/2000/svg" d="m4.59 59.41a2 2 0 0 0 2.83 0l24.58-24.58 24.59 24.58a2 2 0 0 0 2.83-2.83l-24.59-24.58 24.58-24.59a2 2 0 0 0 -2.83-2.83l-24.58 24.59-24.59-24.58a2 2 0 0 0 -2.82 2.82l24.58 24.59-24.58 24.59a2 2 0 0 0 0 2.82z" fill="#000000" data-original="#000000" class=""></path></g></svg></button>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="{{ route('home') }}" title="Trang chủ" aria-label="Trang chủ">Trang chủ</a>
                             </li>
 
@@ -168,6 +211,11 @@
                                     }
                                 }
                             </style>
+
+                            <li class="">
+                                <a href="{{ route('aboutUs') }}" title="Liên hệ" aria-label="Liên hệ">Giới thiệu</a>
+                            </li>
+
                             <li class="hasChild mobile-only">
                                 <a href="#" title="Sản phẩm" aria-label="Nhóm sản phẩm">Sản phẩm
                                     <span>

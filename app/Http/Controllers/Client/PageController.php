@@ -106,28 +106,25 @@ class PageController extends Controller
 
     public function search(Request $request)
     {
-        // Lấy từ khóa từ request hoặc từ session nếu đang phân trang
-        if ($request->has('keywordsearch')) {
-            $keyword = $request->keywordsearch;
-            // Lưu từ khóa vào session để dùng cho phân trang
-            session(['search_keyword' => $keyword]);
-        } else {
-            // Lấy từ session nếu đang truy cập qua phân trang
-            $keyword = session('search_keyword', '');
-        }
-        // Tìm kiếm sản phẩm
+        $keyword = $request->input('keyword', '');
 
-$data['product'] = Product::with([
-    'cate' => function($q) { $q->select('id', 'slug'); },
-    'typecate' => function($q) { $q->select('id', 'slug'); }
-])
-->where('name', 'LIKE', '%' . $keyword . '%')
-->where('status', 1)
-->select('id', 'name', 'price', 'discount', 'images', 'slug', 'category')
-->paginate(18);
-        $data['keyword'] = $keyword;
-        // dd($data['product']);
-        return view('search_result', $data);
+        $query = Product::with([
+            'typecate', 'cate',
+        ])
+            ->where('status', 1)
+            ->when($keyword, function($q) use ($keyword) {
+                $q->where('name', 'LIKE', "%{$keyword}%");
+            })
+            ->select('id','name','price','discount','images','slug','category','type_cate','category');
+
+        $products = $query
+            ->paginate(20)
+            ->appends(['keyword' => $keyword]);
+
+        return view('search_result', [
+            'products' => $products,
+            'keyword'  => $keyword,
+        ]);
     }
 
 public function ajaxSearch(Request $request)

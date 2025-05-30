@@ -15,7 +15,7 @@ F1GENZ.Helper = {
 			$(element).slick({
 				slidesToShow: itemsOne,
 				slidesToScroll: options && options.items ? options.items: itemsOne,
-				prevArrow:"<button type='button' class='slick-prev'>‹</button>", 
+				prevArrow:"<button type='button' class='slick-prev'>‹</button>",
 				nextArrow:"<button type='button' class='slick-next'>›</button>",
 				rows: options && options.rows ? options.rows: 1,
 				centerMode: options && options.centerMode ? options.centerMode: false,
@@ -31,14 +31,14 @@ F1GENZ.Helper = {
 				adaptiveHeight: options && options.adaptiveHeight ? options.adaptiveHeight: false,
 				responsive: [
 					{
-						breakpoint: 481, 
+						breakpoint: 481,
 						settings: {
 							slidesToShow: itemsFour,
 							slidesToScroll: itemsFour,
 						}
 					},
 					{
-						breakpoint: 800, 
+						breakpoint: 800,
 						settings: {
 							slidesToShow: itemsThree,
 							slidesToScroll: itemsThree,
@@ -75,7 +75,7 @@ F1GENZ.Helper = {
 					type: "success"
 				}, function() {
 					$(obj).find('form input, form textarea').val("");
-					$(obj).modal('hide'); 
+					$(obj).modal('hide');
 					if(Fancybox.getInstance()) Fancybox.getInstance().close();
 					$('.overplay-all').trigger('click');
 					if(window.F1GENZ_vars.template == "404") location.reload();
@@ -83,7 +83,7 @@ F1GENZ.Helper = {
 			}
 		})
 	},
-	getCart: function(){  
+	getCart: function(){
 		$.ajax({
 			type:"GET",
 			url:"/cart.js",
@@ -117,7 +117,7 @@ F1GENZ.Helper = {
 			url:"/cart?view=item",
 			async: false,
 			success: function(data){
-				$('.shop-cart-sidebar .shop-cart-sidebar-yes').html('').append(data); 
+				$('.shop-cart-sidebar .shop-cart-sidebar-yes').html('').append(data);
 			}
 		});
 	},
@@ -130,7 +130,7 @@ F1GENZ.Helper = {
 					url: '/cart/add.js',
 					data:  { variantId: id, quantity: quantity },
 					dataType: 'json',
-					success: function(cart) { 
+					success: function(cart) {
 						if(string == 'checkout') window.location.href = "/checkout";
 						swal({
 							title: "Cảm ơn bạn!",
@@ -158,7 +158,7 @@ F1GENZ.Helper = {
 					url: '/cart/change.js',
 					data:  { variantId: id, quantity: quantity },
 					dataType: 'json',
-					success: (cart) => { 
+					success: (cart) => {
 						F1GENZ.Helper.freeship(cart);
 						$('.shop-cart-sidebar a.toCheckout span:last-child').html(Bizweb.formatMoney(cart.total_price, window.F1GENZ_vars.formatMoney));
 						if(string == 'cart')
@@ -169,9 +169,9 @@ F1GENZ.Helper = {
 					error: (XMLHttpRequest, textStatus) => { swal("Xin lỗi bạn!", "Có chút vấn đề về tồn kho!", "error") }
 				})
 				break;
-			case "delete": 
+			case "delete":
 				$.ajax({
-					type: 'GET', 
+					type: 'GET',
 					async: false,
 					url: string,
 					success: (cart) => { F1GENZ.Helper.getCart(); },
@@ -185,7 +185,7 @@ F1GENZ.Helper = {
 					url: '/cart/update.js',
 					data:  { note: string },
 					dataType: 'json',
-					success: (cart) => { 
+					success: (cart) => {
 						$('.shop-cart-sidebar .shop-cart-sidebar-note textarea').html(cart.note);
 						$('.shop-cart-sidebar .shop-cart-sidebar-note').removeClass('active');
 					},
@@ -213,12 +213,12 @@ F1GENZ.Helper = {
 		var $domEl = $(dom);
 		var $countEl = name == "list_wishlist" ? $('.shop-wishlist-count') : ( name == "list_compare" && $('.shop-compare-count'));
 		var $buttonEl = name == "list_wishlist" ? $('button[data-type="shop-wishlist-button-add"]') : ( name == "list_compare" && $('button[data-type="shop-compare-button-add"]'));
-		var title = name == "list_wishlist" ? "yêu thích" : ( name == "list_compare" && "so sánh"); 
+		var title = name == "list_wishlist" ? "yêu thích" : ( name == "list_compare" && "so sánh");
 		var limit = 6;
 
 		// Set or Remove but no Handle
 		if(type && !handle){
-			swal("Có lỗi xảy ra..", "Vui lòng thử lại sau", "error"); 
+			swal("Có lỗi xảy ra..", "Vui lòng thử lại sau", "error");
 			return false;
 		}
 
@@ -226,7 +226,7 @@ F1GENZ.Helper = {
 
 		function renderWCS(local){
 			// Clear Dom
-			$domEl.hasClass('slick-slider') && $domEl.slick("unslick"); 
+			$domEl.hasClass('slick-slider') && $domEl.slick("unslick");
 			$domEl.html("");
 			$domEl.find('.wcs-null').remove();
 
@@ -236,15 +236,15 @@ F1GENZ.Helper = {
 			}
 			var listAjax = [];
 			var domLength = local.length > limit ? limit : local.length;
-			for(i = 0; i < domLength; i++){ 
+			for(i = 0; i < domLength; i++){
 				var flag_failedAjax = false;
 				$buttonEl && $(`.product-item[data-handle="${local[i]}"]`).find($buttonEl).addClass('inStorage');
 				if($domEl.find(`.product-item[data-handle="${local[i]}"]`).length === 0){
 					var ajax = $.ajax({
-						method: 'GET', 
+						method: 'GET',
 						async: false,
 						url: `/${local[i]}?view=${view}`,
-						success: function(data){ 
+						success: function(data){
 							if(data.toString().includes("<!doctype html>")) return false;
 							$domEl.append(data);
 						}
@@ -323,7 +323,7 @@ F1GENZ.Helper = {
 		var nextPrice = freePrice - curPrice;
 		// Set current percent
 		$('.shop-freeship .shop-freeship-bar .shop-freeship-bar-main span').css('width', `${perBar}%`);
-		// Set next price 
+		// Set next price
 		$('.shop-freeship .shop-freeship-note span').html('Mua thêm ' + Bizweb.formatMoney(nextPrice, window.F1GENZ_vars.formatMoney));
 		if(perBar >= 100){
 			$('.shop-freeship .shop-freeship-note').addClass('active');
@@ -334,7 +334,7 @@ F1GENZ.Helper = {
 		}
 	}
 };
-F1GENZ.General = { 
+F1GENZ.General = {
 	init: function(){
 		Fancybox.bind('[data-fancybox]', {
 			Carousel: false,
@@ -413,7 +413,7 @@ F1GENZ.General = {
 			var curImage = $(this).attr("data-image");
 			if(!curImage) return false;
 			$(this).addClass("active").siblings().removeClass("active");
-			$(this).parents(".product-item").find(".product-item-top-image-showcase img").attr("src", curImage); 
+			$(this).parents(".product-item").find(".product-item-top-image-showcase img").attr("src", curImage);
 		})
 	},
 	countdown_loop: function(){
@@ -472,11 +472,11 @@ F1GENZ.General = {
 		$('body').on('click', '.popup-noti .icon', function(e) {
 			e.preventDefault();
 			$(".popup-noti").toggleClass("active");
-		}); 
+		});
 		$('body').on('click', '.close-popup-noti', function(e) {
 			e.preventDefault();
 			$(".popup-noti").toggleClass("active");
-		}); 
+		});
 	},
 	shop_newletter: function(){
 		if($('.footers2 .footers2-letter-form').length > 0){
@@ -491,28 +491,28 @@ F1GENZ.General = {
 	},
 	shop_cart_action: function(){
 		// Open
-		$('body').on('click', 'button[data-type="shop-cart-header"]', function(){ 
+		$('body').on('click', 'button[data-type="shop-cart-header"]', function(){
 			if(window.F1GENZ_vars.template !== "cart") $('body, html').addClass('open-overplay open-noscroll open-cart');
 		});
 		// Close
-		$('body').on('click', 'button[data-type="shop-cart-sidebar-close"]', function(){ 
-			$('body, html').removeClass('open-noscroll open-overplay open-cart'); 
+		$('body').on('click', 'button[data-type="shop-cart-sidebar-close"]', function(){
+			$('body, html').removeClass('open-noscroll open-overplay open-cart');
 		});
 		// Change Quantity Item
-		$('body').on('change', '.shop-cart-item .shop-quantity-wrap input[name*="quantity_"]', function(){ 
-			F1GENZ.Helper.updateCart('update', $(this).parents('.shop-cart-item').attr('data-id'), +$(this).val()); 
+		$('body').on('change', '.shop-cart-item .shop-quantity-wrap input[name*="quantity_"]', function(){
+			F1GENZ.Helper.updateCart('update', $(this).parents('.shop-cart-item').attr('data-id'), +$(this).val());
 		});
 		// Remove Item
-		$('body').on('click', 'button[data-type="shop-cart-item-remove"]', function(){ 
-			F1GENZ.Helper.updateCart('delete', $(this).parents('.shop-cart-item').attr('data-id'), 0, $(this).attr('data-href')); 
+		$('body').on('click', 'button[data-type="shop-cart-item-remove"]', function(){
+			F1GENZ.Helper.updateCart('delete', $(this).parents('.shop-cart-item').attr('data-id'), 0, $(this).attr('data-href'));
 		});
 		// Open Note Cart
-		$('body').on('click', 'button[data-type="shop-cart-sidebar-note-action"]', function(){ 
-			$('.shop-cart-sidebar .shop-cart-sidebar-note').addClass('active'); 
+		$('body').on('click', 'button[data-type="shop-cart-sidebar-note-action"]', function(){
+			$('.shop-cart-sidebar .shop-cart-sidebar-note').addClass('active');
 		});
 		// Save Note Cart
-		$('body').on('click', 'button[data-type="shop-cart-sidebar-note-save"]', function(){ 
-			F1GENZ.Helper.updateCart('updateNote', 0, 0, $(this).prev().val()); 
+		$('body').on('click', 'button[data-type="shop-cart-sidebar-note-save"]', function(){
+			F1GENZ.Helper.updateCart('updateNote', 0, 0, $(this).prev().val());
 		});
 	},
 	add_item_action: function(){
@@ -531,17 +531,17 @@ F1GENZ.General = {
 			}else{
 				window.location.href = "/account";
 			}
-		}) 
+		})
 		$('body').on('click', '#accountModal .closeModal', function(){
 			$('#accountModal').modal('hide');
 		})
 	},
-	quantity_action: function(){ 
+	quantity_action: function(){
 		$('body').on('click', 'button[data-type*="shop-quantity"]', function(){
 			var type = $(this).attr('data-type');
 			if(type.toString() === 'shop-quantity-minus'){
 				if(+$(this).next().val() > 1)
-					$(this).next().val(+$(this).next().val() - 1) 
+					$(this).next().val(+$(this).next().val() - 1)
 					}else{
 						$(this).prev().val(+$(this).prev().val() + 1)
 					}
@@ -607,7 +607,7 @@ F1GENZ.General = {
 				$('.back-to-top').addClass('active');
 				$('.header').addClass("forFixed");
 				if(scroll_top > scroll_init){
-					$('header').addClass('active'); 
+					$('header').addClass('active');
 					scroll_init = scroll_top;
 				}else{
 					$('header').removeClass('active');
@@ -626,7 +626,7 @@ F1GENZ.General = {
 	backToTop:function(){
 		$('body').on("click", ".back-to-top", function(){
 			$('html, body').animate({
-				scrollTop: 0			
+				scrollTop: 0
 			}, 600);
 		});
 	},
@@ -641,10 +641,10 @@ F1GENZ.General = {
 			$('.main-article-share-cta').removeClass('show');
 			$('.shop-filter').removeClass('active');
 			$('body, html').removeClass('open-overplay open-noscroll open-home-sidebar open-wishlist open-compare open-filter-mobile open-cart open-smart-search open-share open-article-menu open-menu-mobile open-modalContact');
-			// Pos Item 
+			// Pos Item
 			$('.home-product-pos-item').removeClass('left right');
 			$('.home-product-big-image-pos').removeClass('left right');
-			if($(window).width() < 991){ 
+			if($(window).width() < 991){
 				$('.shop-filter').removeClass('active');
 				$('.shop-filter .shop-filter-list').slideUp();
 			}
@@ -670,7 +670,7 @@ F1GENZ.General = {
 			e.preventDefault();
 			$(this).parent().toggleClass('active');
 			$(this).parent().next().slideToggle();
-		}) 
+		})
 		$('.onlyMenuMob form input[type="email"]').placeholderTypewriter({
 			text: ["Bạn cần tư vấn?", "Nhập địa chỉ email của bạn..."]
 		});
@@ -729,7 +729,7 @@ F1GENZ.General = {
 		$('body').on('click', '.header-menu-left .header-menu-sidebar .hasChild > a', function(e){
 			e.preventDefault();
 			$(window).width() < 1200 && $(this).parent().toggleClass('activeChild');
-		}) 
+		})
 	},
 	toggleFooter: function(){
 		if($(window).width() <= 768){
@@ -782,19 +782,19 @@ F1GENZ.General = {
 			});
 
 			// Search smart
-			$('body').on('keyup', '.tool-search input[name="q"]', function(e){
-				e.preventDefault();
-				if(e.which !== 40 && e.which !== 38){
-					var s = $(this).val();
-					if(	typeof s === 'string' && s.length>0 ){
-						$.get('/search?type=product&q=' + encodeURIComponent(s) + '&view=smart', function(res){ 
-							$('.tool-search-smart').html(res).parent().addClass('active');
-						});
-					}else{
-						$('.tool-search-smart').parent().removeClass('active');
-					}
-				}
-			});
+			// $('body').on('keyup', '.tool-search input[name="q"]', function(e){
+			// 	e.preventDefault();
+			// 	if(e.which !== 40 && e.which !== 38){
+			// 		var s = $(this).val();
+			// 		if(	typeof s === 'string' && s.length>0 ){
+			// 			$.get('/search?type=product&q=' + encodeURIComponent(s) + '&view=smart', function(res){
+			// 				$('.tool-search-smart').html(res).parent().addClass('active');
+			// 			});
+			// 		}else{
+			// 			$('.tool-search-smart').parent().removeClass('active');
+			// 		}
+			// 	}
+			// });
 
 			// Close Search
 			$(document).on('mouseup touchstart', function(e) {
@@ -811,16 +811,16 @@ F1GENZ.General = {
 			})
 
 			// Submit
-			$('body').on('submit', '.tool-search', function(e){
-				e.preventDefault();
-				var s = $(this).find('input[name="q"]').val();
-				window.location.href = '/search?type=product&q=' + encodeURIComponent(s);
-			})
+			// $('body').on('submit', '.tool-search', function(e){
+			// 	e.preventDefault();
+			// 	var s = $(this).find('input[name="q"]').val();
+			// 	window.location.href = '/search?type=product&q=' + encodeURIComponent(s);
+			// })
 
 			// Mobile
 			$('body').on('click', '.header button[data-type="shop-search-mobile"]', function(e){
 				e.preventDefault();
-				$('.tool-search').toggleClass('show'); 
+				$('.tool-search').toggleClass('show');
 			})
 		}catch(e){
 			console.log(e);
@@ -869,7 +869,7 @@ F1GENZ.Wishlist = {
 		})
 	}
 }
-F1GENZ.Quickview = { 
+F1GENZ.Quickview = {
 	statusVariants: {},
 	statusOption1: {},
 	init:function(){
@@ -877,12 +877,12 @@ F1GENZ.Quickview = {
 		$('body').on('click', '#product-quickview button[data-type="product-quickview-add"]', function(){
 			let thisId = $('#product-quickview #product-quickview-select').val();
 			let thisVal = Number($('#product-quickview [name="product-quickview-quantity"]').val());
-			Fancybox.close(); 
+			Fancybox.close();
 			F1GENZ.Helper.updateCart('add', thisId, thisVal);
 		});
 		$('body').on('click', 'button[data-type="shop-quickview-button"]',function(){
 			let handle = $(this).parents('.product-item').attr('data-handle');
-			const fancy_quickview = new Fancybox([{ src: `/search?q=alias:${handle}&view=quickview`, type: "ajax" }], { 
+			const fancy_quickview = new Fancybox([{ src: `/search?q=alias:${handle}&view=quickview`, type: "ajax" }], {
 				infinite: false,
 				groupAttr: null,
 				hideScrollbar: false,
@@ -891,7 +891,7 @@ F1GENZ.Quickview = {
 				on: {
 					reveal: (fancybox, slide) => {
 						F1GENZ.Helper.productSlider('#product-quickview .product-quickview-feature', 1, 1, 1, 1, { arrows: true });
-						self.changeOption(); 
+						self.changeOption();
 						self.render();
 						self.setStatusVariants();
 						self.checkOptionFirst();
@@ -915,12 +915,12 @@ F1GENZ.Quickview = {
 				ops1.push(v['option1']);
 			}
 		});
-		self.statusVariants = opsAll; 
-		self.statusOption1 = ops1; 
+		self.statusVariants = opsAll;
+		self.statusOption1 = ops1;
 	},
 	checkOptionFirst: function(){
 		var self = this;
-		var flagClick0 = false; 
+		var flagClick0 = false;
 		$('#product-quickview .product-sw-line').eq(0).find('.product-sw-select-item input').addClass('soldOut').prop('checked',false);
 		$.each(self.statusOption1, function(keyC1, valC1){
 			$.each(self.statusVariants, function(keyC2, valC2){
@@ -948,7 +948,7 @@ F1GENZ.Quickview = {
 		if(name.indexOf(1) !== -1){
 			$('#product-quickview .product-sw-line').eq(1).find('.product-sw-select-item input').addClass('soldOut');//.prop('checked',false);
 			$('#product-quickview .product-sw-line').eq(2).find('.product-sw-select-item input').addClass('soldOut');//.prop('checked',false);
-			var flagClick1 = true; 
+			var flagClick1 = true;
 			$('#product-quickview .product-sw-line').eq(1).find('input').each(function(key1, val1){
 				var flagOption1 = $(this).val();
 				if(window.F1GENZ_vars.quickview.options.length === 3){
@@ -1015,7 +1015,7 @@ F1GENZ.Quickview = {
 	render: function(){
 		new Bizweb.OptionSelectors("product-quickview-select", { product: window.F1GENZ_vars.quickview, onVariantSelected: this.variants });
 	},
-	variants: function(variant, selector){ 
+	variants: function(variant, selector){
 		if(variant){
 			// Change Image
 			if(variant.image){
@@ -1130,7 +1130,7 @@ F1GENZ.PopSale = {
 			$(".pop-sale .pop-sale-img img").attr('src',contentPopup.image);
 			$( ".pop-sale" ).animate({ left: "20" }, 1000).delay(5000);
 			$( ".pop-sale" ).animate({ left: "-500" }, 1000)
-		},15000) 
+		},15000)
 	}
 }
 window.noPS && F1GENZ.General.init();

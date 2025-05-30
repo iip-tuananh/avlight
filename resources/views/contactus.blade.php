@@ -9,7 +9,6 @@ Liên hệ với chúng tôi
 {{url(''.$setting->logo)}}
 @endsection
 @section('css')
-    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/page.scssed63.css?1745557375056">
 @endsection
 @section('js')
 @endsection
@@ -112,14 +111,14 @@ Liên hệ với chúng tôi
         <div class="main-blog-breadcrumb" title="Về chúng tôi" style='margin-top: 10px'>
             <div class="container">
                 <div hidden class="section-title-all">
-                    <h1>Về chúng tôi</h1>
+                    <h1>Thông tin liên hệ</h1>
                 </div>
                 <div class="breadcrumb-wrap">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}" aria-label="Trang chủ" title="Trang chủ">Trang chủ</a></li>
 
 
-                        <li class="breadcrumb-item active"><span>Về chúng tôi</span></li>
+                        <li class="breadcrumb-item active"><span>Thông tin liên hệ</span></li>
                     </ol>
                 </div>		</div>
         </div>
@@ -225,18 +224,7 @@ Liên hệ với chúng tôi
 @endsection
 
 @push('script')
-    <!-- nếu chưa có, include jQuery + Toastr -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link   href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $('#contact').on('submit', function(e) {
             e.preventDefault();
             var $form = $(this);

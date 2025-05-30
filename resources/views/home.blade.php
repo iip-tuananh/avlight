@@ -298,12 +298,7 @@
                 </div>
                 <div class="home-product-new-slider">
                     @foreach($cateFeatured->products as $productFeatured)
-                        @php
-                            $img = json_decode($productFeatured->images);
-                        @endphp
-
                         @include('layouts.product.item', ['product' => $productFeatured])
-
                     @endforeach
                 </div>
             </section>

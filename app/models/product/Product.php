@@ -12,7 +12,8 @@ use  App\models\product\TypeProductTwo;
 class Product extends Model
 {
     protected $table = "products";
-    protected $fillable = ['name', 'slug', 'price', 'discount', 'images', 'description', 'content', 'status', 'discountStatus', 'url_origin', 'category', 'type_cate', 'type_two', 'preserve', 'ingredient', 'species', 'origin', 'thickness', 'hang_muc'];
+    protected $fillable = ['name', 'slug', 'price', 'discount', 'images', 'description', 'content', 'status', 'discountStatus', 'url_origin', 'category', 'type_cate', 'type_two',
+        'preserve', 'ingredient', 'species', 'origin', 'thickness', 'hang_muc', 'cate_slug' , 'type_slug'];
     public function rule()
     {
         return [
@@ -28,11 +29,11 @@ class Product extends Model
     }
     public function cate()
     {
-        return $this->hasOne(Category::class,'id','category');
+        return $this->belongsTo(Category::class,'category');
     }
     public function typecate()
     {
-        return $this->hasOne(TypeProduct::class,'id','type_cate');
+        return $this->belongsTo(TypeProduct::class,'type_cate');
     }
     public function createOrEdit($request)
     {

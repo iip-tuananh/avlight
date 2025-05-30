@@ -97,9 +97,9 @@ F1GENZ.Product = {
 		}
 	},
 	addCart: function(){
-		$('body').on('click', 'button[data-type="main-product-add"]', function(){
-			F1GENZ.Helper.updateCart("add", $('.main-product #main-product-select').val(), +$('.main-product [name="quantity"]').val());
-		})
+		// $('body').on('click', 'button[data-type="main-product-add"]', function(){
+		// 	F1GENZ.Helper.updateCart("add", $('.main-product #main-product-select').val(), +$('.main-product [name="quantity"]').val());
+		// })
 	},
 	statusVariants: {},
 	statusOption1: {},
