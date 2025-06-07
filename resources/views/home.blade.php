@@ -267,7 +267,7 @@
 
 
     <style>
-        h2.m-reset.f-size-6.f-superbold {
+        h2.m-reset.f-size-5.f-superbold {
             position: relative;
             display: inline-block;
             padding-bottom: 0.5em;  /* khoảng cách giữa text và gạch */
@@ -275,7 +275,7 @@
         }
 
         /* 2. Vẽ gạch bằng pseudo-element */
-        h2.m-reset.f-size-6.f-superbold::after {
+        h2.m-reset.f-size-5.f-superbold::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -291,9 +291,10 @@
         @foreach($categoriesFeatured as $cateFeatured)
             <section class="home-product-new section-distance container">
                 <div class="d-flex-vertical d-flex-center layout-gap-0.5unit home-product-header home-custom-header">
-                    <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">{{languageName($cateFeatured->name)}}</h2>
+                    <h2 class="m-reset f-size-5 f-superbold limit-line threeline f-center text-primary-color">{{languageName($cateFeatured->name)}}</h2>
                     <div class="home-custom-header-flex d-flex-vertical d-flex-center">
-                        <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="{{ route('allListProCate', ['danhmuc' => $cateFeatured->slug]) }}" title="Xem tất cả">Xem tất cả</a>
+                        <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header"  style='color: #333333'
+                           href="{{ route('allListProCate', ['danhmuc' => $cateFeatured->slug]) }}" title="Xem tất cả">Xem tất cả</a>
                     </div>
                 </div>
                 <div class="home-product-new-slider">
@@ -370,7 +371,7 @@
         }
 
         .site-title {
-            font-size: 2.5rem;
+            font-size: 2.1rem;
             font-weight: 700;
             color: #fff;
             line-height: 1.2;
@@ -643,7 +644,7 @@
 
     <div class="home-banner-double section-distance" style='margin-top: 50px'>
         <div class="d-flex-vertical d-flex-center layout-gap-0.5unit  home-custom-header  ">
-            <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">Dự án của chúng tôi</h2>
+            <h2 class="m-reset f-size-5 f-superbold limit-line threeline f-center text-primary-color">Dự án của chúng tôi</h2>
             <div class='home-custom-header-flex'>
             </div>
             <div class="home-custom-header-flex d-flex-vertical d-flex-center">
@@ -977,7 +978,7 @@
         <div class="container">
             <div class="home-blog-wrap">
                 <div class="d-flex-vertical d-flex-center layout-gap-0.5unit  home-custom-header">
-                    <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">Giải pháp của chúng tôi</h2>
+                    <h2 class="m-reset f-size-5 f-superbold limit-line threeline f-center text-primary-color">Giải pháp của chúng tôi</h2>
                 </div>
                 <div class="home-blog-main">
                     <div class="home-blog-items">
@@ -1023,7 +1024,7 @@
                         </picture>
                     </a>
                     <div class="home-banner-lg-item d-flex d-flex-center d-flex-vertical layout-gap-2unit">
-                        <h2 class="w-text f-size-6 limit-line threeline f-bold m-reset">{{ $bannerAd->name }}</h2>
+                        <h2 class="w-text f-size-5 limit-line threeline f-bold m-reset">{{ $bannerAd->name }}</h2>
                         <p class="w-text f-size-3 limit-line fiveline m-reset">{{ $bannerAd->description }}</p>
 
                         <a href="{{ $bannerAd->link }}" title="Khám phá ngay " class="home-banner-lg-button primary-btn">
@@ -1483,7 +1484,7 @@
 
     <section class="home-vendor section-distance" style='margin-top: 60px'>
         <div class="d-flex-vertical d-flex-center layout-gap-0.5unit  home-custom-header">
-            <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">Đối tác</h2>
+            <h2 class="m-reset f-size-5 f-superbold limit-line threeline f-center text-primary-color">Đối tác</h2>
         </div>
 
         <div class="home-vendor-flex">

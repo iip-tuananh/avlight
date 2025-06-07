@@ -33,7 +33,7 @@
             {{--                     src="/frontend/assets/main_collection_bannered63.jpg?1745557375056" alt="{{ $title }}"/>--}}
             {{--            </div>--}}
             <style>
-                h2.m-reset.f-size-6.f-superbold {
+                h2.m-reset.f-size-5.f-superbold {
                     position: relative;
                     display: inline-block;
                     padding-bottom: 0.5em;  /* khoảng cách giữa text và gạch */
@@ -41,7 +41,7 @@
                 }
 
                 /* 2. Vẽ gạch bằng pseudo-element */
-                h2.m-reset.f-size-6.f-superbold::after {
+                h2.m-reset.f-size-5.f-superbold::after {
                     content: '';
                     position: absolute;
                     bottom: 0;
@@ -57,15 +57,15 @@
                 @foreach($productCategories as $productType)
                     <section class="home-product-new section-distance container">
                         <div class="d-flex-vertical d-flex-center layout-gap-0.5unit home-product-header home-custom-header">
-                            <h2 class="m-reset f-size-6 f-superbold limit-line threeline f-center text-primary-color">{{languageName($productType->name)}}</h2>
+                            <h2 class="m-reset f-size-5 f-superbold limit-line threeline f-center text-primary-color">{{languageName($productType->name)}}</h2>
                             <div class="home-custom-header-flex d-flex-vertical d-flex-center">
                                 @if(@$hasTypeTwo && $hasTypeTwo)
-                                    <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header"
+                                    <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" style='color: #333333'
                                        href="{{route('allListTypeTwo',['danhmuc'=>$productType->cate_slug,'loaidanhmuc'=>$productType->type_slug,'thuonghieu'=>$productType->slug])}}"
                                        title="Xem tất cả">Xem tất cả</a>
 
                                 @else
-                                    <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="{{ route('allListType', ['danhmuc' => $productType->cate_slug, 'loaidanhmuc' => $productType->slug]) }}" title="Xem tất cả">Xem tất cả</a>
+                                    <a style='color: #333333' class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header" href="{{ route('allListType', ['danhmuc' => $productType->cate_slug, 'loaidanhmuc' => $productType->slug]) }}" title="Xem tất cả">Xem tất cả</a>
 
                                 @endif
                             </div>

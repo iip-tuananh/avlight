@@ -396,7 +396,7 @@ td {
 }
 
 a {
-    color: var(--color1)
+    color: #fff;
 }
 
 a:hover {
@@ -1465,14 +1465,14 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left:hover svg, .header .header-menu .header-menu-wrap .header-menu-left span {
-    fill: var(--color_main);
-    color: var(--color_main)
+    fill: #fff;
+    color: #fff;
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left svg {
     width: 20px;
     height: 20px;
-    fill: var(--color);
+    fill: #fff;
     padding-left: 5px
 }
 
@@ -1503,9 +1503,9 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     top: 100%;
     left: 0;
     right: 0;
-    background: #FFF;
+    background: #f58321;
     border: 1px solid #CCC;
-    border-top: 3px solid var(--color_main)
+    border-top: 3px solid #ffffff;
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left .header-menu-sidebar.active {
@@ -1543,7 +1543,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left .header-menu-sidebar > ul > li.hasChild:hover > a {
-    color: var(--color_main)
+    color: #FFFFFF;
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left .header-menu-sidebar > ul > li.activeChild > a span {
@@ -1657,7 +1657,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 .header .header-menu .header-menu-wrap .header-menu-left .header-menu-sidebar > ul > li > .menu1 > li > a {
     display: block;
     font-weight: bold;
-    color: var(--color_main)
+    color: #333333
 }
 
 .header .header-menu .header-menu-wrap .header-menu-left .header-menu-sidebar > ul > li > .menu1 > li > a:hover {
@@ -2336,14 +2336,14 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 
     .header-menu-horizontal > nav .menu0 li ul {
         position: absolute;
-        background: #FFF;
+        background: #f58321;
         z-index: 9;
         width: 185px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
         visibility: hidden;
         opacity: 0;
         transition: all .25s ease;
-        border-top: 3px solid var(--color_main)
+        border-top: 3px solid #ffffff;
     }
 
     .header-menu-horizontal > nav .menu0 > li {
@@ -2351,17 +2351,17 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     }
 
     .header-menu-horizontal > nav .menu0 > li > a {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 400;
         letter-spacing: 0.5px
     }
 
     .header-menu-horizontal > nav .menu0 > li > a:hover {
-        color: var(--color_main)
+        color: #ffffff;
     }
 
     .header-menu-horizontal > nav .menu0 > li > a:hover svg, .header-menu-horizontal > nav .menu0 > li > a:hover svg * {
-        fill: var(--color_main)
+        fill: #ffffff
     }
 
     .header-menu-horizontal > nav .menu0 > li .menu1 {
@@ -2397,8 +2397,8 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     }
 
     .header-menu-horizontal > nav .menu0 > li .menu1 li > a:hover {
-        background: var(--color_main);
-        color: var(--color2)
+        /*background: var(--color_main);*/
+        /*color: var(--color2)*/
     }
 
     .header-menu-horizontal > nav .menu0 > li .menu1 li > a:hover svg, .header-menu-horizontal > nav .menu0 > li .menu1 li > a:hover svg * {
@@ -2431,8 +2431,8 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
         outline: none !important;
         padding: 0;
         box-shadow: none;
-        color: var(--color1);
-        font-weight: 300;
+        color: #ffffff;
+        font-weight: 400;
         opacity: .5;
         font-size: 12px
     }
@@ -2484,6 +2484,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     }
 
     .header-menu-horizontal nav .menu0 li a {
+        color: #333333;
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
@@ -3807,6 +3808,10 @@ footer.footers2 .footers2-wrap .footers2-bot p a strong:hover {
 
 .breadcrumb-wrap ol .breadcrumb-item {
     padding: 0
+}
+
+.breadcrumb-item a {
+    color: #0f1824;
 }
 
 @media (max-width: 768px) {
