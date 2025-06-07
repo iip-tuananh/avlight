@@ -311,7 +311,7 @@
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/plugined63.css?1745557375056">
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/fancyed63.css?1745557375056">
-    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/main.scssed63.css?17455573750561234">
+    <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/main.scssed63.css?v=1745557375056123412">
     <!-- INDEX -->
     <link rel="preload stylesheet" as="style" fetchpriority="low" href="/frontend/assets/index.scssed63.css?1745557375056">
     <!-- COLLECTION -->
