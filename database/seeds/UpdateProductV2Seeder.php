@@ -12,6 +12,6 @@ class UpdateProductV2Seeder extends Seeder
      */
     public function run()
     {
-        $products = Product::query()->where('category', 5)->delete();
+        // $products = Product::query()->where('category', 5)->delete();
     }
 }
