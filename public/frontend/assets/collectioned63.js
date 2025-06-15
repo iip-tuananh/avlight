@@ -1,6 +1,5 @@
-F1GENZ.Collection = { 
+F1GENZ.Collection = {
 	selectedSortby: null,
-	filter: new Bizweb.SearchFilter(),
 	init: function(){
 		this.firstAddCol();
 		this.action();
@@ -48,7 +47,7 @@ F1GENZ.Collection = {
 			self.buildQuery(1);
 		})
 
-		// Remove All Choose 
+		// Remove All Choose
 		$('body').on('click', '.shop-filter-choose label button[data-type="shop-filter-choose-remove"]', function(){
 			$('.shop-filter .shop-filter-list .shop-filter-item input:checked').prop('checked', false);
 			self.filter = new Bizweb.SearchFilter();
@@ -56,11 +55,11 @@ F1GENZ.Collection = {
 			self.buildQuery(1);
 		})
 
-		// Remove Choose 
+		// Remove Choose
 		$('body').on('click', '.shop-filter-choose li', function(){
 			var group = $(this).attr("data-group");
 			var field = $(this).attr("data-field");
-			var value = $(this).attr("data-value"); 
+			var value = $(this).attr("data-value");
 			var operator = $(this).attr("data-operator");
 			$(`.shop-filter .shop-filter-list .shop-filter-item input[data-group="${group}"][data-field="${field}"][value="${value}"][data-operator="${operator}"]`).trigger("click");
 		})
@@ -77,7 +76,7 @@ F1GENZ.Collection = {
 				self.renderChoosen('delete', group, field, value, operator, text);
 			}
 			else{
-				self.filter.addValue(group, field, value, operator); 
+				self.filter.addValue(group, field, value, operator);
 				self.renderChoosen('add', group, field, value, operator, text);
 			}
 			self.buildQuery(1);
@@ -121,7 +120,7 @@ F1GENZ.Collection = {
 		if(!options) options = {};
 		$('.shop-sort-by select').val(options.sortby);
 		var url = self.filter.buildSearchUrl(options);
-		var queryString = url.slice(url.indexOf('?'));			  
+		var queryString = url.slice(url.indexOf('?'));
 		window.history.pushState({
 			turbolinks: true,
 			url: queryString

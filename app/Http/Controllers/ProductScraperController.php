@@ -21,33 +21,34 @@ class ProductScraperController extends Controller
         ]);
 
         $client = new Client($httpClient);
-        $domain = 'https://toavietnam.net';
+        $domain = 'https://acsaudio.vn/';
 
         // $page = 1;
         // do {
             // B1: Truy cập trang danh mục
-            $crawler = $client->request('GET', $domain . '/category-3-min0-max0-attr0-5-goods_id-ASC-thiet-bi-dau-vao.html');
+            $crawler = $client->request('GET', $domain . '/thiet-bi-xu-ly');
+            // dd($crawler->filter('main .category-page-row .products .product')->html());
             // dd($crawler->html());
 
             // B2: Lấy tất cả link chi tiết sản phẩm
-            $crawler->filter('.grid .goodsbox')->each(function ($node) use ($client, $domain) {
-                $relativeUrl = $node->filter('.goodsboxtop .imgbox a')->attr('href');
+            $crawler->filter('main .category-page-row .products .product')->each(function ($node) use ($client, $domain) {
+                $relativeUrl = $node->filter('.product-small .box-image .image-fade_in_back a')->attr('href');
                 $productUrl = str_starts_with($relativeUrl, 'http') ? $relativeUrl : $domain . '/' . $relativeUrl;
                 $images = [];
 
-                $name = $node->filter('.goodsboxtop .goods_title')->text();
+                $name = $node->filter('.box-text-products .title-wrapper .woocommerce-loop-product__title .woocommerce-loop-product__link')->text();
 
-                $price = $node->filter('.goodsboxtop .f1')->text();
-                $price = str_replace(' VNĐ', '', $price);
-                $price = str_replace(',', '', $price);
+                $price = $node->filter('.box-text-products .price')->text();
+                $price = str_replace('đ', '', $price);
+                $price = str_replace('.', '', $price);
                 $price = (int) $price;
 
-                $src = $node->filter('.goodsboxtop .imgbox img')->count() ? $node->filter('.goodsboxtop .imgbox img')->attr('src') : '';
-                if (!empty($src)) {
-                    $src = str_starts_with($src, 'http') ? $src : $domain . '/' . $src;
-                    $image = $this->downloadImage($src);
-                    $images[] = $image['path'];
-                }
+                // $src = $node->filter('.goodsboxtop .imgbox img')->count() ? $node->filter('.goodsboxtop .imgbox img')->attr('src') : '';
+                // if (!empty($src)) {
+                //     $src = str_starts_with($src, 'http') ? $src : $domain . '/' . $src;
+                //     $image = $this->downloadImage($src);
+                //     $images[] = $image['path'];
+                // }
 
                 // $description = '';
                 // B3: Truy cập trang chi tiết sản phẩm
@@ -59,21 +60,23 @@ class ProductScraperController extends Controller
                 // $name = $productCrawler->filter('head title')->count() ? $productCrawler->filter('head title')->text() : '';
                 // $price = $productCrawler->filter('span.price')->text();
                 $description = $productCrawler->filter('meta[name="description"]')->count() ? $productCrawler->filter('meta[name="description"]')->attr('content') : '';
-                $content = '';
+                $content = $productCrawler->filter('main .product .section-content div.woocommerce-Tabs-panel--description')->html();
 
-                // $src = $productCrawler->filter('.product-images #gallery_02 img')->count() ? $productCrawler->filter('.product-images #gallery_02 img')->attr('src') : '';
+                // $src = $productCrawler->filter('.product-thumbnails div.col img')->count() ? $productCrawler->filter('.product-thumbnails div.col img')->attr('src') : '';
+                // dd($src);
                 // if (!empty($src)) {
-                    // $src = str_starts_with($src, 'http') ? $src : $domain . '/' . $src;
-                    // $image = $this->downloadImage($src);
-                    // $images[] = $image['path'];
-                // }
-
-                // dd($name, $content, $description, $src, $price);
-                // $productCrawler->filter('.col-sm-5 img.img-rounded')->each(function ($node) use (&$images, $domain) {
-                //     $src = str_starts_with($node->attr('src'), 'http') ? $node->attr('src') : $domain . '/' . $node->attr('src');
+                //     $src = str_starts_with($src, 'http') ? $src : $domain . '/' . $src;
                 //     $image = $this->downloadImage($src);
                 //     $images[] = $image['path'];
-                // });
+                // }
+
+                $productCrawler->filter('.product-images .product-gallery-slider img')->each(function ($node) use (&$images, $domain) {
+                    $src = str_starts_with($node->attr('data-src'), 'http') ? $node->attr('data-src') : $domain . '/' . $node->attr('data-src');
+                    $image = $this->downloadImage($src);
+                    $images[] = $image['path'];
+                });
+                // dd($name, $content, $description, $srcs, $price);
+
                 // $price = $productCrawler->filter('.product-page-price .amount')->text();
                 // $price = str_replace('₫', '', $price);
                 // $price = str_replace(',', '', $price);
@@ -110,8 +113,8 @@ class ProductScraperController extends Controller
                         'discountStatus' => 1,
 
                         // Lưu ý cần thay đổi category và type_cate
-                        'category' => 1,
-                        'type_cate' => 7,
+                        'category' => 5,
+                        'type_cate' => 27,
 
                         'url_origin' => $productUrl,
                     ]

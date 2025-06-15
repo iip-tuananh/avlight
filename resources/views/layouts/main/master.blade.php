@@ -17,34 +17,34 @@
 {{--        <div class="shop-mobar-wrap">--}}
 {{--            <ul>--}}
 {{--                <li>--}}
-{{--                    <a class="" aria-label="F1GENZ Smart Furniture - Trang chủ"--}}
+{{--                    <a class="" aria-label="Trang chủ"--}}
 {{--                       href="index.html" title="Trang chủ">--}}
 {{--                        <img loading="lazy" decoding="async" width="64" height="64"--}}
-{{--                             src="/frontend/assets/shop_mobar_item_image_1ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Trang chủ" title="Trang chủ">--}}
+{{--                             src="/frontend/assets/shop_mobar_item_image_1ed63.png?1745557375056" alt="Trang chủ" title="Trang chủ">--}}
 {{--                        <span>Trang chủ</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
 {{--                <li>--}}
-{{--                    <a class="" aria-label="F1GENZ Smart Furniture - Trang sản phẩm"--}}
+{{--                    <a class="" aria-label="Trang sản phẩm"--}}
 {{--                       href="collections/all.html" title="Trang sản phẩm">--}}
 {{--                        <img loading="lazy" decoding="async" width="64" height="64"--}}
-{{--                             src="/frontend/assets/shop_mobar_item_image_2ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Trang sản phẩm" title="Trang sản phẩm">--}}
+{{--                             src="/frontend/assets/shop_mobar_item_image_2ed63.png?1745557375056" alt="Trang sản phẩm" title="Trang sản phẩm">--}}
 {{--                        <span>Trang sản phẩm</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
 {{--                <li>--}}
-{{--                    <a class="" aria-label="F1GENZ Smart Furniture - Trang tin tức"--}}
+{{--                    <a class="" aria-label="Trang tin tức"--}}
 {{--                       href="blogs/all.html" title="Trang tin tức">--}}
 {{--                        <img loading="lazy" decoding="async" width="64" height="64"--}}
-{{--                             src="/frontend/assets/shop_mobar_item_image_3ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Trang tin tức" title="Trang tin tức">--}}
+{{--                             src="/frontend/assets/shop_mobar_item_image_3ed63.png?1745557375056" alt="Trang tin tức" title="Trang tin tức">--}}
 {{--                        <span>Trang tin tức</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
 {{--                <li>--}}
-{{--                    <a class="tool-contact-popup" aria-label="F1GENZ Smart Furniture - Đăng ký"--}}
+{{--                    <a class="tool-contact-popup" aria-label="Đăng ký"--}}
 {{--                       href="account/logina3b1.html" title="Đăng ký">--}}
 {{--                        <img loading="lazy" decoding="async" width="64" height="64"--}}
-{{--                             src="/frontend/assets/shop_mobar_item_image_4ed63.png?1745557375056" alt="F1GENZ Smart Furniture - Đăng ký" title="Đăng ký">--}}
+{{--                             src="/frontend/assets/shop_mobar_item_image_4ed63.png?1745557375056" alt="Đăng ký" title="Đăng ký">--}}
 {{--                        <span>Đăng ký</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
@@ -113,32 +113,32 @@ HOTLINE:  1900.63.60.99">
         </div>
     </div>
     <div class="shop-social-sidebar">
-        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Zalo" aria-label="F1GENZ Smart Furniture - Zalo" target="_blank">
+        <a class="hiddenMob" style="background-color: #ffffff;" href="https://zalo.me/{{ $setting->phone1 }}" title="Zalo" aria-label="Zalo" target="_blank">
             <img width="32" height="32" loading="lazy" decoding="async"
                  src="/frontend/assets/shop_social_sidebar_item_image_1ed63.png?1745557375056" alt="Social Zalo" title="Social Zalo">
             Zalo
         </a>
-        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Snapchat" aria-label="F1GENZ Smart Furniture - Snapchat" target="_blank">
+        <a class="hiddenMob" style="background-color: #ffffff;" href="https://www.snapchat.com/add/{{ $setting->phone1 }}" title="Snapchat" aria-label="Snapchat" target="_blank">
             <img width="32" height="32" loading="lazy" decoding="async"
                  src="/frontend/assets/shop_social_sidebar_item_image_2ed63.png?1745557375056" alt="Social Snapchat" title="Social Snapchat">
             Snapchat
         </a>
-        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Tiktok" aria-label="F1GENZ Smart Furniture - Tiktok" target="_blank">
+        <a class="hiddenMob" style="background-color: #ffffff;" href="{{ $setting->tiktok }}" title="Tiktok" aria-label="Tiktok" target="_blank">
             <img width="32" height="32" loading="lazy" decoding="async"
                  src="/frontend/assets/shop_social_sidebar_item_image_3ed63.png?1745557375056" alt="Social Tiktok" title="Social Tiktok">
             Tiktok
         </a>
-        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Instagram" aria-label="F1GENZ Smart Furniture - Instagram" target="_blank">
+        <a class="hiddenMob" style="background-color: #ffffff;" href="{{ $setting->instagram }}" title="Instagram" aria-label="Instagram" target="_blank">
             <img width="32" height="32" loading="lazy" decoding="async"
                  src="/frontend/assets/shop_social_sidebar_item_image_4ed63.png?1745557375056" alt="Social Instagram" title="Social Instagram">
             Instagram
         </a>
-        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Youtube" aria-label="F1GENZ Smart Furniture - Youtube" target="_blank">
+        <a class="hiddenMob" style="background-color: #ffffff;" href="{{ $setting->youtube }}" title="Youtube" aria-label="Youtube" target="_blank">
             <img width="32" height="32" loading="lazy" decoding="async"
                  src="/frontend/assets/shop_social_sidebar_item_image_5ed63.png?1745557375056" alt="Social Youtube" title="Social Youtube">
             Youtube
         </a>
-        <a class="hiddenMob" style="background-color: #ffffff;" href="collections/all.html" title="Messenger" aria-label="F1GENZ Smart Furniture - Messenger" target="_blank">
+        <a class="hiddenMob" style="background-color: #ffffff;" href="{{ $setting->facebook }}" title="Messenger" aria-label="Messenger" target="_blank">
             <img width="32" height="32" loading="lazy" decoding="async"
                  src="/frontend/assets/shop_social_sidebar_item_image_6ed63.png?1745557375056" alt="Social Messenger" title="Social Messenger">
             Messenger
@@ -150,13 +150,6 @@ HOTLINE:  1900.63.60.99">
             Lên đầu trang
         </button>
     </div>
-    <script>
-        if(f1genzPS){
-            var scriptTiktok = document.createElement("script");
-            scriptTiktok.src = "/frontend/assets/embed_v1.0.13.js";
-            $("head").append(scriptTiktok);
-        }
-    </script>
 
     <script >
         $("body").removeClass("preload");
@@ -166,21 +159,6 @@ HOTLINE:  1900.63.60.99">
         });
         if(window.noPS){
             window.addEventListener("load", (event) => {
-                if($('input[name="Token"]').length > 0){
-                    $.getScript('../www.google.com/recaptcha/apif78f.js?render=6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK').done(function(s,r){
-                        $('head').append(s);
-                        $('input[name="Token"]').each(function(){
-                            var flagId = $(this).attr('id');
-                            grecaptcha.ready(function() {
-                                grecaptcha.execute('6Ldtu4IUAAAAAMQzG1gCw3wFlx_GytlZyLrXcsuK', {action: 'submit'})
-                                    .then(function(token) {
-                                        document.getElementById(flagId).value = token;
-                                    });
-                            });
-                        })
-                    });
-                }
-
                 $('img[loading="lazy"]').each(function(){
                     $(this).removeAttr('loading');
                 })
@@ -195,15 +173,8 @@ HOTLINE:  1900.63.60.99">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
 
-    <script src='/frontend/assets/cart.js'></script>
+    {{-- <script src='/frontend/assets/cart.js'></script> --}}
 
     <script>
         function nextUrl(el) {

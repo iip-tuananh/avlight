@@ -476,7 +476,7 @@ F1GENZ.Product = {
 		})
 	},
 	relate: function(){
-        console.log($('.main-product-relate').length)
+        // console.log($('.main-product-relate').length)
 		if($('.main-product-relate').length > 0 && $('.main-product-relate .product-item').length > 0){
 			F1GENZ.Helper.productSlider('.main-product .main-product-relate .main-product-relate-data', 5, 3, 3, 1, { arrows: true });
 		}

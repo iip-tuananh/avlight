@@ -92,7 +92,7 @@
                     @else
                         <div class="main-product-price">
                             <div class="main-product-price-wrap">
-                                <span class="main-product-price-this">Đang cập nhật</span>
+                                <span class="main-product-price-this">Đang cập nhật giá</span>
                             </div>
                             <div class="sapo-product-reviews-badge" data-id="36799044"></div>
                         </div>

@@ -227,7 +227,7 @@
                     .header-menu-horizontal nav .menu0 > li .menu1 li a {
                         display: block;
                         padding: 0.75rem 1.25rem;
-                        color: #ffffff;                            /* chữ xám khi bình thường */
+                        color: #333333;                            /* chữ xám khi bình thường */
                         background-color: transparent;             /* nền trong suốt */
                         border-left: 4px solid transparent;        /* chuẩn bị cho accent bar */
                         transition:
@@ -240,7 +240,7 @@
                     /* 2. Hiệu ứng hover nhẹ nhàng */
                     .header-menu-horizontal nav .menu0 > li .menu1 li a:hover {
                         background-color: rgba(255, 152, 0, 0.1);  /* nền cam very-light */
-                        color: #ffffff;                            /* chữ cam nổi bật */
+                        color: #333333;                            /* chữ cam nổi bật */
                         border-left-color: #ff9800;                /* thanh accent bar bên trái */
                         padding-left: 1.5rem;                      /* đẩy text vào để có không gian accent */
                     }

@@ -49,22 +49,6 @@
         }
     </script>
     <script>
-        window.BizwebAnalytics = window.BizwebAnalytics || {};
-        window.BizwebAnalytics.meta = window.BizwebAnalytics.meta || {};
-        window.BizwebAnalytics.meta.currency = 'VND';
-        window.BizwebAnalytics.tracking_url = 's.html';
-
-        var meta = {};
-
-        meta.product = {"id": 36799044, "vendor": "F1GENZ", "name": "Ghế trơn đen cao cấp",
-            "type": "Ghế", "price": 2100000 };
-
-
-        for (var attr in meta) {
-            window.BizwebAnalytics.meta[attr] = meta[attr];
-        }
-    </script>
-    <script>
         window.F1GENZ_vars = {
             template: "index",
             formatMoney: "@{{amount_no_decimals_with_comma_separator}}₫",
@@ -147,12 +131,6 @@
         .preload * { -webkit-transition: none !important; -moz-transition: none !important; -ms-transition: none !important;	-o-transition: none !important; }
         .w-100{ width: 100% !important; }
     </style>
-
-    <link rel="dns-prefetch" href="index.html">
-    <link rel="dns-prefetch" href="http://hstatic.net/">
-    <link rel="dns-prefetch" href="http://theme.hstatic.net/">
-    <link rel="dns-prefetch" href="http://product.hstatic.net/">
-    <link rel="dns-prefetch" href="http://file.hstatic.net/">
     <style>
         :root{
             --color_bg: #FFF;
@@ -343,7 +321,7 @@
     <script fetchpriority="low" defer src="/frontend/assets/mained63.js?17455573750561122"></script>
     <script fetchpriority="low" defer src="/frontend/assets/jquery.elevatezoom.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/plyr.min.js"></script>
-    <script fetchpriority="low" defer src="/frontend/assets/imagesloaded.pkgd.min.js"></script>
+    <script fetchpriority="low" defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/isotope.pkgd.min.js"></script>
     <script fetchpriority="low" defer src="/frontend/assets/indexed63.js?1745557375056"></script>
     <script fetchpriority="low" defer src="/frontend/assets/collectioned63.js?1745557375056"></script>

@@ -83,116 +83,116 @@ F1GENZ.Helper = {
 			}
 		})
 	},
-	getCart: function(){
-		$.ajax({
-			type:"GET",
-			url:"/cart.js",
-			dataType: 'json',
-			async: false,
-			success: function(data){
-				F1GENZ.Helper.freeship(data);
-				$('button[data-type="shop-cart-header"] .shop-cart-count').html(data.item_count);
-				$('.shop-cart-sidebar a.toCheckout span:last-child').html(Bizweb.formatMoney(data.total_price, window.F1GENZ_vars.formatMoney))
-				$('.shop-cart-sidebar .shop-cart-sidebar-note textarea').val(data.note);
-				if(data.item_count === 0){
-					$('.shop-cart-sidebar-body').html('<div class="shop-cart-sidebar-no">Giỏ hàng của bạn còn trống</div>')
-				}else{
-					$('.shop-cart-sidebar-body').html('<div class="shop-cart-sidebar-yes"></div>')
-				}
+	// getCart: function(){
+	// 	$.ajax({
+	// 		type:"GET",
+	// 		url:"/cart.js",
+	// 		dataType: 'json',
+	// 		async: false,
+	// 		success: function(data){
+	// 			F1GENZ.Helper.freeship(data);
+	// 			$('button[data-type="shop-cart-header"] .shop-cart-count').html(data.item_count);
+	// 			$('.shop-cart-sidebar a.toCheckout span:last-child').html(Bizweb.formatMoney(data.total_price, window.F1GENZ_vars.formatMoney))
+	// 			$('.shop-cart-sidebar .shop-cart-sidebar-note textarea').val(data.note);
+	// 			if(data.item_count === 0){
+	// 				$('.shop-cart-sidebar-body').html('<div class="shop-cart-sidebar-no">Giỏ hàng của bạn còn trống</div>')
+	// 			}else{
+	// 				$('.shop-cart-sidebar-body').html('<div class="shop-cart-sidebar-yes"></div>')
+	// 			}
 
-				if(window.F1GENZ_vars.template == "cart"){
-					var attr = data.attributes;
-					if(!$.isEmptyObject(attr)){
-						$('.main-cart-data-full-invoice input[name="main-cart-data-full-invoice"]').prop('checked', true);
-						$('.main-cart-data-full-invoice .main-cart-data-full-invoice-data').show();
-						$.each(attr, (key, value) => {
-							$(`.main-cart-data-full-invoice input[name="${key}"]`).val(value);
-						})
-					}
-				}
-			}
-		})
-		$.ajax({
-			type:"GET",
-			url:"/cart?view=item",
-			async: false,
-			success: function(data){
-				$('.shop-cart-sidebar .shop-cart-sidebar-yes').html('').append(data);
-			}
-		});
-	},
-	updateCart: function(type, id, quantity, string){
-		switch(type) {
-			case "add":
-				$.ajax({
-					type: 'POST',
-					async: false,
-					url: '/cart/add.js',
-					data:  { variantId: id, quantity: quantity },
-					dataType: 'json',
-					success: function(cart) {
-						if(string == 'checkout') window.location.href = "/checkout";
-						swal({
-							title: "Cảm ơn bạn!",
-							text: "Sản phẩm đã được thêm vào giỏ thành công",
-							type: "success",
-							showCancelButton: true,
-							cancelButtonText: "Tiếp tục mua sắm",
-							cancelButtonColor: "var(--color_main2)",
-							confirmButtonColor: "var(--color_main)",
-							confirmButtonText: "Đến giỏ hàng",
-							closeOnConfirm: false
-						}, function() {
-							window.location.href="/cart";
-						});
+	// 			if(window.F1GENZ_vars.template == "cart"){
+	// 				var attr = data.attributes;
+	// 				if(!$.isEmptyObject(attr)){
+	// 					$('.main-cart-data-full-invoice input[name="main-cart-data-full-invoice"]').prop('checked', true);
+	// 					$('.main-cart-data-full-invoice .main-cart-data-full-invoice-data').show();
+	// 					$.each(attr, (key, value) => {
+	// 						$(`.main-cart-data-full-invoice input[name="${key}"]`).val(value);
+	// 					})
+	// 				}
+	// 			}
+	// 		}
+	// 	})
+	// 	$.ajax({
+	// 		type:"GET",
+	// 		url:"/cart?view=item",
+	// 		async: false,
+	// 		success: function(data){
+	// 			$('.shop-cart-sidebar .shop-cart-sidebar-yes').html('').append(data);
+	// 		}
+	// 	});
+	// },
+	// updateCart: function(type, id, quantity, string){
+	// 	switch(type) {
+	// 		case "add":
+	// 			$.ajax({
+	// 				type: 'POST',
+	// 				async: false,
+	// 				url: '/cart/add.js',
+	// 				data:  { variantId: id, quantity: quantity },
+	// 				dataType: 'json',
+	// 				success: function(cart) {
+	// 					if(string == 'checkout') window.location.href = "/checkout";
+	// 					swal({
+	// 						title: "Cảm ơn bạn!",
+	// 						text: "Sản phẩm đã được thêm vào giỏ thành công",
+	// 						type: "success",
+	// 						showCancelButton: true,
+	// 						cancelButtonText: "Tiếp tục mua sắm",
+	// 						cancelButtonColor: "var(--color_main2)",
+	// 						confirmButtonColor: "var(--color_main)",
+	// 						confirmButtonText: "Đến giỏ hàng",
+	// 						closeOnConfirm: false
+	// 					}, function() {
+	// 						window.location.href="/cart";
+	// 					});
 
-						F1GENZ.Helper.getCart();
-					},
-					error: (XMLHttpRequest, textStatus) => { swal("Xin lỗi bạn!", "Có chút vấn đề về tồn kho!", "error") }
-				})
-				break;
-			case "update":
-				$.ajax({
-					type: 'POST',
-					async: false,
-					url: '/cart/change.js',
-					data:  { variantId: id, quantity: quantity },
-					dataType: 'json',
-					success: (cart) => {
-						F1GENZ.Helper.freeship(cart);
-						$('.shop-cart-sidebar a.toCheckout span:last-child').html(Bizweb.formatMoney(cart.total_price, window.F1GENZ_vars.formatMoney));
-						if(string == 'cart')
-							window.location.reload();
-						else
-							swal("", "Sản phẩm đã được cập nhật", "success")
-							},
-					error: (XMLHttpRequest, textStatus) => { swal("Xin lỗi bạn!", "Có chút vấn đề về tồn kho!", "error") }
-				})
-				break;
-			case "delete":
-				$.ajax({
-					type: 'GET',
-					async: false,
-					url: string,
-					success: (cart) => { F1GENZ.Helper.getCart(); },
-					error: (XMLHttpRequest, textStatus) => { swal("Oppz..", "Vui lòng thử lại sau", "error") }
-				})
-				break;
-			default:
-				$.ajax({
-					type: 'POST',
-					async: false,
-					url: '/cart/update.js',
-					data:  { note: string },
-					dataType: 'json',
-					success: (cart) => {
-						$('.shop-cart-sidebar .shop-cart-sidebar-note textarea').html(cart.note);
-						$('.shop-cart-sidebar .shop-cart-sidebar-note').removeClass('active');
-					},
-					error: (XMLHttpRequest, textStatus) => { swal("Oppz..", "Vui lòng thử lại sau", "error") }
-				})
-		};
-	},
+	// 					F1GENZ.Helper.getCart();
+	// 				},
+	// 				error: (XMLHttpRequest, textStatus) => { swal("Xin lỗi bạn!", "Có chút vấn đề về tồn kho!", "error") }
+	// 			})
+	// 			break;
+	// 		case "update":
+	// 			$.ajax({
+	// 				type: 'POST',
+	// 				async: false,
+	// 				url: '/cart/change.js',
+	// 				data:  { variantId: id, quantity: quantity },
+	// 				dataType: 'json',
+	// 				success: (cart) => {
+	// 					F1GENZ.Helper.freeship(cart);
+	// 					$('.shop-cart-sidebar a.toCheckout span:last-child').html(Bizweb.formatMoney(cart.total_price, window.F1GENZ_vars.formatMoney));
+	// 					if(string == 'cart')
+	// 						window.location.reload();
+	// 					else
+	// 						swal("", "Sản phẩm đã được cập nhật", "success")
+	// 						},
+	// 				error: (XMLHttpRequest, textStatus) => { swal("Xin lỗi bạn!", "Có chút vấn đề về tồn kho!", "error") }
+	// 			})
+	// 			break;
+	// 		case "delete":
+	// 			$.ajax({
+	// 				type: 'GET',
+	// 				async: false,
+	// 				url: string,
+	// 				success: (cart) => { F1GENZ.Helper.getCart(); },
+	// 				error: (XMLHttpRequest, textStatus) => { swal("Oppz..", "Vui lòng thử lại sau", "error") }
+	// 			})
+	// 			break;
+	// 		default:
+	// 			$.ajax({
+	// 				type: 'POST',
+	// 				async: false,
+	// 				url: '/cart/update.js',
+	// 				data:  { note: string },
+	// 				dataType: 'json',
+	// 				success: (cart) => {
+	// 					$('.shop-cart-sidebar .shop-cart-sidebar-note textarea').html(cart.note);
+	// 					$('.shop-cart-sidebar .shop-cart-sidebar-note').removeClass('active');
+	// 				},
+	// 				error: (XMLHttpRequest, textStatus) => { swal("Oppz..", "Vui lòng thử lại sau", "error") }
+	// 			})
+	// 	};
+	// },
 	urlExists: function(url, callback){
 		$.ajax({
 			url: url,
@@ -340,10 +340,10 @@ F1GENZ.General = {
 			Carousel: false,
 			Hash: false,
 		})
-		F1GENZ.PopSale.init();
+		// F1GENZ.PopSale.init();
 		F1GENZ.Quickview.init();
-		F1GENZ.Wishlist.init();
-		F1GENZ.Helper.getCart();
+		// F1GENZ.Wishlist.init();
+		// F1GENZ.Helper.getCart();
 		F1GENZ.General.contact_popup();
 		F1GENZ.General.phone_popup();
 		F1GENZ.General.toolSearch();
@@ -1097,40 +1097,40 @@ F1GENZ.Quickview = {
 		}
 	},
 };
-F1GENZ.PopSale = {
-	init: function(){
-		this.generate();
-	},
-	generate: function(){
-		if(!window.F1GENZ_vars.shop.featured.popSale.check) return false;
-		if (window.F1GENZ_vars.shop.featured.popSale.handle == "") return false;
-		var contentJson = [];
-		var contentPopup= [];
-		var contentName = [];
-		var contentNameSettings= window.F1GENZ_vars.shop.featured.popSale.names || "";
-		var contentNameArray = contentNameSettings.split(',');
-		var contentHandle = window.F1GENZ_vars.shop.featured.popSale.handle || "all";
-		$.ajax({
-			url: `/collections/${contentHandle}?view=pop_sale`,
-			async: false,
-			success: function(result){
-				contentJson = JSON.parse(result);
-			}
-		});
-		setInterval(function(){
-			contentName = contentNameArray[Math.floor(Math.random() * contentNameArray.length)]
-			contentPopup = contentJson[Math.floor(Math.random() * contentJson.length)]
-			contentName = contentNameArray[Math.floor(Math.random() * contentNameArray.length)]
-			contentPopup = contentJson[Math.floor(Math.random() * contentJson.length)]
-			$(".pop-sale .pop-sale-content .pop-sale-title").html(contentPopup.title);
-			$(".pop-sale .pop-sale-content .pop-sale-title").attr('href',contentPopup.url);
-			$(".pop-sale .pop-sale-content .pop-sale-name").html(contentName);
-			$(".pop-sale .pop-sale-content .pop-sale-title-buynow").attr('href',contentPopup.url);
-			$(".pop-sale .pop-sale-content .pop-sale-minutes").html(Math.floor(Math.random() * 60));
-			$(".pop-sale .pop-sale-img img").attr('src',contentPopup.image);
-			$( ".pop-sale" ).animate({ left: "20" }, 1000).delay(5000);
-			$( ".pop-sale" ).animate({ left: "-500" }, 1000)
-		},15000)
-	}
-}
+// F1GENZ.PopSale = {
+// 	init: function(){
+// 		this.generate();
+// 	},
+// 	generate: function(){
+// 		if(!window.F1GENZ_vars.shop.featured.popSale.check) return false;
+// 		if (window.F1GENZ_vars.shop.featured.popSale.handle == "") return false;
+// 		var contentJson = [];
+// 		var contentPopup= [];
+// 		var contentName = [];
+// 		var contentNameSettings= window.F1GENZ_vars.shop.featured.popSale.names || "";
+// 		var contentNameArray = contentNameSettings.split(',');
+// 		var contentHandle = window.F1GENZ_vars.shop.featured.popSale.handle || "all";
+// 		$.ajax({
+// 			url: `/collections/${contentHandle}?view=pop_sale`,
+// 			async: false,
+// 			success: function(result){
+// 				contentJson = JSON.parse(result);
+// 			}
+// 		});
+// 		setInterval(function(){
+// 			contentName = contentNameArray[Math.floor(Math.random() * contentNameArray.length)]
+// 			contentPopup = contentJson[Math.floor(Math.random() * contentJson.length)]
+// 			contentName = contentNameArray[Math.floor(Math.random() * contentNameArray.length)]
+// 			contentPopup = contentJson[Math.floor(Math.random() * contentJson.length)]
+// 			// $(".pop-sale .pop-sale-content .pop-sale-title").html(contentPopup.title);
+// 			// $(".pop-sale .pop-sale-content .pop-sale-title").attr('href',contentPopup.url);
+// 			// $(".pop-sale .pop-sale-content .pop-sale-name").html(contentName);
+// 			// $(".pop-sale .pop-sale-content .pop-sale-title-buynow").attr('href',contentPopup.url);
+// 			// $(".pop-sale .pop-sale-content .pop-sale-minutes").html(Math.floor(Math.random() * 60));
+// 			// $(".pop-sale .pop-sale-img img").attr('src',contentPopup.image);
+// 			// $( ".pop-sale" ).animate({ left: "20" }, 1000).delay(5000);
+// 			// $( ".pop-sale" ).animate({ left: "-500" }, 1000)
+// 		},15000)
+// 	}
+// }
 window.noPS && F1GENZ.General.init();

