@@ -513,6 +513,13 @@
         .home-banner-triple-item-container {
             position: relative;
             overflow: hidden;
+            height: 420px;
+        }
+
+        @media (max-width: 768px) {
+            .home-banner-triple-item-container {
+                height: 280px !important;
+            }
         }
 
         /* 1. Hiệu ứng zoom ảnh nhẹ */
@@ -664,6 +671,13 @@
         .home-banner-triple-item-container {
             position: relative;
             overflow: hidden;
+            height: 420px;
+        }
+
+        @media (max-width: 768px) {
+            .home-banner-triple-item-container {
+                height: 280px !important;
+            }
         }
 
         /* Ép ảnh full width + full height container, cắt/scale tự động */
