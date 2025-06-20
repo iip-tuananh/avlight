@@ -671,7 +671,7 @@
         .home-banner-triple-item-container {
             position: relative;
             overflow: hidden;
-            height: 420px;
+            height: 340px;
         }
 
         @media (max-width: 768px) {
