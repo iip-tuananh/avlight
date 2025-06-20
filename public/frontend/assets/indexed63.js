@@ -13,14 +13,14 @@ F1GENZ.superFS = {
 			var now_date = moment(new Date()).format("DD/MM/YYYY");
 			$('.home-fsale [data-start][data-end]').each(function(){
 				// Start
-				var init_timeS = moment(F1GENZ.Helper.formatTime($(this).attr('data-start'))).format("HH:mm:ss"); 
+				var init_timeS = moment(F1GENZ.Helper.formatTime($(this).attr('data-start'))).format("HH:mm:ss");
 				var finish_dateS = `${now_date} ${init_timeS}`;
 				$(this).attr('data-start', finish_dateS);
 
 				// End
-				var init_timeE = moment(F1GENZ.Helper.formatTime($(this).attr('data-end'))).format("HH:mm:ss"); 
+				var init_timeE = moment(F1GENZ.Helper.formatTime($(this).attr('data-end'))).format("HH:mm:ss");
 				var finish_dateE = `${now_date} ${init_timeE}`;
-				$(this).attr('data-end', finish_dateE); 
+				$(this).attr('data-end', finish_dateE);
 			})
 		}
 	},
@@ -34,7 +34,7 @@ F1GENZ.superFS = {
 			// Slick for loop
 			if(window.F1GENZ_vars.shop.featured.super_fs.slider)
 				if(!$(`.home-fsale-body-item:nth-child(${index + 1}) .home-fsale-body-item-data`).hasClass('slick-slider'))
-					F1GENZ.Helper.productSlider(`.home-fsale-body-item:nth-child(${index + 1}) .home-fsale-body-item-data`, 4, 4, 2, 2, { arrows: true }); 
+					F1GENZ.Helper.productSlider(`.home-fsale-body-item:nth-child(${index + 1}) .home-fsale-body-item-data`, 4, 4, 2, 2, { arrows: true });
 		})
 	},
 	fs_tab: function(){
@@ -42,20 +42,20 @@ F1GENZ.superFS = {
 			var $that = $(this);
 			var timeS_Attr = $(this).attr('data-start');
 			var timeE_Attr = $(this).attr('data-end');
-			if(timeS_Attr && timeE_Attr){ 
+			if(timeS_Attr && timeE_Attr){
 				var timeS = F1GENZ.Helper.formatTime(timeS_Attr);
 				var timeE = F1GENZ.Helper.formatTime(timeE_Attr);
 
 				// Append Time Text
 				var timeText = moment(timeS).format('H:mm');
-				$that.find('strong').text(timeText); 
+				$that.find('strong').text(timeText);
 				// End Append Time Text
 
 				var now = new Date().getTime();
 
 				// Check DistanceS
 				var distanceS = timeS - now;
-				if(distanceS < 0){ 
+				if(distanceS < 0){
 					// Tab
 					$that.addClass('started');
 					$that.find('span').text('Đang diễn ra');
@@ -84,7 +84,7 @@ F1GENZ.superFS = {
 		})
 	},
 	fs_head: function(){
-		var doneTime = (days, hours, minutes, seconds) => { 
+		var doneTime = (days, hours, minutes, seconds) => {
 			var html = `<span class="days"><b>${days}</b><strong>Ngày</strong></span><span class="hours"><b>${hours}</b><strong>Giờ</strong></span><span class="minutes"><b>${minutes}</b><strong>Phút</strong></span><span class="seconds"><b>${seconds}</b><strong>Giây</strong></span>`;
 			return html;
 		}
@@ -92,7 +92,7 @@ F1GENZ.superFS = {
 			$('.home-fsale-head-item').each(function(i, v){
 				var $that = $(this);
 				if($that.hasClass('ended')){
-					$that.find('[data-start][data-end]').html(doneTime("00", "00", "00", "00")); 
+					$that.find('[data-start][data-end]').html(doneTime("00", "00", "00", "00"));
 				}else{
 					var countdown = setInterval(function() {
 						if(!$that.hasClass('started')){
@@ -110,9 +110,9 @@ F1GENZ.superFS = {
 							var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 							var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 							$that.find('[data-start][data-end]').html(doneTime((days < 10 ? '0' + days : days), (hours < 10 ? '0' + hours : hours), (minutes < 10 ? '0' + minutes : minutes), (seconds < 10 ? '0' + seconds : seconds)))
-							if (distance < 0) { 
-								clearInterval(countdown); 
-								$that.find('[data-start][data-end]').html(doneTime("00", "00", "00", "00")); 
+							if (distance < 0) {
+								clearInterval(countdown);
+								$that.find('[data-start][data-end]').html(doneTime("00", "00", "00", "00"));
 							}
 						}
 					}, 1000);
@@ -148,13 +148,13 @@ F1GENZ.Index = {
 		self.home_productBig();
 	},
 	slider: function(){
-		F1GENZ.Helper.productSlider('.home-slider .home-slider-items', 1, 1, 1, 1, { autoplay: true, infinite: true, fade: true,dots: true,autoplaySpeed: 6000,speed: 1000 }); 
-		F1GENZ.Helper.productSlider('.home-flashsale-right', 2, 2, 2, 2, { autoplay: true, infinite: true,autoplaySpeed: 6000,speed: 1000}); 
-		F1GENZ.Helper.productSlider('.home-product-list-slider-1', 3, 2, 2, 1, { autoplay: true,dots: false,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000}); 
-		F1GENZ.Helper.productSlider('.home-product-list-slider-2', 4, 3, 2, 2, { autoplay: true,dots: false,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000}); 
-		F1GENZ.Helper.productSlider('.home-instegram-flex', 5, 4, 3, 2, { autoplay: true,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000}); 
-		F1GENZ.Helper.productSlider('.home-product-new-slider', 4, 4, 3, 2, { autoplay: true,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000}); 
-		F1GENZ.Helper.productSlider('.home-blog .home-blog-items', 3, 2, 2, 1, { arrows: true, autoplay: true, infinite: true }); 
+		F1GENZ.Helper.productSlider('.home-slider .home-slider-items', 1, 1, 1, 1, { autoplay: true, infinite: true, fade: true,dots: true,autoplaySpeed: 6000,speed: 1000 });
+		F1GENZ.Helper.productSlider('.home-flashsale-right', 2, 2, 2, 2, { autoplay: true, infinite: true,autoplaySpeed: 6000,speed: 1000});
+		F1GENZ.Helper.productSlider('.home-product-list-slider-1', 3, 2, 2, 1, { autoplay: true,dots: false,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000});
+		F1GENZ.Helper.productSlider('.home-product-list-slider-2', 4, 3, 2, 2, { autoplay: true,dots: false,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000});
+		F1GENZ.Helper.productSlider('.home-instegram-flex', 5, 4, 3, 2, { autoplay: true,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000});
+		F1GENZ.Helper.productSlider('.home-product-new-slider', 5, 5, 3, 2, { autoplay: true,arrows: true, infinite: true,autoplaySpeed: 6000,speed: 1000});
+		F1GENZ.Helper.productSlider('.home-blog .home-blog-items', 3, 2, 2, 1, { arrows: true, autoplay: true, infinite: true });
 	},
 	home_productBig: function(){
 		$('body').on('click touch', '.home-product-big-image-pos .home-product-big-image-pos-dots', function(){
@@ -166,8 +166,8 @@ F1GENZ.Index = {
 			else
 				that.parent().toggleClass('left');
 
-			if($(window).width() < 991) $('body, html').addClass('open-noscroll open-overplay'); 
-		}) 
+			if($(window).width() < 991) $('body, html').addClass('open-noscroll open-overplay');
+		})
 	},
 	vendor: function(){
 		$(".home-vendor .home-vendor-list").slick({

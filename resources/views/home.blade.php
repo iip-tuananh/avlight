@@ -67,7 +67,7 @@
 
         .about-section {
             background: var(--bg-light);
-            padding: 60px 20px;
+            padding: 30px 20px;
         }
 
         .about-container {
@@ -367,15 +367,15 @@
     </style>
     @if ($categoriesFeatured->count())
         @foreach ($categoriesFeatured as $cateFeatured)
-            <section class="home-product-new section-distance container">
+            <section class="home-product-new section-distance container {{ $loop->first ? 'first-item' : '' }}">
                 <div class="d-flex-vertical d-flex-center layout-gap-0.5unit home-product-header home-custom-header">
                     <h2 class="m-reset f-size-5 f-superbold limit-line threeline f-center text-primary-color">
                         {{ languageName($cateFeatured->name) }}</h2>
-                    <div class="home-custom-header-flex d-flex-vertical d-flex-center">
+                    {{-- <div class="home-custom-header-flex d-flex-vertical d-flex-center">
                         <a class="m-reset f-size-3 limit-line fiveline f-center home-custom-extra-header"
                             style='color: #333333' href="{{ route('allListProCate', ['danhmuc' => $cateFeatured->slug]) }}"
                             title="Xem tất cả">Xem tất cả</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="home-product-new-slider">
                     @foreach ($cateFeatured->products as $productFeatured)
@@ -402,8 +402,8 @@
         /*    margin-bottom: 30px;*/
         /*}*/
 
-        .home-product-header:first-child {
-            padding-top: 50px !important;
+        .home-product-new.first-item .home-product-header {
+            padding-top: 30px !important;
         }
 
         .services-section {

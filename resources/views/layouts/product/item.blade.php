@@ -12,10 +12,10 @@
                         title='{{ languageName($product->name) }}' width="480" height="480" loading="lazy"
                         decoding="async">
                 </a>
-                <div style="height: 110px;">
-                    <h3 class="text-center">
+                <div style="height: 80px;">
+                    <h3 class="text-center" style="line-height: 0.8;">
                         <a href="{{ route('detailProduct', ['cate' => $product->cate_slug ?? $product->cate->slug, 'type' => $product->type_slug ?? $product->typecate->slug, 'id' => $product->id]) }}"
-                            title="{{ languageName($product->name) }}" aria-label="{{ languageName($product->name) }}" style="color: #000; font-size: 16px; font-weight: 600;">
+                            title="{{ languageName($product->name) }}" aria-label="{{ languageName($product->name) }}" style="color: #000; font-size: 16px; font-weight: 600; line-height: 0.8;">
                             {{ languageName($product->name) }}</a>
                     </h3>
                     <div class="product-item-detail-price text-center" style="margin-bottom: 15px;">

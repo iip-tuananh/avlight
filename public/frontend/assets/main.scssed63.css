@@ -378,7 +378,7 @@
 
 @media (min-width: 1300px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 1370px
+        max-width: 1280px;
     }
 }
 
@@ -1433,7 +1433,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
 
 .header .header-menu .header-menu-wrap {
     display: grid;
-    grid-template-columns:20% 1fr 200px;
+    grid-template-columns: 20% 1fr;
     align-items: center;
     gap: 0 20px
 }
@@ -2351,7 +2351,7 @@ body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     }
 
     .header-menu-horizontal > nav .menu0 > li > a {
-        font-size: 1.05rem;
+        font-size: 1rem;
         font-weight: 400;
         letter-spacing: 0.5px
     }
