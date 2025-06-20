@@ -378,7 +378,7 @@
 
 @media (min-width: 1300px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 1280px;
+        max-width: 1200px;
     }
 }
 
